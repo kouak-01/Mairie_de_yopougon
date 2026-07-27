@@ -1,0 +1,152 @@
+// src/styles.scss
+// Feuille de style globale — variables CSS, reset, éléments transverses
+// réutilisés par tous les composants (équivalent de l'ancien base.css)
+
+@import "primeicons/primeicons.css";
+
+:root {
+  --primary: #1a5f2a;
+  --primary-dark: #0e3d1a;
+  --secondary: #F77F00;
+  --accent: #ffffff;
+  --gold: #d4a843;
+  --text-dark: #1a1a2e;
+  --text-light: #555;
+  --bg-light: #f8f9fa;
+  --bg-cream: #faf8f5;
+  --shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
+  --radius: 16px;
+  --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--text-dark);
+  line-height: 1.7;
+  overflow-x: hidden;
+  background: var(--accent);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+/* ===== BOUTONS PARTAGÉS ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 32px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: var(--transition);
+  cursor: pointer;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.btn-primary {
+  background: var(--secondary);
+  color: white;
+  box-shadow: 0 8px 25px rgba(247, 127, 0, 0.35);
+}
+
+.btn-primary:hover {
+  background: #e07000;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(247, 127, 0, 0.45);
+}
+
+.btn-outline {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+}
+
+.btn-outline:hover {
+  background: white;
+  color: var(--primary-dark);
+  border-color: white;
+  transform: translateY(-3px);
+}
+
+/* ===== EN-TÊTE DE SECTION PARTAGÉ ===== */
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-header .overline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 15px;
+}
+
+.section-header .overline::before,
+.section-header .overline::after {
+  content: '';
+  width: 40px;
+  height: 2px;
+  background: var(--gold);
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  color: var(--primary-dark);
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.section-header p {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* ===== ANIMATION FADE-IN PARTAGÉE (pilotée par FadeInDirective) ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@media (max-width: 768px) {
+  .section-header h2 { font-size: 1.8rem; }
+}

@@ -1,0 +1,133 @@
+<!-- HERO YOP MA COMMUNE -->
+<section class="hero-commune">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fas fa-compass"></i> Découvrir Yopougon
+      </div>
+      <h1>Yop, <span>Ma Commune</span></h1>
+      <p>
+        De son histoire à sa géographie, en passant par son économie, ses emplois, son sport, sa
+        culture et son tourisme : plongez au cœur de « Yop City », la plus grande commune de Côte
+        d'Ivoire.
+      </p>
+      <div class="hero-buttons">
+        <a href="#histoire" class="btn btn-primary">
+          <i class="fas fa-scroll"></i> Découvrir l'histoire
+        </a>
+        <a routerLink="/" fragment="contact" class="btn btn-outline">
+          <i class="fas fa-envelope-open-text"></i> Nous contacter
+        </a>
+      </div>
+      <div class="hero-stats">
+        @for (stat of heroStats; track stat.label) {
+          <div class="stat-item">
+            <span class="stat-number" [appCountUp]="stat.target" [countUpSuffix]="stat.suffix">0</span>
+            <div class="stat-label">{{ stat.label }}</div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="hub-visual">
+      <div class="commune-hub">
+        <div class="hub-ping"></div>
+        <div class="hub-core">
+          <i class="fas fa-compass"></i>
+          <span>Yop, Ma<br />Commune</span>
+        </div>
+        @for (hub of hubIcons; track hub.title) {
+          <div class="hub-icon" [title]="hub.title"><i class="fas {{ hub.icon }}"></i></div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NAVIGATION RAPIDE (scrollspy) -->
+<div class="quick-nav-wrap">
+  <div class="container">
+    <div class="quick-nav">
+      @for (item of quickNavItems; track item.id) {
+        <a [href]="'#' + item.id" [class.active]="activeSection() === item.id">
+          <i class="fas {{ item.icon }}"></i> {{ item.label }}
+        </a>
+      }
+    </div>
+  </div>
+</div>
+
+<!-- INTRO -->
+<section class="commune-intro">
+  <div class="container">
+    <p class="fade-in" appFadeIn>
+      Yopougon, surnommée « Yop City », est bien plus qu'une commune : c'est un territoire riche de
+      son passé, de sa diversité et de son dynamisme. Explorez ci-dessous les huit grandes facettes
+      qui font l'identité de notre commune, et approfondissez chaque thématique grâce aux pages
+      dédiées.
+    </p>
+  </div>
+</section>
+
+<!-- GRILLE BENTO DES RUBRIQUES -->
+<section class="commune-bento">
+  <div class="container">
+    <div class="bento-grid">
+      @for (card of bentoCards; track card.id) {
+        <article
+          class="bento-card fade-in"
+          appFadeIn
+          [id]="card.id"
+          [class.featured]="card.featured"
+          [class.span-2]="card.spanTwo"
+        >
+          <div class="icon"><i class="fas {{ card.icon }}"></i></div>
+          <div class="overline">{{ card.overline }}</div>
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.description }}</p>
+          <a routerLink="/en-construction" class="bento-link">Lire la suite <i class="fas fa-arrow-right"></i></a>
+        </article>
+      }
+
+      <!-- TOURISME ET LOISIRS (bannière pleine largeur) -->
+      <article class="bento-banner fade-in" appFadeIn id="tourisme-loisirs">
+        <div class="bento-banner-text">
+          <div class="overline">Détente & découverte</div>
+          <h3>Tourisme et loisirs</h3>
+          <p>
+            Espaces verts, sites emblématiques, restaurants et lieux de sortie : partez à la
+            découverte des adresses incontournables de Yopougon pour se détendre en famille ou entre
+            amis.
+          </p>
+          <a routerLink="/en-construction" class="btn btn-primary">
+            <i class="fas fa-arrow-right"></i> Lire la suite
+          </a>
+        </div>
+        <div class="bento-banner-visual">
+          <i class="fas fa-umbrella-beach"></i>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINALE -->
+<section class="commune-cta">
+  <div class="container">
+    <div class="cta-box fade-in" appFadeIn>
+      <h2>Envie d'aller plus loin ?</h2>
+      <p>Retrouvez toute l'actualité de la commune, nos services en ligne et notre radio locale pour rester connecté à la vie de Yopougon.</p>
+      <div class="cta-buttons">
+        <a routerLink="/" fragment="demande" class="btn btn-primary">
+          <i class="fas fa-concierge-bell"></i> Services en ligne
+        </a>
+        <a routerLink="/radio" class="btn btn-outline">
+          <i class="fas fa-broadcast-tower"></i> Radio Yopougon
+        </a>
+        <a routerLink="/" fragment="contact" class="btn btn-outline">
+          <i class="fas fa-envelope-open-text"></i> Nous contacter
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

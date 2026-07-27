@@ -1,0 +1,281 @@
+<!-- HERO RADIO -->
+<section class="hero-radio">
+  <div class="container">
+    <div class="hero-content">
+      <div class="live-badge">
+        <span class="live-dot"></span> En direct maintenant
+      </div>
+      <h1>Radio <span>Yopougon</span></h1>
+      <div class="frequency-line">
+        <i class="fas fa-broadcast-tower"></i> 94.5 FM — La voix de Yop City
+      </div>
+      <p>
+        La radio officielle de la Mairie de Yopougon vous informe, vous divertit et vous accompagne
+        au quotidien. Actualités communales, musique, débats citoyens et proximité : votre radio, à
+        l'écoute de tous les Yopougonnais.
+      </p>
+      <div class="hero-buttons">
+        <a routerLink="/radio" fragment="programme" class="btn btn-primary">
+          <i class="fas fa-calendar-day"></i> Voir le programme
+        </a>
+        <a routerLink="/radio" fragment="facebook" class="btn btn-outline">
+          <i class="fab fa-facebook"></i> Nous suivre
+        </a>
+      </div>
+      <div class="hero-stats">
+        @for (stat of heroStats; track stat.label) {
+          <div class="stat-item">
+            <span class="stat-number" [appCountUp]="stat.target" [countUpSuffix]="stat.suffix">0</span>
+            <div class="stat-label">{{ stat.label }}</div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="radio-visual">
+      <div class="radio-dial">
+        <div class="radio-dial-orbit"><i class="fas fa-music"></i></div>
+        <div class="radio-dial-core">
+          <button class="play-btn" aria-label="Écouter Radio Yopougon en direct" (click)="onHeroPlay()">
+            <i class="fas" [class.fa-play]="!isPlaying()" [class.fa-pause]="isPlaying()"></i>
+          </button>
+          <div class="freq-big">94.5 FM</div>
+          <div class="freq-sub">Écouter en direct</div>
+          <div class="equalizer">
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFORMATIONS GÉNÉRALES -->
+<section class="radio-info" id="info">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">À propos</div>
+      <h2>Informations générales</h2>
+      <p>
+        Née de la volonté municipale de rapprocher l'administration des habitants, Radio Yopougon
+        est un média de proximité au service de toute la commune.
+      </p>
+    </div>
+
+    <div class="radio-info-grid">
+      <div class="radio-info-text fade-in" appFadeIn>
+        <p>
+          Radio Yopougon 94.5 FM est la radio de proximité de la Mairie de Yopougon. Depuis sa
+          création, elle accompagne les Yopougonnais au quotidien en relayant l'actualité communale,
+          les décisions du Conseil Municipal et la vie des 32 quartiers de la commune.
+        </p>
+        <p>
+          Généraliste et communautaire, notre grille mêle information locale, musique, divertissement
+          et espaces d'expression citoyenne. Nous donnons la parole aux associations, aux jeunes, aux
+          femmes et aux acteurs économiques de Yop City, dans un esprit de proximité, de service
+          public et de convivialité.
+        </p>
+        <div class="radio-mission-box">
+          <h4><i class="fas fa-bullseye"></i> Notre mission</h4>
+          <p>
+            Informer, fédérer et divertir la population de Yopougon en valorisant les initiatives
+            locales et en facilitant le dialogue entre la municipalité et les citoyens.
+          </p>
+        </div>
+      </div>
+
+      <div class="info-cards-grid fade-in" appFadeIn>
+        @for (card of infoCards; track card.title) {
+          <div class="info-card">
+            <div class="icon"><i class="fas {{ card.icon }}"></i></div>
+            <h4>{{ card.title }}</h4>
+            <p>{{ card.description }}</p>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="info-cta-row fade-in" appFadeIn>
+      <a routerLink="/radio" fragment="programme" class="btn btn-primary">
+        <i class="fas fa-calendar-day"></i> Consulter le programme
+      </a>
+      <a routerLink="/" fragment="contact" class="btn btn-outline" style="color: var(--primary); border-color: var(--primary);">
+        <i class="fas fa-envelope-open-text"></i> Contacter la rédaction
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMME DE LA RADIO -->
+<section class="radio-programme" id="programme">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Grille des programmes</div>
+      <h2 style="color:rgba(237, 125, 49);">Programme de la Radio</h2>
+      <p>Retrouvez chaque jour nos émissions phares : information, culture, débats citoyens et divertissement.</p>
+    </div>
+
+    <div class="day-tabs fade-in" appFadeIn>
+      @for (day of scheduleDays; track day.id) {
+        <button class="day-tab" [class.active]="activeDay() === day.id" (click)="setActiveDay(day.id)">
+          {{ day.label }}
+        </button>
+      }
+    </div>
+
+    @for (day of scheduleDays; track day.id) {
+      @if (activeDay() === day.id) {
+        <div class="schedule-panel active">
+          @for (item of scheduleByDay[day.id]; track item.title) {
+            <div class="schedule-item" [class.is-live]="item.live">
+              <div class="schedule-time">{{ item.timeStart }} <small>{{ item.timeEnd }}</small></div>
+              <div class="schedule-icon"><i class="fas {{ item.icon }}"></i></div>
+              <div class="schedule-body">
+                <h4>
+                  {{ item.title }}
+                  @if (item.live) {
+                    <span class="live-pill">En direct</span>
+                  }
+                </h4>
+                <p>{{ item.description }}</p>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    }
+  </div>
+</section>
+
+<!-- SPÉCIAL VACANCES -->
+<section class="radio-vacances" id="vacances">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Édition spéciale</div>
+      <h2>Spécial Vacances 2026</h2>
+      <p>Pendant les grandes vacances, Radio Yopougon change de rythme pour occuper, informer et divertir petits et grands.</p>
+    </div>
+
+    <div class="vacances-banner fade-in" appFadeIn>
+      <div class="vacances-banner-left">
+        <div class="icon"><i class="fas fa-umbrella-beach"></i></div>
+        <div>
+          <h3>Programme spécial vacances actif</h3>
+          <p>Du 1er juillet au 31 août 2026 — grille aménagée tous les jours dès 9h00.</p>
+        </div>
+      </div>
+      <a routerLink="/" fragment="contact" class="btn btn-outline">
+        <i class="fas fa-user-plus"></i> Inscrire mon enfant
+      </a>
+    </div>
+
+    <div class="vacances-grid">
+      @for (card of vacancesCards; track card.title) {
+        <div class="vacances-card fade-in" appFadeIn>
+          <span class="badge">{{ card.badge }}</span>
+          <div class="icon"><i class="fas {{ card.icon }}"></i></div>
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.description }}</p>
+          <a [routerLink]="card.linkPath" [fragment]="card.linkFragment" class="link">
+            {{ card.linkLabel }} <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- FACEBOOK -->
+<section class="radio-facebook" id="facebook">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Communauté</div>
+      <h2 style="color:rgba(237, 125, 49);">Suivez-nous sur Facebook</h2>
+      <p>Rejoignez la communauté Radio Yopougon pour ne rien manquer de nos émissions, jeux concours et actualités en avant-première.</p>
+    </div>
+
+    <div class="fb-stats-row fade-in" appFadeIn>
+      @for (stat of fbStats; track stat.label) {
+        <div class="fb-stat">
+          <i class="fab {{ stat.icon }}"></i>
+          <div class="count" [appCountUp]="stat.target" [countUpSuffix]="stat.suffix">0</div>
+          <div class="count-label">{{ stat.label }}</div>
+        </div>
+      }
+    </div>
+
+    <div class="fb-content-grid">
+      <div class="fb-page-card fade-in" appFadeIn>
+        <div class="fb-cover">
+          <div class="fb-page-avatar">RY</div>
+        </div>
+        <div class="fb-page-body">
+          <h3><i class="fab fa-facebook"></i> Radio Yopougon 94.5 FM</h3>
+          <div class="handle">&#64;RadioYopougonOfficiel</div>
+          <p>
+            Page officielle de Radio Yopougon, la radio de la Mairie de Yopougon. Actualités,
+            direct, jeux concours et vie de la commune.
+          </p>
+          <a href="#" target="_blank" rel="noopener" class="btn btn-facebook">
+            <i class="fab fa-facebook-f"></i> Suivre la page
+          </a>
+        </div>
+      </div>
+
+      <div class="fb-posts">
+        @for (post of fbPosts; track post.timeAgo) {
+          <div class="fb-post fade-in" appFadeIn>
+            <div class="fb-post-head">
+              <div class="fb-post-avatar">RY</div>
+              <div>
+                <h5>Radio Yopougon 94.5 FM</h5>
+                <span>{{ post.timeAgo }}</span>
+              </div>
+            </div>
+            <p>{{ post.text }}</p>
+            <div class="fb-post-meta">
+              <span><i class="fab fa-facebook"></i> {{ post.likes }}</span>
+              <span><i class="fas fa-comment"></i> {{ post.comments }}</span>
+              <span><i class="fas fa-share"></i> {{ post.shares }}</span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINALE -->
+<section class="radio-cta-final">
+  <div class="container">
+    <div class="cta-box fade-in" appFadeIn>
+      <h2>Écoutez Radio Yopougon partout</h2>
+      <p>Sur votre poste FM, en streaming ou sur Facebook : restez connectés à la voix de votre commune, où que vous soyez.</p>
+      <div class="cta-buttons">
+        <button class="btn btn-primary" (click)="onHeroPlay()">
+          <i class="fas fa-play"></i> Écouter en direct
+        </button>
+        <a href="#" target="_blank" rel="noopener" class="btn btn-outline">
+          <i class="fab fa-facebook"></i> Suivre sur Facebook
+        </a>
+        <a routerLink="/" fragment="contact" class="btn btn-outline">
+          <i class="fas fa-envelope-open-text"></i> Contacter la radio
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MINI PLAYER FLOTTANT -->
+<div class="mini-player" [class.visible]="miniPlayerVisible()" [class.playing]="isPlaying()">
+  <button class="mini-player-btn" aria-label="Lecture / Pause" (click)="toggleMiniPlayer()">
+    <i class="fas" [class.fa-play]="!isPlaying()" [class.fa-pause]="isPlaying()"></i>
+  </button>
+  <div class="mini-player-info">
+    <strong>Radio Yopougon</strong>
+    <span>94.5 FM — En direct</span>
+  </div>
+  <div class="mini-player-eq">
+    <span></span><span></span><span></span>
+  </div>
+</div>

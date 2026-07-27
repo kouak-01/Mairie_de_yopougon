@@ -1,0 +1,92 @@
+@if (variant() === 'simple') {
+  <footer class="simple-footer">
+    <div class="container">
+      <p>&copy; {{ currentYear }} Mairie de Yopougon - Présentation du Maire Adama Bictogo</p>
+      <p>Au service de Yopougon et de ses 1,5 million d'habitants</p>
+    </div>
+  </footer>
+} @else {
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a routerLink="/" class="logo">
+          <div class="logo-icon">
+            <img src="assets/images/logo-2.jpg" style="height:100%;width:100%;object-fit:cover;" alt="Logo Mairie de Yopougon" />
+          </div>
+          <div class="logo-text">
+            <h1>Mairie de Yopougon</h1>
+            <span>Commune d'Abidjan</span>
+          </div>
+        </a>
+        <p>
+          La Mairie de Yopougon s'engage au service de la population yopougonnaise pour un
+          développement harmonieux, inclusif et durable de notre commune.
+        </p>
+        <div class="footer-social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Liens rapides</h4>
+        <ul class="footer-links">
+          @for (item of quickLinks; track item.label) {
+            <li>
+              <a [routerLink]="item.link" [fragment]="item.fragment">
+                <i class="fas fa-chevron-right"></i> {{ item.label }}
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h4>Informations</h4>
+        <ul class="footer-links">
+          @for (item of infoLinks; track item.label) {
+            <li>
+              <a [routerLink]="item.link" [fragment]="item.fragment">
+                <i class="fas fa-chevron-right"></i> {{ item.label }}
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <div class="footer-contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Rue Princesse, Yopougon<br />Abidjan, Côte d'Ivoire</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <span>+225 27 23 45 28 20</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>contact&#64;yopougon.ci</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-clock"></i>
+          <span>Lun - Ven : 7h30 - 16h00</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {{ currentYear }} Mairie de Yopougon. Tous droits réservés.</p>
+      <div class="footer-bottom-links">
+        @for (item of bottomLinks; track item.label) {
+          <a [routerLink]="item.link">{{ item.label }}</a>
+        }
+      </div>
+    </div>
+  </div>
+</footer>
+}

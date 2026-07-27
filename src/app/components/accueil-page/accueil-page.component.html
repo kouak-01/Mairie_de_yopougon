@@ -1,0 +1,231 @@
+<!-- HERO -->
+<section class="hero" id="accueil">
+  <div class="hero-slider">
+    @for (slide of heroSlides; track slide.src; let i = $index) {
+      <div class="hero-slide" [class.active]="currentSlide() === i">
+        <img [src]="slide.src" [alt]="slide.alt" />
+      </div>
+    }
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fas fa-landmark"></i>
+        République de Côte d'Ivoire
+      </div>
+      <h2>Bienvenue à la Mairie de <span>Yopougon</span></h2>
+      <p>
+        Yopougon, surnommée « Yop City », est la plus grande commune de Côte d'Ivoire avec plus de
+        1,5 million d'habitants. Découvrez nos services, nos actions et notre engagement pour le
+        bien-être de tous les Yopougonnais.
+      </p>
+      <div class="hero-buttons">
+        <a routerLink="/" fragment="demande" class="btn btn-primary">
+          <i class="fas fa-concierge-bell"></i> Nos Services
+        </a>
+        <a routerLink="/en-construction" class="btn btn-outline">
+          <i class="fas fa-info-circle"></i> Découvrir la commune
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-stats">
+    @for (stat of heroStats; track stat.label) {
+      <div class="hero-stat">
+        <div class="number">{{ stat.number }}</div>
+        <div class="label">{{ stat.label }}</div>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- NEWS TICKER -->
+<div class="news-ticker">
+  <div class="ticker-content">
+    @for (item of tickerItems; track item.text) {
+      <div class="ticker-item"><span class="ticker-dot"></span> {{ item.text }}</div>
+    }
+    @for (item of tickerItems; track item.text + '-dup') {
+      <div class="ticker-item"><span class="ticker-dot"></span> {{ item.text }}</div>
+    }
+  </div>
+</div>
+
+<!-- MAIRE -->
+<section class="maire" id="maire">
+  <div class="container">
+    <div class="maire-grid">
+      <div class="maire-photo fade-in" appFadeIn>
+        <img src="assets/images/le-maire.png" alt="Maire de Yopougon" style="height: 45rem; width: 25rem;" />
+      </div>
+      <div class="maire-content fade-in" appFadeIn>
+        <div class="overline">Mot du Maire</div>
+        <h2>M. Adama Bictogo</h2>
+        <div class="title">Maire de la Commune de Yopougon (2023-2028)</div>
+        <p>Chers frères et chères sœurs de Yopougon, chers visiteurs,</p>
+        <p>Je suis heureux de vous accueillir sur le site officiel de la Mairie de Yopougon.</p>
+        <p>
+          Ce portail numérique est bien plus qu'une simple vitrine. Il est un outil de communication
+          moderne, accessible et interactif, mis à votre disposition pour vous informer, vous
+          accompagner dans vos démarches administratives et vous rapprocher de l'action municipale.
+          Le site officiel de la Mairie de Yopougon traduit notre volonté de transparence, de
+          proximité et d'efficacité pour un Yopougon plus accessible et dans l'air du temps, dans un
+          contexte où les moyens de communication numériques s'imposent souverainement.
+        </p>
+        <div class="maire-quote">
+          « Ensemble, construisons un Yopougon moderne, inclusif et prospère, à la hauteur des
+          ambitions de sa population dynamique. Notre vision est celle d'une commune éducatrice et
+          créative, au service de la cohésion sociale. »
+        </div>
+        <p>
+          Je vous invite donc à explorer notre site, à utiliser ses services, à consulter
+          régulièrement les informations publiées, et surtout à nous faire part de vos suggestions.
+          Car, c'est ensemble, avec vous, que nous réussirons à faire rayonner davantage notre chère
+          commune si dynamique, tellement créative, solidaire et pleine de potentiel.
+        </p>
+        <a routerLink="/maire" class="btn btn-primary" style="margin-top: 15px;">
+          <i class="fas fa-arrow-right"></i> En savoir plus
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTUALITÉS -->
+<section class="actualites" id="actualites">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Restez informés</div>
+      <h2 style="color: rgba(237, 125, 49);">Actualités de la Commune</h2>
+      <p>Retrouvez les dernières nouvelles, événements et décisions du Conseil Municipal de Yopougon.</p>
+    </div>
+    <div class="actualites-grid">
+      @for (article of newsArticles; track article.title) {
+        <div class="actu-card fade-in" appFadeIn>
+          <div class="actu-img">
+            <img [src]="article.image" [alt]="article.alt" />
+            <span class="actu-category">{{ article.category }}</span>
+          </div>
+          <div class="actu-body">
+            <div class="actu-date"><i class="fas fa-calendar-alt"></i> {{ article.date }}</div>
+            <h3>{{ article.title }}</h3>
+            <p>{{ article.excerpt }}</p>
+            <a routerLink="/en-construction" class="actu-link">Lire la suite <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- DEMANDE EN LIGNE -->
+<section class="demande-en-ligne" id="demande">
+  <div class="container">
+    <div class="demande-header fade-in" appFadeIn>
+      <div class="overline">Services en ligne</div>
+      <h2>Demande en Ligne</h2>
+      <p>Effectuez vos demandes administratives de manière simple et rapide en ligne. Nos services sont disponibles 24h/24, 7j/7.</p>
+    </div>
+    <div class="demande-grid">
+      @for (card of demandeCards; track card.title) {
+        <div class="demande-card fade-in" appFadeIn>
+          <div class="demande-card-icon"><i class="fas {{ card.icon }}"></i></div>
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.description }}</p>
+          <a href="https://guichet.yopougon.ci/#/connexion" class="demande-card-btn">
+            <span>Faire une demande</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section class="numbers">
+  <div class="container">
+    <div class="numbers-heading fade-in" appFadeIn>
+      <h2>J'<span class="heart">❤️</span>YOP CITY</h2>
+    </div>
+    <div class="numbers-grid">
+      @for (stat of numberStats; track stat.label) {
+        <div class="number-card fade-in" appFadeIn>
+          <i class="fas {{ stat.icon }}"></i>
+          <div class="count">{{ stat.count }}</div>
+          <div class="count-label">{{ stat.label }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info fade-in" appFadeIn>
+        <div class="overline">Contactez-nous</div>
+        <h2>Restons en Contact</h2>
+        <p>
+          N'hésitez pas à nous contacter pour toute question, suggestion ou demande d'information.
+          Notre équipe est à votre écoute du lundi au vendredi.
+        </p>
+        @for (method of contactMethods; track method.title) {
+          <div class="contact-item">
+            <div class="contact-item-icon"><i class="fas {{ method.icon }}"></i></div>
+            <div class="contact-item-text">
+              <h4>{{ method.title }}</h4>
+              @for (line of method.lines; track line.text) {
+                <p>
+                  @if (line.href) {
+                    <a [href]="line.href">{{ line.text }}</a>
+                  } @else {
+                    {{ line.text }}
+                  }
+                </p>
+              }
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="contact-form fade-in" appFadeIn>
+        <h3>Envoyez-nous un message</h3>
+        <form [formGroup]="contactForm" (ngSubmit)="onContactSubmit()">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fullName">Nom complet</label>
+              <input id="fullName" type="text" placeholder="Votre nom" formControlName="fullName" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input id="email" type="email" placeholder="votre&#64;email.com" formControlName="email" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="subject">Objet</label>
+            <select id="subject" formControlName="subject" required>
+              <option value="">Sélectionnez un objet</option>
+              @for (subject of contactSubjects; track subject) {
+                <option [value]="subject">{{ subject }}</option>
+              }
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="Votre message..." formControlName="message" required></textarea>
+          </div>
+          <button type="submit" class="btn-submit" [class.sent]="formSubmitted()">
+            @if (formSubmitted()) {
+              <i class="fas fa-check"></i> Message envoyé avec succès !
+            } @else {
+              <i class="fas fa-paper-plane"></i> Envoyer le message
+            }
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

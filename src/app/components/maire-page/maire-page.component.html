@@ -1,0 +1,190 @@
+<!-- HERO -->
+<section class="hero-mayor" id="accueil">
+  <div class="container">
+    <div class="hero-content fade-in" appFadeIn>
+      <div class="hero-badge">
+        <i class="fas fa-crown"></i>
+        Maire de Yopougon depuis 2023
+      </div>
+      <h1>Adama Bictogo</h1>
+      <div class="title">Visionnaire, Bâtisseur, Homme d'État</div>
+      <p>
+        Avec plus de trois décennies d'expérience en politique et en affaires, Adama Bictogo
+        incarne une vision moderne et inclusive pour le développement de Yopougon, la plus grande
+        commune de Côte d'Ivoire.
+      </p>
+
+      <div class="hero-stats">
+        @for (stat of heroStats; track stat.label) {
+          <div class="stat-item">
+            <span class="stat-number">{{ stat.number }}</span>
+            <span class="stat-label">{{ stat.label }}</span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="hero-image fade-in" appFadeIn>
+      <div class="hero-image-frame">
+        <img src="assets/images/le-maire.png" alt="Adama Bictogo - Maire de Yopougon" style="width: 100%; border-radius: 20px;" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BIOGRAPHIE -->
+<section class="biography" id="biographie">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Qui est Adama Bictogo</div>
+      <h2>Biographie</h2>
+    </div>
+
+    <div class="bio-content fade-in" appFadeIn>
+      <div class="bio-text">
+        @for (paragraph of bioParagraphs; track paragraph) {
+          <p>{{ paragraph }}</p>
+        }
+      </div>
+
+      <div class="bio-highlights">
+        <h3><i class="fas fa-star" style="color: var(--secondary); margin-right: 10px;"></i>Points clés</h3>
+
+        @for (highlight of bioHighlights; track highlight.title) {
+          <div class="highlight-item">
+            <div class="highlight-icon"><i class="fas {{ highlight.icon }}"></i></div>
+            <div class="highlight-text">
+              <h4>{{ highlight.title }}</h4>
+              <p>{{ highlight.description }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARCOURS -->
+<section class="parcours" id="parcours">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Trajectoire professionnelle</div>
+      <h2>Parcours et Expériences</h2>
+    </div>
+
+    <div class="parcours-grid fade-in" appFadeIn>
+      @for (item of parcoursItems; track item.title) {
+        <div class="parcours-card">
+          <div class="icon"><i class="fas {{ item.icon }}"></i></div>
+          <h3>{{ item.title }}</h3>
+          <div class="period">{{ item.period }}</div>
+          <p>{{ item.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- RÉALISATIONS -->
+<section class="achievements" id="realisations">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Accomplissements</div>
+      <h2>Réalisations Majeures</h2>
+    </div>
+
+    <div class="achievements-grid fade-in" appFadeIn>
+      @for (item of achievementItems; track item.title) {
+        <div class="achievement-card">
+          <div class="achievement-icon"><i class="fas {{ item.icon }}"></i></div>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- VISION -->
+<section class="vision">
+  <div class="container">
+    <div class="vision-content fade-in" appFadeIn>
+      <h2>Sa Vision pour Yopougon</h2>
+      <div class="vision-quote">{{ visionQuote }}</div>
+      <p style="font-size: 1.1rem; color: rgba(255,255,255,0.9); margin-top: 40px;">
+        Adama Bictogo s'engage à transformer Yopougon en modèle de gouvernance municipale, où
+        chaque citoyen bénéficie d'opportunités égales de développement, d'accès à l'éducation, à
+        la santé et à l'emploi, dans un environnement sain et sécurisé.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info fade-in" appFadeIn>
+        <div class="overline">Contactez-nous</div>
+        <h2>Restons en Contact</h2>
+        <p>
+          N'hésitez pas à nous contacter pour toute question, suggestion ou demande d'information.
+          Notre équipe est à votre écoute du lundi au vendredi.
+        </p>
+        @for (method of contactMethods; track method.title) {
+          <div class="contact-item">
+            <div class="contact-item-icon"><i class="fas {{ method.icon }}"></i></div>
+            <div class="contact-item-text">
+              <h4>{{ method.title }}</h4>
+              @for (line of method.lines; track line.text) {
+                <p>
+                  @if (line.href) {
+                    <a [href]="line.href">{{ line.text }}</a>
+                  } @else {
+                    {{ line.text }}
+                  }
+                </p>
+              }
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="contact-form fade-in" appFadeIn>
+        <h3>Envoyez-nous un message</h3>
+        <form [formGroup]="contactForm" (ngSubmit)="onContactSubmit()">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="maire-fullName">Nom complet</label>
+              <input id="maire-fullName" type="text" placeholder="Votre nom" formControlName="fullName" required />
+            </div>
+            <div class="form-group">
+              <label for="maire-email">Email</label>
+              <input id="maire-email" type="email" placeholder="votre&#64;email.com" formControlName="email" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="maire-subject">Objet</label>
+            <select id="maire-subject" formControlName="subject" required>
+              <option value="">Sélectionnez un objet</option>
+              @for (subject of contactSubjects; track subject) {
+                <option [value]="subject">{{ subject }}</option>
+              }
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="maire-message">Message</label>
+            <textarea id="maire-message" placeholder="Votre message..." formControlName="message" required></textarea>
+          </div>
+          <button type="submit" class="btn-submit" [class.sent]="formSubmitted()">
+            @if (formSubmitted()) {
+              <i class="fas fa-check"></i> Message envoyé avec succès !
+            } @else {
+              <i class="fas fa-paper-plane"></i> Envoyer le message
+            }
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

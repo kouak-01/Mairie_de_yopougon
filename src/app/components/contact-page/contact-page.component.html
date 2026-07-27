@@ -1,0 +1,200 @@
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a routerLink="/">Accueil</a> <span>/</span> <span>Contacts et Accessibilité</span>
+    </div>
+    <div class="page-hero-badge">
+      <i class="fas fa-headset"></i> Nous sommes à votre écoute
+    </div>
+    <h1>Contactez la Mairie de Yopougon</h1>
+    <p>
+      Une question, une démarche, une suggestion ? Retrouvez ici toutes les façons de joindre nos
+      équipes : adresse et plan d'accès, formulaire en ligne, réseaux sociaux et réponses aux
+      questions fréquentes.
+    </p>
+    <div class="quick-links fade-in" appFadeIn>
+      <a routerLink="/contact" fragment="coordonnees" class="quick-link"><i class="fas fa-map-marker-alt"></i> Coordonnées & plan</a>
+      <a routerLink="/contact" fragment="formulaire" class="quick-link"><i class="fas fa-envelope-open-text"></i> Formulaire de contact</a>
+      <a routerLink="/contact" fragment="reseaux" class="quick-link"><i class="fas fa-share-nodes"></i> Réseaux sociaux</a>
+      <a routerLink="/contact" fragment="faq" class="quick-link"><i class="fas fa-circle-question"></i> FAQ</a>
+    </div>
+  </div>
+</section>
+
+<!-- COORDONNÉES & PLAN D'ACCÈS -->
+<section class="coordonnees" id="coordonnees">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Nous trouver</div>
+      <h2>Coordonnées et Plan d'Accès</h2>
+      <p>Toutes nos coordonnées utiles pour nous joindre ou vous rendre directement à la mairie.</p>
+    </div>
+
+    <div class="coord-grid">
+      <div class="coord-cards fade-in" appFadeIn>
+        @for (card of coordCards; track card.title) {
+          <div class="coord-card">
+            <div class="coord-icon"><i class="fas {{ card.icon }}"></i></div>
+            <div>
+              <h4>{{ card.title }}</h4>
+              @for (line of card.lines; track line.text) {
+                <p>
+                  @if (line.href) {
+                    <a [href]="line.href">{{ line.text }}</a>
+                  } @else {
+                    {{ line.text }}
+                  }
+                </p>
+              }
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="map-wrapper fade-in" appFadeIn>
+        <div class="map-pin-badge"><i class="fas fa-location-dot"></i> Mairie de Yopougon</div>
+        <iframe
+          [src]="mapUrl"
+          allowfullscreen
+          loading="lazy"
+          title="Plan d'accès à la Mairie de Yopougon"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULAIRE DE CONTACT -->
+<section class="formulaire-section" id="formulaire">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Écrivez-nous</div>
+      <h2>Formulaire de Contact</h2>
+      <p>Envoyez-nous directement votre message, notre équipe vous répond dans les meilleurs délais.</p>
+    </div>
+
+    <div class="form-grid">
+      <div class="form-side-info fade-in" appFadeIn>
+        <h3>Pourquoi nous écrire ?</h3>
+        <p>
+          Que ce soit pour une demande d'information, un suivi de dossier administratif, une
+          réclamation ou une simple suggestion, ce formulaire est le moyen le plus rapide de joindre
+          le service concerné.
+        </p>
+
+        @for (item of responseHighlights; track item.title) {
+          <div class="response-time">
+            <div class="r-icon"><i class="fas {{ item.icon }}"></i></div>
+            <div>
+              <h4>{{ item.title }}</h4>
+              <span>{{ item.description }}</span>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="contact-form fade-in" appFadeIn>
+        <h3>Envoyez-nous un message</h3>
+        <form [formGroup]="contactForm" (ngSubmit)="onContactSubmit()">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contact-fullName">Nom complet</label>
+              <input id="contact-fullName" type="text" placeholder="Votre nom" formControlName="fullName" required />
+            </div>
+            <div class="form-group">
+              <label for="contact-email">Email</label>
+              <input id="contact-email" type="email" placeholder="votre&#64;email.com" formControlName="email" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="contact-subject">Objet</label>
+            <select id="contact-subject" formControlName="subject" required>
+              <option value="">Sélectionnez un objet</option>
+              @for (subject of contactSubjects; track subject) {
+                <option [value]="subject">{{ subject }}</option>
+              }
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" placeholder="Votre message..." formControlName="message" required></textarea>
+          </div>
+          <button type="submit" class="btn-submit" [class.sent]="formSubmitted()">
+            @if (formSubmitted()) {
+              <i class="fas fa-check"></i> Message envoyé avec succès !
+            } @else {
+              <i class="fas fa-paper-plane"></i> Envoyer le message
+            }
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RÉSEAUX SOCIAUX -->
+<section class="reseaux-sociaux" id="reseaux">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Suivez-nous</div>
+      <h2>Réseaux Sociaux</h2>
+      <p>Retrouvez l'actualité de la commune en temps réel et échangez avec nous sur nos réseaux sociaux.</p>
+    </div>
+
+    <div class="social-grid">
+      @for (card of socialCards; track card.title) {
+        <a href="#" class="social-card fade-in" appFadeIn [style.--social-color]="card.color">
+          <div class="social-icon"><i class="{{ card.iconType }} {{ card.icon }}"></i></div>
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.description }}</p>
+          <span class="social-follow">{{ card.followLabel }} <i class="fas fa-arrow-right"></i></span>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Questions fréquentes</div>
+      <h2 style="color:rgba(237, 125, 49);">FAQ</h2>
+      <p>Les réponses aux questions les plus posées par les Yopougonnais.</p>
+    </div>
+
+    <div class="faq-list fade-in" appFadeIn>
+      @for (item of faqItems; track item.id) {
+        <div class="faq-item" [class.open]="openFaqId() === item.id">
+          <button
+            class="faq-question"
+            type="button"
+            [attr.aria-expanded]="openFaqId() === item.id"
+            (click)="toggleFaq(item.id)"
+          >
+            <span class="faq-q-left"><span class="faq-num">{{ item.number }}</span> {{ item.question }}</span>
+            <i class="fas fa-chevron-down faq-chevron"></i>
+          </button>
+          <div class="faq-answer" [style.max-height]="openFaqId() === item.id ? '400px' : '0'">
+            <div class="faq-answer-inner">{{ item.answer }}</div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- BANDE CTA -->
+<section class="cta-band">
+  <div class="container">
+    <div class="cta-band-text fade-in" appFadeIn>
+      <h2>Besoin d'une réponse rapide ?</h2>
+      <p>Nos équipes restent joignables par téléphone ou via nos démarches en ligne disponibles 24h/24 et 7j/7.</p>
+    </div>
+    <div class="cta-band-buttons fade-in" appFadeIn>
+      <a href="tel:+22527234528" class="btn btn-primary"><i class="fas fa-phone-alt"></i> Appeler la mairie</a>
+      <a routerLink="/" fragment="demande" class="btn btn-outline"><i class="fas fa-file-alt"></i> Faire une demande en ligne</a>
+    </div>
+  </div>
+</section>

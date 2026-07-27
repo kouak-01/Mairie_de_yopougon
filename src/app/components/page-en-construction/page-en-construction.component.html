@@ -1,0 +1,72 @@
+<div class="tape-banner"></div>
+
+<section class="construction">
+  <div class="particles" aria-hidden="true">
+    @for (p of particles(); track p.id) {
+      <i
+        class="particle fa-solid {{ p.icon }}"
+        [style.left]="p.left"
+        [style.font-size]="p.fontSize"
+        [style.animation-duration]="p.animationDuration"
+        [style.animation-delay]="p.animationDelay"
+      ></i>
+    }
+  </div>
+
+  <div class="container">
+    <div class="construction-icon-wrap fade-in" appFadeIn>
+      <div class="construction-icon-circle">
+        <i class="fas fa-person-digging main-icon"></i>
+      </div>
+      <div class="gear-spin"><i class="fas fa-gear"></i></div>
+    </div>
+
+    <div class="construction-badge fade-in" appFadeIn>
+      <i class="fas fa-triangle-exclamation"></i> Page en cours de construction
+    </div>
+
+    <h1 class="fade-in" appFadeIn>Cette page arrive <span>très bientôt</span> !</h1>
+    <p class="lead fade-in" appFadeIn>
+      Nos équipes travaillent activement à la mise en ligne de ce contenu afin de vous offrir la
+      meilleure expérience possible sur le site officiel de la Mairie de Yopougon. Merci de votre
+      patience.
+    </p>
+
+    <div class="progress-wrap fade-in" appFadeIn>
+      <div class="progress-label">
+        <span>Avancement du chantier numérique</span>
+        <span class="progress-value">{{ progressValue() }}%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" [style.width]="progressWidth()"></div>
+      </div>
+    </div>
+
+    <div class="construction-buttons fade-in" appFadeIn>
+      <a routerLink="/" class="btn btn-primary">
+        <i class="fas fa-house"></i> Retour à l'accueil
+      </a>
+      <a routerLink="/en-construction" class="btn btn-outline">
+        <i class="fas fa-envelope"></i> Nous contacter
+      </a>
+    </div>
+
+    <div class="notify-box fade-in" appFadeIn>
+      <h3><i class="fas fa-bell"></i> Soyez averti(e) de la mise en ligne</h3>
+      <p>Laissez votre email, nous vous préviendrons dès que cette page sera disponible.</p>
+      <form class="notify-form" (ngSubmit)="onNotifySubmit()">
+        <input type="email" placeholder="votre&#64;email.com" [formControl]="emailControl" required />
+        <button type="submit"><i class="fas fa-paper-plane"></i> M'avertir</button>
+      </form>
+      <div class="notify-success" [class.visible]="notifySent()">
+        <i class="fas fa-circle-check"></i> Vous serez notifié(e) par email !
+      </div>
+    </div>
+
+    <div class="available-links fade-in" appFadeIn>
+      <a routerLink="/" class="available-link"><i class="fas fa-house"></i> Accueil</a>
+      <a routerLink="/maire" class="available-link"><i class="fas fa-user-tie"></i> Le Maire</a>
+      <a routerLink="/contact" class="available-link"><i class="fas fa-address-book"></i> Contact</a>
+    </div>
+  </div>
+</section>

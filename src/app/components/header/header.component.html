@@ -1,0 +1,116 @@
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="container">
+    <div class="top-bar-left">
+      <span><i class="fas fa-phone"></i> +225 27 23 45 28 20</span>
+      <span><i class="fas fa-envelope"></i> contact&#64;yopougon.ci</span>
+      <span><i class="fas fa-clock"></i> Lun - Ven : 7h30 - 16h00</span>
+    </div>
+    <div class="top-bar-right">
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" [class.scrolled]="scrolled()">
+  <div class="container">
+    <a routerLink="/" class="logo" (click)="onLeafLinkClick()">
+      <div class="logo-icon">
+        <img src="assets/images/logo-2.jpg" style="height:100%;width:100%;object-fit:cover;" alt="Logo Mairie de Yopougon" />
+      </div>
+      <div class="logo-text">
+        <h1>Mairie de Yopougon</h1>
+        <span>District d'Abidjan</span>
+      </div>
+    </a>
+
+    <div class="main-nav" [class.active]="mobileNavOpen()">
+      <ul>
+        @for (item of navItems; track item.id) {
+          <li
+            [class.open]="isL1Open(item)"
+            [class.nav-cta]="item.cta"
+            (mouseenter)="onL1MouseEnter(item)"
+            (mouseleave)="onL1MouseLeave()"
+          >
+            @if (item.children?.length) {
+              <button
+                class="nav-toggle"
+                type="button"
+                [attr.aria-expanded]="isL1Open(item)"
+                aria-haspopup="true"
+                (click)="toggleL1(item, $event)"
+              >
+                {{ item.label }} <i class="fas fa-chevron-down chevron"></i>
+              </button>
+
+              <ul class="dropdown-menu">
+                @for (child of item.children; track child.id) {
+                  <li [class.open]="isL2Open(child)" (mouseenter)="onL2MouseEnter(child)">
+                    @if (child.children?.length) {
+                      <button
+                        class="nav-toggle"
+                        type="button"
+                        [attr.aria-expanded]="isL2Open(child)"
+                        aria-haspopup="true"
+                        (click)="toggleL2(child, $event)"
+                      >
+                        <span>
+                          @if (child.icon) {
+                            <i class="{{ child.iconType ?? 'fas' }} {{ child.icon }} item-icon"></i>
+                          }
+                          {{ child.label }}
+                        </span>
+                        <i class="fas fa-chevron-right chevron-flyout"></i>
+                      </button>
+
+                      <ul class="flyout-menu">
+                        @for (leaf of child.children; track leaf.id) {
+                          <li>
+                            <a [routerLink]="leaf.link" [fragment]="leaf.fragment" (click)="onLeafLinkClick()">
+                              {{ leaf.label }}
+                            </a>
+                          </li>
+                        }
+                      </ul>
+                    } @else {
+                      <a [routerLink]="child.link" [fragment]="child.fragment" (click)="onLeafLinkClick()">
+                        @if (child.icon) {
+                          <i class="{{ child.iconType ?? 'fas' }} {{ child.icon }} item-icon"></i>
+                        }
+                        {{ child.label }}
+                      </a>
+                    }
+                  </li>
+                }
+              </ul>
+            } @else if (item.externalLink) {
+              <a [href]="item.externalLink" (click)="onLeafLinkClick()">{{ item.label }}</a>
+            } @else {
+              <a [routerLink]="item.link" [fragment]="item.fragment" (click)="onLeafLinkClick()">{{ item.label }}</a>
+            }
+          </li>
+        }
+      </ul>
+    </div>
+
+    <button
+      class="hamburger"
+      type="button"
+      [class.active]="mobileNavOpen()"
+      aria-label="Ouvrir le menu"
+      [attr.aria-expanded]="hamburgerExpanded()"
+      (click)="toggleMobileNav()"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-overlay" [class.active]="mobileNavOpen()" (click)="closeMobileNav()"></div>
