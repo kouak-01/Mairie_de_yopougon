@@ -1,0 +1,198 @@
+<!-- PAGE BANNER -->
+<section class="page-banner" id="haut">
+  <div class="page-banner-bg">
+    <img src="assets/images/mairie-centrale.jpg" alt="Agenda de la Mairie de Yopougon" />
+  </div>
+  <div class="page-banner-overlay"></div>
+  <div class="container page-banner-content">
+    <div class="breadcrumb">
+      <a routerLink="/">Accueil</a>
+      <i class="fas fa-chevron-right"></i>
+      <span>Agenda</span>
+    </div>
+    <h1>L'<span>Agenda</span> de la Mairie</h1>
+    <p>
+      Retrouvez toutes les réunions, cérémonies, festivités et actions communautaires de la
+      commune de Yopougon. Ne manquez aucun rendez-vous avec votre municipalité.
+    </p>
+  </div>
+</section>
+
+<!-- FILTERS -->
+<section class="agenda-filters">
+  <div class="container">
+    <div class="filters-row">
+      <span class="filters-label"><i class="fas fa-filter"></i> Filtrer :</span>
+      @for (option of filterOptions; track option.key) {
+        <button type="button" class="filter-btn" [class.active]="activeFilter() === option.key" (click)="setFilter(option.key)">
+          {{ option.label }}
+        </button>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED EVENT -->
+<section class="agenda-featured">
+  <div class="container">
+    <div class="section-header" style="text-align: left; margin-bottom: 35px">
+      <div class="overline"><i class="fas fa-star"></i> À la une</div>
+      <h2 style="font-size: 1.9rem">Le prochain grand rendez-vous</h2>
+    </div>
+    <div class="featured-card fade-in" appFadeIn>
+      <div class="featured-img">
+        <img src="assets/images/yopougon/agora.jpeg" alt="Festival Yopougon en Fête" />
+        <div class="featured-date-box">
+          <span class="day">15</span>
+          <span class="month">Août 2026</span>
+        </div>
+      </div>
+      <div class="featured-body">
+        <span class="featured-tag"><i class="fas fa-masks-theater"></i> Culture & Festivités</span>
+        <h3>Festival « Yopougon en Fête » — 3 jours de célébrations</h3>
+        <p>
+          La mairie invite toute la population à trois jours de spectacles, de concerts,
+          d'expositions artisanales et d'animations pour petits et grands sur l'esplanade de la
+          mairie. Un moment fort de cohésion sociale et de valorisation de la culture locale.
+        </p>
+        <div class="featured-meta">
+          <div class="featured-meta-item"><i class="fas fa-calendar-day"></i> Du 15 au 17 août 2026</div>
+          <div class="featured-meta-item"><i class="fas fa-clock"></i> À partir de 16h00</div>
+          <div class="featured-meta-item"><i class="fas fa-map-marker-alt"></i> Esplanade de la Mairie</div>
+        </div>
+        <a routerLink="/programme-complet" class="btn btn-primary"><i class="fas fa-ticket-alt"></i> Voir le programme complet</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENDA GRID -->
+<section class="agenda-list">
+  <div class="container">
+    <div class="section-header">
+      <div class="overline"><i class="fas fa-calendar-alt"></i> Événements à venir</div>
+      <h2>Tout l'agenda communal</h2>
+      <p>Réunions officielles, actions de proximité, activités sportives, culturelles et sociales : suivez l'actualité de votre commune au jour le jour.</p>
+    </div>
+
+    <div class="agenda-grid">
+      @for (event of filteredEvents(); track event.title) {
+        <div class="agenda-card fade-in" appFadeIn>
+          <div class="agenda-card-img">
+            <img [src]="event.image" [alt]="event.title" />
+            <div class="date-badge"><span class="day">{{ event.day }}</span><span class="month">{{ event.month }}</span></div>
+            <div class="agenda-category">{{ event.category }}</div>
+          </div>
+          <div class="agenda-card-body">
+            <h3>{{ event.title }}</h3>
+            <p>{{ event.description }}</p>
+            <div class="agenda-card-meta">
+              <span><i class="fas fa-clock"></i> {{ event.time }}</span>
+              <span><i class="fas fa-map-marker-alt"></i> {{ event.location }}</span>
+            </div>
+            <a routerLink="/en-construction" class="agenda-card-btn">Plus de détails <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      }
+
+      @if (filteredEvents().length === 0) {
+        <div class="agenda-empty" style="display: block">
+          <i class="fas fa-calendar-times"></i>
+          <p>Aucun événement ne correspond à cette catégorie pour le moment.</p>
+        </div>
+      }
+    </div>
+
+    <div class="load-more-wrap">
+      <a routerLink="/en-construction" class="btn btn-outline" style="color: var(--primary); border-color: var(--primary)"><i class="fas fa-plus"></i> Voir les mois suivants</a>
+    </div>
+  </div>
+</section>
+
+<!-- MINI CALENDAR -->
+<section class="calendar-section">
+  <div class="container">
+    <div class="calendar-wrap">
+      <div class="mini-calendar fade-in" appFadeIn>
+        <div class="mini-calendar-header">
+          <h4>Août 2026</h4>
+          <div class="mini-calendar-nav">
+            <button type="button" aria-label="Mois précédent"><i class="fas fa-chevron-left"></i></button>
+            <button type="button" aria-label="Mois suivant"><i class="fas fa-chevron-right"></i></button>
+          </div>
+        </div>
+        <div class="calendar-grid">
+          <div class="dow">Lun</div>
+          <div class="dow">Mar</div>
+          <div class="dow">Mer</div>
+          <div class="dow">Jeu</div>
+          <div class="dow">Ven</div>
+          <div class="dow">Sam</div>
+          <div class="dow">Dim</div>
+          @for (cell of calendarDays; track $index) {
+            @if (cell.day === null) {
+              <div class="day-cell empty"></div>
+            } @else {
+              <div class="day-cell" [class.has-event]="cell.hasEvent">{{ cell.day }}</div>
+            }
+          }
+        </div>
+        <div class="calendar-legend">
+          <span><span class="legend-dot event"></span> Jour avec événement</span>
+        </div>
+      </div>
+      <div class="calendar-content">
+        <div class="overline"><i class="fas fa-map-marked-alt"></i> Vue d'ensemble</div>
+        <h2>Visualisez le mois en un coup d'œil</h2>
+        <p>
+          Notre calendrier interactif vous permet de repérer rapidement les journées marquées
+          par un événement municipal : réunions du conseil, actions sociales, célébrations
+          culturelles ou rencontres sportives.
+        </p>
+        <p>
+          Cliquez sur une date pour consulter le détail des activités prévues, ou abonnez-vous
+          pour recevoir un rappel automatique avant chaque événement important.
+        </p>
+        <a routerLink="/en-construction" class="btn btn-primary"><i class="fas fa-download"></i> Télécharger l'agenda (PDF)</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEOTHEQUE -->
+<section class="agenda-videos" id="videotheque">
+  <div class="container">
+    <div class="section-header">
+      <div class="overline"><i class="fas fa-video"></i> Vidéothèque</div>
+      <h2>Revivez nos événements en images</h2>
+      <p>Retrouvez les temps forts filmés de nos précédentes cérémonies, festivités et actions communautaires.</p>
+    </div>
+    <div class="video-grid">
+      @for (video of videos; track video.title) {
+        <div class="video-card fade-in" appFadeIn>
+          <div class="video-frame">
+            <video [poster]="video.poster" controls></video>
+          </div>
+          <div class="video-info">
+            <h4>{{ video.title }}</h4>
+            <span><i class="fas {{ video.tagIcon }}"></i> {{ video.tag }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CTA NEWSLETTER -->
+<section class="agenda-cta">
+  <div class="container agenda-cta-inner">
+    <div class="agenda-cta-text">
+      <h2><i class="fas fa-bell"></i> Ne manquez plus aucun événement</h2>
+      <p>Inscrivez-vous pour recevoir par e-mail les rappels des prochains événements et l'agenda mensuel de la commune de Yopougon.</p>
+    </div>
+    <form class="agenda-cta-form">
+      <input type="email" placeholder="Votre adresse e-mail" required />
+      <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> S'abonner</button>
+    </form>
+  </div>
+</section>

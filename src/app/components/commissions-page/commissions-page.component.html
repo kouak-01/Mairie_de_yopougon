@@ -1,0 +1,205 @@
+<!-- PAGE BANNER -->
+<section class="page-banner">
+  <div class="container">
+    <div class="page-banner-content">
+      <div class="breadcrumb">
+        <a routerLink="/"><i class="fas fa-home"></i> Accueil</a>
+        <i class="fas fa-chevron-right" style="font-size: 0.7rem"></i>
+        <span>Ma Mairie</span>
+        <i class="fas fa-chevron-right" style="font-size: 0.7rem"></i>
+        <span class="current">Commissions du Conseil Municipal</span>
+      </div>
+      <h1>Les Commissions du <span style="color: var(--gold)">Conseil Municipal</span></h1>
+      <p>
+        Instances de travail du Conseil municipal, les commissions préparent les délibérations,
+        instruisent les dossiers et éclairent les choix de la commune dans chacun de leurs
+        domaines de compétence.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro-commissions" id="commissions">
+  <div class="container">
+    <div class="intro-grid">
+      <div class="intro-content fade-in" appFadeIn>
+        <div class="overline">Organisation municipale</div>
+        <h2>Des commissions au service d'une gouvernance de proximité</h2>
+        <p>
+          Conformément à la loi ivoirienne portant organisation des collectivités territoriales,
+          le Conseil municipal de Yopougon constitue en son sein des commissions permanentes
+          chargées d'étudier les questions soumises au Conseil et de préparer ses délibérations.
+        </p>
+        <p>
+          Composées de conseillers municipaux désignés à la proportionnelle des groupes
+          représentés, elles se réunissent en amont des sessions plénières pour instruire les
+          dossiers, entendre les responsables techniques concernés et formuler des avis et
+          recommandations au Maire et à l'ensemble du Conseil.
+        </p>
+        <div class="intro-tags">
+          @for (tag of introTags; track tag.label) {
+            <span class="intro-tag"><i class="fas {{ tag.icon }}"></i> {{ tag.label }}</span>
+          }
+        </div>
+      </div>
+      <div class="intro-illustration fade-in" appFadeIn>
+        <svg viewBox="0 0 460 380" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="230" cy="190" r="175" style="fill: rgba(26, 95, 42, 0.06)"></circle>
+          <circle cx="360" cy="80" r="34" style="fill: rgba(247, 127, 0, 0.1)"></circle>
+          <circle cx="70" cy="300" r="26" style="fill: rgba(212, 168, 67, 0.18)"></circle>
+
+          <ellipse cx="230" cy="255" rx="150" ry="42" style="fill: var(--bg-cream); stroke: var(--gold); stroke-width: 3"></ellipse>
+          <ellipse cx="230" cy="248" rx="150" ry="42" style="fill: #ffffff; stroke: var(--gold); stroke-width: 3"></ellipse>
+
+          <rect x="200" y="222" width="60" height="42" rx="4" style="fill: var(--secondary)"></rect>
+          <rect x="207" y="230" width="46" height="4" rx="2" style="fill: #ffffff"></rect>
+          <rect x="207" y="239" width="46" height="4" rx="2" style="fill: #ffffff"></rect>
+          <rect x="207" y="248" width="30" height="4" rx="2" style="fill: #ffffff"></rect>
+
+          <g>
+            <circle cx="100" cy="205" r="22" style="fill: var(--primary)"></circle>
+            <circle cx="100" cy="196" r="9" style="fill: #ffe8c9"></circle>
+            <path d="M82 214 Q100 196 118 214 L118 226 L82 226 Z" style="fill: var(--primary)"></path>
+          </g>
+          <g>
+            <circle cx="180" cy="178" r="22" style="fill: var(--primary-dark)"></circle>
+            <circle cx="180" cy="169" r="9" style="fill: #f4c9a3"></circle>
+            <path d="M162 187 Q180 169 198 187 L198 199 L162 199 Z" style="fill: var(--primary-dark)"></path>
+          </g>
+          <g>
+            <circle cx="280" cy="178" r="22" style="fill: var(--secondary)"></circle>
+            <circle cx="280" cy="169" r="9" style="fill: #ffe8c9"></circle>
+            <path d="M262 187 Q280 169 298 187 L298 199 L262 199 Z" style="fill: var(--secondary)"></path>
+          </g>
+          <g>
+            <circle cx="360" cy="205" r="22" style="fill: var(--gold)"></circle>
+            <circle cx="360" cy="196" r="9" style="fill: #f4c9a3"></circle>
+            <path d="M342 214 Q360 196 378 214 L378 226 L342 226 Z" style="fill: var(--gold)"></path>
+          </g>
+
+          <g transform="translate(230,60)">
+            <rect x="-55" y="30" width="110" height="10" rx="2" style="fill: var(--primary-dark)"></rect>
+            <rect x="-46" y="-4" width="10" height="34" style="fill: var(--primary)"></rect>
+            <rect x="-22" y="-4" width="10" height="34" style="fill: var(--primary)"></rect>
+            <rect x="2" y="-4" width="10" height="34" style="fill: var(--primary)"></rect>
+            <rect x="26" y="-4" width="10" height="34" style="fill: var(--primary)"></rect>
+            <polygon points="-60,-6 0,-38 60,-6" style="fill: var(--secondary)"></polygon>
+            <rect x="-6" y="-32" width="12" height="16" style="fill: var(--gold)"></rect>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMISSIONS GRID -->
+<section class="commissions-section">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Domaines de compétence</div>
+      <h2>Les six commissions permanentes</h2>
+      <p>Chaque commission couvre un pan de l'action municipale et rend compte de ses travaux au Conseil municipal réuni en session plénière.</p>
+    </div>
+    <div class="commissions-grid">
+      @for (commission of commissionSummaries; track commission.title) {
+        <div class="commission-card fade-in" appFadeIn>
+          <div class="commission-number">{{ commission.number }}</div>
+          <div class="commission-icon"><i class="fas {{ commission.icon }}"></i></div>
+          <h3>{{ commission.title }}</h3>
+          <p>{{ commission.description }}</p>
+          <ul class="commission-missions">
+            @for (item of commission.missions; track item) {
+              <li><i class="fas fa-check-circle"></i> {{ item }}</li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- FONCTIONNEMENT (processus en 4 temps) -->
+<section class="fonctionnement" id="organisation">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Fonctionnement</div>
+      <h2>Comment travaillent les commissions ?</h2>
+      <p>Un processus en quatre temps, entre instruction technique et décision politique en séance plénière.</p>
+    </div>
+    <div class="fonct-grid">
+      @for (step of processSteps; track step.title) {
+        <div class="fonct-step fade-in" appFadeIn>
+          <div class="fonct-step-num">{{ step.num }}</div>
+          <i class="fas {{ step.icon }}"></i>
+          <h4>{{ step.title }}</h4>
+          <p>{{ step.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- FONCTIONNEMENT (structure) -->
+<section class="fonctionnement">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Structure</div>
+      <h2>La composition de chaque commission</h2>
+      <p>Chaque commission permanente répond à des règles communes de structure et de fonctionnement.</p>
+    </div>
+    <div class="fonct-grid">
+      @for (card of structureCards; track card.title) {
+        <div class="fonct-card fade-in" appFadeIn>
+          <div class="fonct-icon"><i class="fas {{ card.icon }}"></i></div>
+          <h4>{{ card.title }}</h4>
+          <p>{{ card.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- LISTE DETAILLEE DES COMMISSIONS -->
+<section class="commissions-detail">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Neuf commissions permanentes</div>
+      <h2>Le détail des commissions</h2>
+      <p>Chaque commission couvre un domaine précis de l'action communale, en lien direct avec les préoccupations des Yopougonnais.</p>
+    </div>
+
+    @for (detail of commissionDetails; track detail.title) {
+      <div class="commission-detail-card fade-in" appFadeIn>
+        <div class="commission-detail-icon"><i class="fas {{ detail.icon }}"></i></div>
+        <div>
+          <div class="commission-detail-header">
+            <h3>{{ detail.title }}</h3>
+            <span class="commission-badge"><i class="fas {{ detail.badgeIcon }}"></i> {{ detail.badgeLabel }}</span>
+          </div>
+          <p>{{ detail.description }}</p>
+          <ul class="commission-attributions">
+            @for (item of detail.attributions; track item) {
+              <li><i class="fas fa-check-circle"></i> {{ item }}</li>
+            }
+          </ul>
+        </div>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- CITIZEN CTA -->
+<section class="citizen-cta">
+  <div class="container">
+    <div class="citizen-cta-inner">
+      <div>
+        <h3><i class="fas fa-bullhorn" style="color: var(--gold); margin-right: 10px"></i>Une question pour une commission ?</h3>
+        <p>Adressez vos préoccupations, suggestions ou demandes d'information à la Mairie de Yopougon : elles seront orientées vers la commission concernée.</p>
+      </div>
+      <a routerLink="/contact" fragment="formulaire" class="btn btn-primary">
+        <i class="fas fa-paper-plane"></i> Contacter la Mairie
+      </a>
+    </div>
+  </div>
+</section>

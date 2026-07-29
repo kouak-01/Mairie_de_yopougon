@@ -4,6 +4,17 @@ import { MairePageComponent } from './components/maire-page/maire-page.component
 import { RadioPageComponent } from './components/radio-page/radio-page.component';
 import { ContactPageComponent } from './components/contact-page/contact-page.component';
 import { YopMaCommunePageComponent } from './components/yop-ma-commune-page/yop-ma-commune-page.component';
+import { MunicipalitePageComponent } from './components/municipalite-page/municipalite-page.component';
+import { SecretariatGeneralPageComponent } from './components/secretariat-general-page/secretariat-general-page.component';
+import { ConseilMunicipalPageComponent } from './components/conseil-municipal-page/conseil-municipal-page.component';
+import { CommissionsPageComponent } from './components/commissions-page/commissions-page.component';
+import { DirectionsPageComponent } from './components/directions-page/directions-page.component';
+import { ProjetsPageComponent } from './components/projets-page/projets-page.component';
+import { AgendaPageComponent } from './components/agenda-page/agenda-page.component';
+import { OpportunitesAffairesPageComponent } from './components/opportunites-affaires-page/opportunites-affaires-page.component';
+import { ActualitesPageComponent } from './components/actualites-page/actualites-page.component';
+import { HistoirePageComponent } from './components/histoire-page/histoire-page.component';
+import { ProgrammeCompletPageComponent } from './components/programme-complet-page/programme-complet-page.component';
 import { PageEnConstructionComponent } from './components/page-en-construction/page-en-construction.component';
 
 export const routes: Routes = [
@@ -19,6 +30,28 @@ export const routes: Routes = [
   { path: 'contact', component: ContactPageComponent, title: 'Contact - Mairie de Yopougon', data: { footerVariant: 'full' } },
 
   { path: 'yop-ma-commune', component: YopMaCommunePageComponent, title: 'Yop, Ma Commune - Mairie de Yopougon', data: { footerVariant: 'full' } },
+
+  { path: 'municipalite', component: MunicipalitePageComponent, title: 'Municipalité - Mairie de Yopougon', data: { footerVariant: 'full' } },
+
+  { path: 'secretariat-general', component: SecretariatGeneralPageComponent, title: 'Secrétariat Général - Mairie de Yopougon', data: { footerVariant: 'full' } },
+
+  { path: 'conseil-municipal', component: ConseilMunicipalPageComponent, title: 'Le Conseil Municipal - Mairie de Yopougon', data: { footerVariant: 'full' } },
+
+  { path: 'commissions-conseil-municipal', component: CommissionsPageComponent, title: 'Commissions du Conseil Municipal - Mairie de Yopougon', data: { footerVariant: 'full' } },
+
+  { path: 'directions-techniques-administratives', component: DirectionsPageComponent, title: 'Directions Techniques et Administratives - Mairie de Yopougon', data: { footerVariant: 'full' } },
+
+  { path: 'nos-projets', component: ProjetsPageComponent, title: 'Nos Projets - Mairie de Yopougon', data: { footerVariant: 'full' } },
+
+  { path: 'agenda', component: AgendaPageComponent, title: 'Agenda - Mairie de Yopougon', data: { footerVariant: 'full' } },
+
+  { path: 'attractivite-commune', component: OpportunitesAffairesPageComponent, title: "Attractivité de la commune - Mairie de Yopougon", data: { footerVariant: 'full' } },
+
+  { path: 'actualites', component: ActualitesPageComponent, title: 'Actualités - Mairie de Yopougon', data: { footerVariant: 'full' } },
+
+  { path: 'histoire', component: HistoirePageComponent, title: 'Histoire de la Commune - Mairie de Yopougon', data: { footerVariant: 'full' } },
+
+  { path: 'programme-complet', component: ProgrammeCompletPageComponent, title: 'Programme Complet - Mairie de Yopougon', data: { footerVariant: 'full' } },
 
   // Toute route de l'arborescence dont le HTML source n'a pas encore été converti
   // pointe vers ce composant générique, conformément à la stratégie de migration.

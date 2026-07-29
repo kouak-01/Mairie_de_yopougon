@@ -1,0 +1,180 @@
+<!-- PAGE BANNER -->
+<section class="page-banner" id="banniere">
+  <div class="container">
+    <div class="breadcrumb">
+      <a routerLink="/"><i class="fas fa-home"></i> Accueil</a>
+      <span>/</span>
+      <span>Ma Mairie</span>
+      <span>/</span>
+      <span class="current">Directions Techniques et Administratives</span>
+    </div>
+    <div class="banner-grid">
+      <div class="banner-text fade-in" appFadeIn>
+        <div class="hero-badge">
+          <i class="fas fa-sitemap"></i> Organisation municipale
+        </div>
+        <h1>Directions Techniques <br />et Administratives</h1>
+        <p class="lead">
+          Sous l'autorité du Maire et la coordination du Secrétariat Général, les directions de
+          la Mairie de Yopougon pilotent au quotidien les services publics de proximité : état
+          civil, urbanisme, infrastructures, environnement, finances et bien plus, au service
+          des Yopougonnais.
+        </p>
+        <div class="banner-pills">
+          @for (pill of bannerPills; track pill.label) {
+            <div class="banner-pill">
+              <span class="num">{{ pill.num }}</span>
+              <span class="lbl">{{ pill.label }}</span>
+            </div>
+          }
+        </div>
+      </div>
+      <div class="banner-illustration fade-in" appFadeIn>
+        <svg viewBox="0 0 400 380" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="320" cy="70" r="34" style="fill: var(--gold); opacity: 0.9" />
+          <ellipse cx="200" cy="345" rx="160" ry="16" style="fill: rgba(0, 0, 0, 0.12)" />
+          <rect x="70" y="150" width="260" height="180" rx="6" style="fill: #ffffff" />
+          <polygon points="60,150 200,80 340,150" style="fill: var(--primary-dark)" />
+          <rect x="55" y="145" width="290" height="14" rx="4" style="fill: var(--gold)" />
+          <rect x="90" y="170" width="16" height="140" style="fill: rgba(237, 125, 49, 0.85)" />
+          <rect x="140" y="170" width="16" height="140" style="fill: rgba(237, 125, 49, 0.85)" />
+          <rect x="192" y="170" width="16" height="140" style="fill: rgba(237, 125, 49, 0.85)" />
+          <rect x="244" y="170" width="16" height="140" style="fill: rgba(237, 125, 49, 0.85)" />
+          <rect x="296" y="170" width="16" height="140" style="fill: rgba(237, 125, 49, 0.85)" />
+          <rect x="180" y="255" width="40" height="55" rx="4" style="fill: var(--primary-dark)" />
+          <rect x="197" y="35" width="5" height="48" style="fill: var(--primary-dark)" />
+          <polygon points="202,38 240,48 202,58" style="fill: var(--secondary)" />
+          <g transform="translate(52,205)">
+            <circle cx="0" cy="0" r="26" style="fill: var(--primary)" />
+            <path d="M0,-11 L3,-11 L4,-16 L-4,-16 L-3,-11 Z" style="fill: white" />
+            <circle cx="0" cy="0" r="9" style="fill: white" />
+            <circle cx="0" cy="0" r="4" style="fill: var(--primary)" />
+          </g>
+          <g transform="translate(345,255)">
+            <rect x="-18" y="-24" width="36" height="48" rx="4" style="fill: var(--secondary)" />
+            <rect x="-11" y="-14" width="22" height="4" style="fill: white" />
+            <rect x="-11" y="-4" width="22" height="4" style="fill: white" />
+            <rect x="-11" y="6" width="14" height="4" style="fill: white" />
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro-strip">
+  <div class="container">
+    <div class="intro-strip-grid fade-in" appFadeIn>
+      <div class="intro-strip-icon">
+        <i class="fas fa-people-roof"></i>
+      </div>
+      <div>
+        <h3>Une administration organisée au service des Yopougonnais</h3>
+        <p>
+          La Mairie de Yopougon s'appuie sur un ensemble de directions spécialisées, réparties en
+          deux grands pôles complémentaires : les <strong>Directions Administratives</strong>,
+          chargées de la gestion des ressources, de l'état civil et des finances, et les
+          <strong>Directions Techniques</strong>, chargées des infrastructures, de l'urbanisme et
+          de l'environnement. L'ensemble est coordonné par le Secrétariat Général, sous
+          l'autorité directe du Maire et de la Municipalité.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORGANIGRAMME -->
+<section class="orgchart-section" id="organigramme">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Structure hiérarchique</div>
+      <h2 style="color: var(--primary-dark)">Organigramme simplifié</h2>
+      <p>Une chaîne de coordination claire, du Maire jusqu'aux directions opérationnelles.</p>
+    </div>
+    <div class="org-chart fade-in" appFadeIn>
+      <div class="org-node top"><i class="fas fa-landmark"></i> Maire &amp; Municipalité</div>
+      <div class="org-line"></div>
+      <div class="org-node mid"><i class="fas fa-user-tie"></i> Secrétariat Général</div>
+      <div class="org-line"></div>
+      <div class="org-branches">
+        <div class="org-branch">
+          <div class="org-node"><i class="fas fa-folder-open"></i> Pôle Directions Administratives</div>
+          <div class="org-branch-label">6 directions</div>
+        </div>
+        <div class="org-branch">
+          <div class="org-node"><i class="fas fa-drafting-compass"></i> Pôle Directions Techniques</div>
+          <div class="org-branch-label">6 directions</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIRECTIONS ADMINISTRATIVES -->
+<section class="services" id="directions-administratives" style="background: var(--bg-cream)">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Pôle Administratif</div>
+      <h2 style="color: var(--primary-dark)">Directions Administratives et de Support</h2>
+      <p>Elles assurent la gestion administrative, juridique, financière et humaine de la commune, ainsi que l'accueil et l'information des usagers.</p>
+    </div>
+    <div class="directions-grid">
+      @for (direction of administrativeDirections; track direction.title) {
+        <div class="direction-card fade-in" appFadeIn>
+          <div class="direction-card-top">
+            <div class="direction-icon"><i class="fas {{ direction.icon }}"></i></div>
+            <h3>{{ direction.title }}</h3>
+          </div>
+          <p class="mission">{{ direction.mission }}</p>
+          <ul class="attrib-list">
+            @for (item of direction.attributions; track item) {
+              <li><i class="fas fa-circle"></i> {{ item }}</li>
+            }
+          </ul>
+          <div class="direction-contact"><i class="fas fa-envelope"></i> {{ direction.email }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- DIRECTIONS TECHNIQUES -->
+<section class="services" id="directions-techniques" style="background: #ffffff">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Pôle Technique</div>
+      <h2 style="color: var(--primary-dark)">Directions Techniques</h2>
+      <p>Elles conçoivent, réalisent et entretiennent les infrastructures et le cadre de vie de la commune.</p>
+    </div>
+    <div class="directions-grid">
+      @for (direction of technicalDirections; track direction.title) {
+        <div class="direction-card fade-in" appFadeIn>
+          <div class="direction-card-top">
+            <div class="direction-icon"><i class="fas {{ direction.icon }}"></i></div>
+            <h3>{{ direction.title }}</h3>
+          </div>
+          <p class="mission">{{ direction.mission }}</p>
+          <ul class="attrib-list">
+            @for (item of direction.attributions; track item) {
+              <li><i class="fas fa-circle"></i> {{ item }}</li>
+            }
+          </ul>
+          <div class="direction-contact"><i class="fas fa-envelope"></i> {{ direction.email }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-strip">
+  <div class="container">
+    <h2 class="fade-in" appFadeIn>Une démarche à effectuer ?</h2>
+    <p class="fade-in" appFadeIn>Contactez directement la direction concernée ou effectuez votre démarche en ligne depuis l'espace Services en ligne de la Mairie.</p>
+    <div class="cta-buttons fade-in" appFadeIn>
+      <a href="https://guichet.yopougon.ci/#/connexion" target="_blank" rel="noopener" class="btn btn-primary"><i class="fas fa-globe"></i> Services en ligne</a>
+      <a routerLink="/contact" fragment="formulaire" class="btn btn-outline"><i class="fas fa-envelope"></i> Contacter la Mairie</a>
+    </div>
+  </div>
+</section>
