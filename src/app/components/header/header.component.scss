@@ -42,12 +42,20 @@
 }
 
 /* ===== NAVBAR ===== */
+// z-index: 1400 — .navbar (position: sticky) crée son propre contexte
+// d'empilement : tout ce qu'il contient (.main-nav, le burger, jusqu'à
+// z-index 1300 en interne) reste plafonné à CE niveau vis-à-vis du reste de
+// la page, quels que soient leurs z-index internes. Comme .nav-overlay est
+// un élément frère à z-index 1250 dans le contexte racine, .navbar doit
+// impérativement rester au-dessus de lui, sinon l'ombre recouvre le tiroir
+// mobile ouvert et intercepte tous les clics à sa place (menu qui ne
+// s'ouvre pas, tiroir qui se referme seul).
 .navbar {
   background: white;
   padding: 15px 0;
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 1400;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
   transition: var(--transition);
 
@@ -250,15 +258,22 @@
 }
 
 /* ===== HAMBURGER (mobile) ===== */
+// width/height 44px : zone de clic tactile minimale (WCAG 2.5.5), l'icône
+// elle-même reste visuellement compacte grâce à justify-content: center.
 .hamburger {
   display: none;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   gap: 5px;
+  width: 44px;
+  height: 44px;
   background: none;
   border: none;
   padding: 5px;
   z-index: 1300;
+  flex-shrink: 0;
 
   span {
     width: 28px;
@@ -405,6 +420,21 @@
   .main-nav { width: 100vw; }
 }
 
-@media (max-width: 768px) {
+/* ===== TOP BAR — "bande orange" ===== */
+// Reste visible (et lisible) du desktop jusqu'à la tablette, mais disparaît
+// complètement en dessous de 576px : sur smartphone elle n'apporte plus
+// d'information indispensable et ne fait qu'empiéter sur la hauteur utile.
+@media (max-width: 900px) and (min-width: 577px) {
   .top-bar .container { flex-direction: column; gap: 8px; }
+}
+
+@media (max-width: 576px) {
+  .top-bar { display: none; }
+}
+
+@media (max-width: 900px) {
+  .top-bar-right a {
+    width: 40px;
+    height: 40px;
+  }
 }

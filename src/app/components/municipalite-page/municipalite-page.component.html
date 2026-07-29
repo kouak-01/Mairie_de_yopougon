@@ -1,0 +1,213 @@
+<!-- PAGE BANNER -->
+<section class="page-banner">
+  <svg class="page-banner-pattern" viewBox="0 0 1000 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="120" cy="70" r="160" fill="white"></circle>
+    <circle cx="920" cy="360" r="220" fill="white"></circle>
+    <circle cx="520" cy="-30" r="130" fill="white"></circle>
+  </svg>
+  <div class="container">
+    <div class="page-banner-content">
+      <div class="breadcrumb">
+        <a routerLink="/">Accueil</a>
+        <i class="fas fa-chevron-right" style="font-size: 0.7rem"></i>
+        <span>Ma Mairie</span>
+        <i class="fas fa-chevron-right" style="font-size: 0.7rem"></i>
+        <span class="current">Municipalité</span>
+      </div>
+      <h1>Municipalité</h1>
+      <p>
+        Le Conseil municipal, le Maire et ses adjoints au service du développement de Yopougon :
+        découvrez l'organisation politique et démocratique de la plus grande commune de Côte
+        d'Ivoire.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- INTRODUCTION -->
+<section class="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-images">
+        <div class="illustration-box">
+          <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration de l'Hôtel de Ville de Yopougon">
+            <polygon points="50,150 200,55 350,150" fill="#1a5f2a"></polygon>
+            <rect x="55" y="150" width="290" height="170" fill="white" stroke="#1a5f2a" stroke-width="3"></rect>
+            <rect x="80" y="165" width="16" height="140" fill="#faf8f5" stroke="#1a5f2a" stroke-width="2"></rect>
+            <rect x="130" y="165" width="16" height="140" fill="#faf8f5" stroke="#1a5f2a" stroke-width="2"></rect>
+            <rect x="254" y="165" width="16" height="140" fill="#faf8f5" stroke="#1a5f2a" stroke-width="2"></rect>
+            <rect x="304" y="165" width="16" height="140" fill="#faf8f5" stroke="#1a5f2a" stroke-width="2"></rect>
+            <rect x="178" y="235" width="44" height="85" fill="#F77F00"></rect>
+            <rect x="30" y="320" width="340" height="14" fill="#d4a843"></rect>
+            <rect x="12" y="334" width="376" height="14" fill="#0e3d1a"></rect>
+            <line x1="200" y1="55" x2="200" y2="18" stroke="#1a1a2e" stroke-width="4"></line>
+            <polygon points="200,18 240,28 200,38" fill="#F77F00"></polygon>
+          </svg>
+        </div>
+      </div>
+      <div class="about-content">
+        <div class="overline">Institution communale</div>
+        <h2>Une gouvernance de proximité au service des Yopougonnais</h2>
+        <p>
+          La Municipalité de Yopougon est administrée par un Conseil municipal élu au suffrage
+          universel, conformément à la loi ivoirienne sur la décentralisation. Elle constitue
+          l'organe démocratique qui définit les grandes orientations du développement communal.
+        </p>
+        <p>
+          Depuis les élections municipales du 2 septembre 2023, le Conseil municipal est présidé
+          par le Maire Adama Bictogo, à la tête d'une équipe installée le 6 septembre 2023 et
+          officiellement entrée en fonction le 10 octobre 2023, pour un mandat de cinq ans.
+        </p>
+        <div class="about-features">
+          @for (feature of aboutFeatures; track feature.label) {
+            <div class="about-feature">
+              <i class="fas {{ feature.icon }}"></i>
+              <span>{{ feature.label }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHIFFRES DU CONSEIL -->
+<section class="numbers numbers-commune">
+  <div class="container">
+    <div class="numbers-heading">
+      <h2>Le Conseil en chiffres</h2>
+    </div>
+    <div class="numbers-grid">
+      @for (stat of numberStats; track stat.label) {
+        <div class="number-card fade-in" appFadeIn>
+          <i class="fas {{ stat.icon }}"></i>
+          <div class="count">{{ stat.count }}</div>
+          <div class="count-label">{{ stat.label }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- LE MAIRE -->
+<section class="maire" id="maire">
+  <div class="container">
+    <div class="maire-grid">
+      <div class="maire-photo">
+        <img src="assets/images/le-maire.png" alt="Adama Bictogo, Maire de Yopougon" />
+      </div>
+      <div class="maire-content">
+        <div class="overline">À la tête de la commune</div>
+        <h2>Adama Bictogo</h2>
+        <div class="title">Maire de Yopougon</div>
+        <p>
+          Élu le 6 septembre 2023 par le Conseil municipal avec 93,22 % des suffrages exprimés,
+          Adama Bictogo dirige la plus grande commune de Côte d'Ivoire depuis sa prise de fonction
+          officielle le 10 octobre 2023, succédant à Gilbert Kafana Koné.
+        </p>
+        <p>
+          Homme d'affaires et acteur politique de premier plan, il a présidé l'Assemblée nationale
+          de Côte d'Ivoire de juin 2022 à janvier 2026, tout en assurant la direction de la
+          commune de Yopougon.
+        </p>
+        <a routerLink="/maire" class="btn btn-primary" style="margin-top: 10px">
+          <i class="fas fa-user"></i> Voir le profil complet
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LES ADJOINTS -->
+<section class="services" id="adjoints">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">L'équipe municipale</div>
+      <h2>Les Adjoints au Maire</h2>
+      <p>
+        Huit adjoints accompagnent le Maire dans la gestion quotidienne de la commune, chacun
+        responsable d'un portefeuille clé.
+      </p>
+    </div>
+    <div class="services-grid">
+      @for (adjoint of adjointItems; track adjoint.title) {
+        <div class="service-card fade-in" appFadeIn>
+          <div class="service-icon"><i class="fas {{ adjoint.icon }}"></i></div>
+          <h3>{{ adjoint.title }}</h3>
+          <p>{{ adjoint.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- COMMISSIONS MUNICIPALES -->
+<section class="demande-en-ligne" id="commissions">
+  <div class="container">
+    <div class="demande-header fade-in" appFadeIn>
+      <div class="overline">Travail en commissions</div>
+      <h2>Les commissions du Conseil municipal</h2>
+      <p>
+        Les conseillers municipaux se répartissent en commissions thématiques qui instruisent les
+        dossiers avant leur examen en séance plénière.
+      </p>
+    </div>
+    <div class="demande-grid">
+      @for (commission of commissionItems; track commission.title) {
+        <div class="demande-card fade-in" appFadeIn>
+          <div class="demande-card-icon"><i class="fas {{ commission.icon }}"></i></div>
+          <h3>{{ commission.title }}</h3>
+          <p>{{ commission.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- MANDAT & ELECTIONS -->
+<section class="timeline-section" id="mandat">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Vie démocratique</div>
+      <h2>Le mandat municipal 2023 - 2028</h2>
+      <p>Les grandes étapes de l'installation de l'actuelle équipe municipale.</p>
+    </div>
+    <div class="timeline-wrap fade-in" appFadeIn>
+      <svg viewBox="0 0 900 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Frise chronologique du mandat municipal 2023-2028">
+        <line x1="70" y1="95" x2="830" y2="95" stroke="#d4a843" stroke-width="4"></line>
+
+        <circle cx="100" cy="95" r="20" fill="#1a5f2a"></circle>
+        <text x="100" y="101" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="700" font-size="13" fill="white">1</text>
+        <text x="100" y="55" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="700" font-size="13" fill="#1a1a2e">02 sept. 2023</text>
+        <text x="100" y="72" text-anchor="middle" font-family="Open Sans, sans-serif" font-size="10.5" fill="#555">Élections municipales</text>
+
+        <circle cx="330" cy="95" r="20" fill="#0e3d1a"></circle>
+        <text x="330" y="101" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="700" font-size="13" fill="white">2</text>
+        <text x="330" y="135" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="700" font-size="13" fill="#1a1a2e">06 sept. 2023</text>
+        <text x="330" y="152" text-anchor="middle" font-family="Open Sans, sans-serif" font-size="10.5" fill="#555">Installation du Conseil</text>
+
+        <circle cx="560" cy="95" r="20" fill="#1a5f2a"></circle>
+        <text x="560" y="101" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="700" font-size="13" fill="white">3</text>
+        <text x="560" y="55" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="700" font-size="13" fill="#1a1a2e">10 oct. 2023</text>
+        <text x="560" y="72" text-anchor="middle" font-family="Open Sans, sans-serif" font-size="10.5" fill="#555">Prise de fonction</text>
+
+        <circle cx="800" cy="95" r="20" fill="#F77F00"></circle>
+        <text x="800" y="101" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="700" font-size="13" fill="white">4</text>
+        <text x="800" y="135" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="700" font-size="13" fill="#1a1a2e">2028</text>
+        <text x="800" y="152" text-anchor="middle" font-family="Open Sans, sans-serif" font-size="10.5" fill="#555">Fin du mandat (5 ans)</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="container">
+    <h3>Vous souhaitez en savoir plus sur votre Municipalité ?</h3>
+    <p>Découvrez le Maire, le Secrétariat Général et l'ensemble des services de la Mairie de Yopougon.</p>
+    <div class="cta-band-buttons">
+      <a routerLink="/maire" class="btn btn-primary"><i class="fas fa-user-tie"></i> Le Maire</a>
+      <a routerLink="/secretariat-general" class="btn btn-outline"><i class="fas fa-sitemap"></i> Secrétariat Général</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,168 @@
+<!-- BANNIÈRE DE PAGE -->
+<section class="page-banner">
+  <div class="page-banner-bg">
+    <img src="assets/images/mairie-facade-2.jpg" alt="Vue de la commune de Yopougon" />
+  </div>
+  <div class="container">
+    <div class="breadcrumb fade-in" appFadeIn>
+      <a routerLink="/">Accueil</a>
+      <i class="fas fa-chevron-right"></i>
+      <span>Actualités de la Commune</span>
+    </div>
+    <div class="page-banner-badge fade-in" appFadeIn>
+      <i class="fas fa-newspaper"></i> Restez informés
+    </div>
+    <h1 class="fade-in" appFadeIn>Actualités de la <span>Commune</span></h1>
+    <p class="fade-in" appFadeIn>
+      Retrouvez toutes les nouvelles, décisions du Conseil Municipal, événements et projets qui
+      font vivre Yopougon, en images et en vidéos.
+    </p>
+  </div>
+</section>
+
+<!-- NEWS TICKER -->
+<div class="news-ticker">
+  <div class="ticker-content">
+    @for (item of tickerItems; track $index) {
+      <div class="ticker-item"><span class="ticker-dot"></span> {{ item }}</div>
+    }
+    @for (item of tickerItems; track $index) {
+      <div class="ticker-item"><span class="ticker-dot"></span> {{ item }}</div>
+    }
+  </div>
+</div>
+
+<!-- TOUTES LES ACTUALITÉS -->
+<section class="actualites" id="toutes-actualites" style="padding-top: 90px">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Fil d'actualité</div>
+      <h2 style="color: rgba(237, 125, 49)">Toute l'actualité de Yopougon</h2>
+      <p>Décisions municipales, travaux, événements culturels et sociaux : suivez en un seul endroit tout ce qui se passe dans notre commune.</p>
+    </div>
+
+    <!-- FILTRES -->
+    <div class="filter-tabs fade-in" appFadeIn>
+      @for (option of filterOptions; track option.key) {
+        <button type="button" class="filter-tab" [class.active]="activeFilter() === option.key" (click)="setFilter(option.key)">
+          <i class="fas {{ option.icon }}"></i>{{ option.label }}
+        </button>
+      }
+    </div>
+
+    <!-- À LA UNE -->
+    @if (showFeatured()) {
+      <div class="featured-actu fade-in" appFadeIn>
+        <div class="featured-img">
+          <img [src]="featuredArticle.image" alt="Chantiers de la fête de l'indépendance à Yopougon" />
+          <span class="featured-tag">À la une</span>
+        </div>
+        <div class="featured-content">
+          <div class="actu-date"><i class="fas fa-calendar-alt"></i> {{ featuredArticle.date }}</div>
+          <h2>{{ featuredArticle.title }}</h2>
+          <p>{{ featuredArticle.description }}</p>
+          <a routerLink="/en-construction" class="btn btn-primary"><i class="fas fa-arrow-right"></i> Lire l'article complet</a>
+        </div>
+      </div>
+    }
+
+    <!-- CONTENU PRINCIPAL + SIDEBAR -->
+    <div class="content-layout">
+      <div class="main-actualites">
+        <div class="actualites-grid">
+          @for (article of filteredArticles(); track article.title) {
+            <div class="actu-card fade-in" appFadeIn>
+              <div class="actu-img">
+                <img [src]="article.image" [alt]="article.title" />
+                <span class="actu-category">{{ article.category }}</span>
+              </div>
+              <div class="actu-body">
+                <div class="actu-date"><i class="fas fa-calendar-alt"></i> {{ article.date }}</div>
+                <h3>{{ article.title }}</h3>
+                <p>{{ article.description }}</p>
+                <a routerLink="/en-construction" class="actu-link">Lire la suite <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          }
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="pagination fade-in" appFadeIn>
+          <a routerLink="/en-construction" class="active">1</a>
+          <a routerLink="/en-construction">2</a>
+          <a routerLink="/en-construction">3</a>
+          <a routerLink="/en-construction"><i class="fas fa-chevron-right"></i></a>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="sidebar-widget newsletter-widget fade-in" appFadeIn>
+          <h4><i class="fas fa-envelope-open-text"></i> Newsletter municipale</h4>
+          <p>Recevez chaque semaine les actualités de Yopougon directement dans votre boîte mail.</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Votre adresse e-mail" required />
+            <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> S'abonner</button>
+          </form>
+        </div>
+
+        <div class="sidebar-widget fade-in" appFadeIn id="agenda">
+          <h4><i class="fas fa-calendar-check"></i> Agenda de la commune</h4>
+          @for (item of agendaItems; track item.title) {
+            <div class="agenda-item">
+              <div class="agenda-date"><span class="day">{{ item.day }}</span><span class="month">{{ item.month }}</span></div>
+              <div class="agenda-info">
+                <h5>{{ item.title }}</h5>
+                <span><i class="fas fa-clock"></i> {{ item.time }}</span>
+              </div>
+            </div>
+          }
+        </div>
+
+        <div class="sidebar-widget fade-in" appFadeIn>
+          <h4><i class="fas fa-hashtag"></i> Rubriques</h4>
+          <div class="tag-cloud">
+            @for (tag of tags; track tag) {
+              <a routerLink="/en-construction">{{ tag }}</a>
+            }
+          </div>
+        </div>
+
+        <div class="sidebar-widget fade-in" appFadeIn>
+          <h4><i class="fab fa-instagram"></i> Suivez-nous</h4>
+          <div class="social-mini-grid">
+            @for (img of socialImages; track $index) {
+              <a routerLink="/en-construction"><img [src]="img" alt="Publication Instagram" /></a>
+            }
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- VIDÉOTHÈQUE -->
+<section class="videotheque" id="videotheque">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">En images et en mouvement</div>
+      <h2>Vidéothèque de la Commune</h2>
+      <p>Revivez en vidéo les temps forts, cérémonies et travaux de la Mairie de Yopougon.</p>
+    </div>
+    <div class="video-grid">
+      @for (video of videos; track video.title) {
+        <div class="video-card fade-in" appFadeIn>
+          <div class="video-wrapper">
+            <video controls preload="none" [poster]="video.poster"></video>
+            <span class="video-duration">{{ video.duration }}</span>
+          </div>
+          <div class="video-body">
+            <span class="actu-category">{{ video.category }}</span>
+            <h3>{{ video.title }}</h3>
+            <div class="actu-date"><i class="fas fa-calendar-alt"></i> {{ video.date }}</div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

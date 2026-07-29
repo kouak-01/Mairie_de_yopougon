@@ -878,6 +878,7 @@
 }
 
 @media (max-width: 1024px) {
+  .hero-radio { min-height: 0; padding: 130px 0 60px; }
   .hero-radio .container { grid-template-columns: 1fr; text-align: center; }
   .hero-radio .hero-content > p { margin-left: auto; margin-right: auto; }
   .hero-radio .hero-buttons { justify-content: center; }
@@ -887,6 +888,14 @@
   .vacances-grid { grid-template-columns: 1fr 1fr; }
   .fb-stats-row { grid-template-columns: 1fr 1fr; }
   .hero-radio .hero-content h1 { font-size: 2.6rem; }
+
+  // .frequency-line est un flex container : le text-align: center hérité
+  // du parent ne l'affecte pas (il reste calé à gauche par défaut), ce qui
+  // détachait visuellement l'icône antenne du reste du texte centré.
+  .frequency-line { justify-content: center; flex-wrap: wrap; text-align: left; }
+
+  .radio-dial { width: 300px; height: 300px; }
+  .radio-dial-core { width: 180px; height: 180px; }
 }
 
 @media (max-width: 768px) {
@@ -902,10 +911,17 @@
   .cta-buttons .btn { width: 100%; justify-content: center; }
   .schedule-item { flex-wrap: wrap; }
   .mini-player { left: 15px; right: 15px; bottom: 15px; }
+  .radio-dial { width: 260px; height: 260px; }
+  .radio-dial-core { width: 155px; height: 155px; }
 }
 
 @media (max-width: 480px) {
-  .radio-dial { width: 280px; height: 280px; }
-  .radio-dial-core { width: 170px; height: 170px; }
+  .radio-dial { width: 230px; height: 230px; }
+  .radio-dial-core { width: 140px; height: 140px; }
   .day-tab { padding: 10px 16px; font-size: 0.78rem; }
+}
+
+@media (max-width: 400px) {
+  .hero-radio .hero-content h1 { font-size: 1.8rem; }
+  .frequency-line { font-size: 1.05rem; }
 }

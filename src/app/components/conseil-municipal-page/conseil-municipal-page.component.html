@@ -1,0 +1,196 @@
+<!-- PAGE BANNER -->
+<section class="page-banner">
+  <img src="assets/images/mairie-facade-2.jpg" alt="Mairie de Yopougon" />
+  <div class="page-banner-overlay"></div>
+  <div class="container">
+    <div class="page-banner-content">
+      <div class="breadcrumb">
+        <a routerLink="/">Accueil</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Conseil Municipal</span>
+      </div>
+      <h1>Le Conseil Municipal</h1>
+      <p>
+        L'organe délibérant de la commune de Yopougon, au service d'une gouvernance locale
+        transparente, participative et tournée vers le développement de « Yop City ».
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- INTRODUCTION -->
+<section class="intro-conseil">
+  <div class="container">
+    <div class="intro-grid">
+      <div class="fade-in" appFadeIn>
+        <div class="intro-badge">
+          <i class="fas fa-landmark"></i> Institution communale
+        </div>
+        <h2>Un organe délibérant au cœur de la démocratie locale</h2>
+        <p>
+          Le Conseil municipal est l'organe délibérant de la commune de Yopougon. Conformément à
+          la loi ivoirienne relative à l'organisation des collectivités territoriales, il règle
+          par ses délibérations les affaires de la commune et représente la population dans
+          toutes les décisions relatives au développement local.
+        </p>
+        <p>
+          Élu au suffrage universel pour un mandat de cinq ans, le Conseil municipal actuel a été
+          installé le 6 octobre 2023 sous la présidence du Préfet du département d'Abidjan. Il a
+          porté à sa tête Monsieur Adama Bictogo, élu Maire de Yopougon avec 93,22 % des
+          suffrages exprimés, pour la mandature 2023-2028.
+        </p>
+        <p>
+          Le Conseil se réunit en séances publiques pour délibérer sur le budget communal, les
+          projets d'investissement, l'urbanisme, l'état civil et l'ensemble des politiques
+          publiques locales au bénéfice des Yopougonnais.
+        </p>
+      </div>
+      <div class="intro-illustration fade-in" appFadeIn>
+        <div class="intro-illustration-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <h3>Une équipe au service de Yopougon</h3>
+        <p>Le Maire, ses adjoints et les conseillers municipaux œuvrent ensemble pour la plus grande commune de Côte d'Ivoire.</p>
+        <div class="intro-stats-mini">
+          @for (stat of introStats; track stat.label) {
+            <div class="intro-stat-mini">
+              <div class="num">{{ stat.num }}</div>
+              <div class="lbl">{{ stat.label }}</div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUREAU MUNICIPAL -->
+<section class="bureau">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Gouvernance locale</div>
+      <h2>Le Bureau Municipal</h2>
+      <p>Sous la conduite du Maire, le bureau municipal assure la direction collégiale des affaires communales.</p>
+    </div>
+
+    <div class="maire-highlight fade-in" appFadeIn>
+      <div class="maire-avatar">
+        <i class="fas fa-user-tie"></i>
+      </div>
+      <div class="maire-info">
+        <div class="role-tag"><i class="fas fa-star"></i> Maire de Yopougon</div>
+        <h3>Adama Bictogo</h3>
+        <p>
+          Président du Conseil municipal depuis le 6 octobre 2023, Monsieur Adama Bictogo dirige
+          l'exécutif communal et préside les séances du Conseil, entouré de huit adjoints au
+          Maire chargés chacun d'un secteur d'action.
+        </p>
+      </div>
+    </div>
+
+    <div class="adjoints-grid">
+      @for (member of teamMembers; track member.name) {
+        <div class="member-card fade-in" appFadeIn>
+          <div class="member-avatar"><i class="fas fa-user"></i></div>
+          <h4>{{ member.name }}</h4>
+          <div class="member-role">{{ member.role }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- COMMISSIONS -->
+<section class="commissions">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Organisation du travail</div>
+      <h2>Les Commissions Permanentes</h2>
+      <p>Pour instruire les dossiers avant chaque séance plénière, le Conseil municipal s'appuie sur des commissions thématiques.</p>
+    </div>
+    <div class="commissions-grid">
+      @for (commission of commissionItems; track commission.title) {
+        <div class="commission-card fade-in" appFadeIn>
+          <div class="commission-icon"><i class="fas {{ commission.icon }}"></i></div>
+          <div>
+            <h4>{{ commission.title }}</h4>
+            <p>{{ commission.description }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- MISSIONS -->
+<section class="missions">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Attributions</div>
+      <h2>Les Missions du Conseil Municipal</h2>
+      <p>En vertu du Code général des collectivités territoriales, le Conseil municipal dispose de larges compétences.</p>
+    </div>
+    <div class="missions-list">
+      @for (mission of missionItems; track mission.title) {
+        <div class="mission-item fade-in" appFadeIn>
+          <i class="fas {{ mission.icon }}"></i>
+          <div>
+            <h4>{{ mission.title }}</h4>
+            <p>{{ mission.description }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- SESSIONS ET DELIBERATIONS -->
+<section class="sessions">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Vie institutionnelle</div>
+      <h2>Séances et Délibérations</h2>
+      <p>Le Conseil municipal se réunit régulièrement en session pour délibérer sur les affaires communales.</p>
+    </div>
+    <div class="sessions-grid">
+      <div class="fade-in" appFadeIn>
+        @for (session of sessionTypes; track session.title) {
+          <div class="session-type-card">
+            <h4><i class="fas {{ session.icon }}"></i> {{ session.title }}</h4>
+            <p>{{ session.description }}</p>
+          </div>
+        }
+      </div>
+      <div class="deliberations-box fade-in" appFadeIn>
+        <div class="deliberations-box-header">
+          <i class="fas fa-file-alt"></i> Dernières délibérations
+        </div>
+        @for (item of deliberations; track item.title) {
+          <div class="deliberation-item">
+            <div class="deliberation-date"><span class="day">{{ item.day }}</span><span class="month">{{ item.month }}</span></div>
+            <div>
+              <h5>{{ item.title }}</h5>
+              <span>{{ item.description }}</span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="container">
+    <h3>Une question sur une délibération du Conseil ?</h3>
+    <p>Notre secrétariat général se tient à votre disposition pour toute demande d'information sur les décisions du Conseil municipal.</p>
+    <div class="cta-buttons">
+      <a routerLink="/contact" fragment="formulaire" class="btn btn-primary btn-white">
+        <i class="fas fa-envelope"></i> Nous contacter
+      </a>
+      <a routerLink="/" class="btn btn-outline">
+        <i class="fas fa-home"></i> Retour à l'accueil
+      </a>
+    </div>
+  </div>
+</section>

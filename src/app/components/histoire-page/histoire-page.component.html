@@ -1,0 +1,241 @@
+<!-- PAGE BANNER -->
+<section class="page-banner">
+  <div class="page-banner-bg"></div>
+  <div class="container">
+    <div class="breadcrumb fade-in" appFadeIn>
+      <a routerLink="/yop-ma-commune"><i class="fas fa-home"></i> Accueil</a>
+      <i class="fas fa-chevron-right"></i>
+      <span>Yop, Ma Commune</span>
+      <i class="fas fa-chevron-right"></i>
+      <span class="current">Histoire de la Commune</span>
+    </div>
+    <h1 class="fade-in" appFadeIn>Histoire de la <span style="color: var(--gold)">Commune</span></h1>
+    <p class="fade-in" appFadeIn>
+      Des champs de Yopou aux immeubles de « Yop City » : retour sur les origines, les grandes
+      dates et le patrimoine de la première commune de Côte d'Ivoire.
+    </p>
+    <div class="page-banner-stats fade-in" appFadeIn>
+      @for (stat of bannerStats; track stat.label) {
+        <div class="page-banner-stat">
+          <div class="number">{{ stat.number }}</div>
+          <div class="label">{{ stat.label }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ORIGINES & ÉTYMOLOGIE -->
+<section class="vision-intro">
+  <div class="container">
+    <div class="vision-grid">
+      <div class="vision-content fade-in" appFadeIn>
+        <div class="overline">Aux origines</div>
+        <h2>Le « champ de Yopou », berceau de la commune</h2>
+        <p>
+          Bien avant de devenir la plus grande commune de Côte d'Ivoire, Yopougon n'était qu'un
+          ensemble de villages traditionnels ébrié et attié, dispersés le long de la lagune et de
+          la forêt du Banco. Ses habitants vivaient alors de pêche, d'agriculture et de petit
+          commerce, à l'écart du centre-ville naissant d'Abidjan.
+        </p>
+        <p>
+          La tradition orale raconte que le nom de la commune viendrait d'un patriarche nommé
+          Yopou, installé près de l'actuelle usine Uniwax, qui aurait cédé une partie de ses
+          terres aux « Bidjan », le peuple ébrié fondateur d'Abidjan. En signe de reconnaissance,
+          ceux-ci auraient pris le nom de « Yopou gonnin », c'est-à-dire, en langue ébrié, « les
+          habitants des champs de Yopou ».
+        </p>
+        <div class="vision-quote">
+          Quatorze villages traditionnels subsistent encore aujourd'hui au cœur de la commune
+          moderne, témoins vivants d'un passé précolonial que la Municipalité s'attache à
+          préserver.
+          <span>— Mémoire et patrimoine de Yopougon</span>
+        </div>
+      </div>
+      <div class="vision-media fade-in" appFadeIn>
+        <img src="assets/images/yopougon/rue-princesse.jpg" alt="Scène de vie traditionnelle à Yopougon" />
+        <div class="vision-media-badge">
+          <i class="fas fa-seedling"></i>
+          <div>
+            <div class="number">Ébrié & Attié</div>
+            <div class="text">Peuples fondateurs</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHRONOLOGIE -->
+<section class="roadmap">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Dates clés</div>
+      <h2>De village lagunaire à métropole populaire</h2>
+      <p>Les grandes étapes qui ont fait de Yopougon la commune la plus peuplée de Côte d'Ivoire.</p>
+    </div>
+
+    <div class="timeline">
+      @for (item of timelineItems; track item.title) {
+        <div class="timeline-item fade-in" appFadeIn>
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <span class="timeline-year">{{ item.year }}</span>
+            <h4>{{ item.title }}</h4>
+            <p>{{ item.description }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- LES MAIRES DE YOPOUGON -->
+<section class="services" id="maires">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Gouvernance municipale</div>
+      <h2>Les Maires qui ont bâti Yopougon</h2>
+      <p>Depuis son érection en commune en 1980, six édiles se sont succédé à la tête de Yopougon.</p>
+    </div>
+    <div class="services-grid">
+      @for (mayor of mayors; track mayor.period) {
+        <div class="service-card fade-in" appFadeIn>
+          <div class="service-icon"><i class="fas fa-user-tie"></i></div>
+          <h3>{{ mayor.name }}</h3>
+          <p>{{ mayor.period }}<br />{{ mayor.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- YOP CITY : IDENTITÉ CULTURELLE -->
+<section class="featured-projet">
+  <div class="container">
+    <div class="featured-grid">
+      <div class="featured-media fade-in" appFadeIn>
+        <span class="featured-tag"><i class="fas fa-music"></i> Patrimoine vivant</span>
+        <img src="assets/images/yopougon/ambiance-maquis.jpg" alt="Ambiance nocturne et culture populaire" />
+      </div>
+      <div class="featured-content fade-in" appFadeIn>
+        <div class="overline">Identité & culture</div>
+        <h2>« Yop City », capitale populaire de l'ambiance</h2>
+        <p>
+          Au-delà de son poids démographique, Yopougon s'est forgé une identité culturelle
+          unique en Côte d'Ivoire. Ses nombreux maquis, sa vie nocturne animée et sa célèbre Rue
+          Princesse en ont fait un haut lieu de la culture urbaine ivoirienne, surnommé
+          affectueusement « Yop City » ou « Poy ».
+        </p>
+        <p>
+          Chaque année, la commune célèbre son patrimoine à travers la Foire Industrielle,
+          Commerciale et Gastronomique de Yopougon (FICGAYO), la traditionnelle course de masques
+          « Guébia », le Carna Yop et de nombreuses fêtes de génération qui perpétuent la mémoire
+          des villages fondateurs.
+        </p>
+        <div class="featured-facts">
+          @for (fact of featuredFacts; track fact.label) {
+            <div class="featured-fact">
+              <div class="number">{{ fact.number }}</div>
+              <div class="label">{{ fact.label }}</div>
+            </div>
+          }
+        </div>
+        <a routerLink="/yop-ma-commune" class="btn btn-primary">
+          <i class="fas fa-info-circle"></i> Découvrir la commune aujourd'hui
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DÉMOGRAPHIE -->
+<section class="numbers">
+  <div class="container">
+    <div class="numbers-heading fade-in" appFadeIn>
+      <h2>1,5M<span class="heart">+</span></h2>
+      <p style="color: rgba(255, 255, 255, 0.85); font-size: 1.1rem">Une croissance démographique sans précédent en Côte d'Ivoire</p>
+    </div>
+    <div class="numbers-grid">
+      @for (stat of demographyStats; track stat.label) {
+        <div class="number-card fade-in" appFadeIn>
+          <i class="fas {{ stat.icon }}"></i>
+          <div class="count">{{ stat.count }}</div>
+          <div class="count-label">{{ stat.label }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- PATRIMOINE ET LIEUX EMBLÉMATIQUES -->
+<section class="actualites">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Patrimoine communal</div>
+      <h2>Des lieux qui ont marqué notre histoire</h2>
+      <p>Édifices religieux, cités pionnières et institutions qui témoignent de l'évolution de la commune.</p>
+    </div>
+    <div class="actualites-grid">
+      @for (item of heritageItems; track item.title) {
+        <div class="actu-card fade-in" appFadeIn>
+          <div class="actu-img">
+            <img [src]="item.image" [alt]="item.title" />
+            <span class="actu-category">{{ item.category }}</span>
+          </div>
+          <div class="actu-body">
+            <div class="actu-date"><i class="far fa-clock"></i> {{ item.date }}</div>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- VIDÉOS -->
+<section class="videos-projets">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">En images</div>
+      <h2>Yopougon, hier et aujourd'hui</h2>
+      <p>Une immersion vidéo dans les quartiers de la commune pour comprendre son évolution et son identité.</p>
+    </div>
+
+    <div class="video-main-wrap fade-in" appFadeIn>
+      <iframe src="https://www.youtube.com/embed/hlNHpg6ngMo" title="Immersion à Yopougon Azito, entre lagune et urbanisation" allowfullscreen loading="lazy"></iframe>
+    </div>
+
+    <div class="video-thumbs-grid">
+      @for (video of videoThumbs; track video.title) {
+        <a routerLink="/actualites" fragment="videotheque" class="video-thumb-card fade-in" appFadeIn>
+          <img [src]="video.image" [alt]="video.title" />
+          <div class="video-thumb-overlay">
+            <h4>{{ video.title }}</h4>
+            <span><i class="far fa-clock"></i> Reportage complet</span>
+          </div>
+          <div class="video-play-icon"><i class="fas fa-play"></i></div>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-projets">
+  <div class="container">
+    <div class="cta-projets-content fade-in" appFadeIn>
+      <h2>Écrivons ensemble la suite de notre histoire</h2>
+      <p>Découvrez les grands projets qui façonnent le Yopougon de demain, dans la continuité de cinquante années de développement communal.</p>
+      <div class="cta-projets-buttons">
+        <a routerLink="/nos-projets" class="btn btn-primary">
+          <i class="fas fa-rocket"></i> Voir nos projets
+        </a>
+        <a routerLink="/yop-ma-commune" class="btn btn-outline">
+          <i class="fas fa-map-marked-alt"></i> Découvrir la commune
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
