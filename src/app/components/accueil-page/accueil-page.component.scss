@@ -524,6 +524,8 @@
   .numbers-grid { grid-template-columns: repeat(2, 1fr); }
   .hero-stats { display: none; }
   .maire-grid { grid-template-columns: 1fr; }
+  .actualites-grid { grid-template-columns: repeat(2, 1fr); }
+  .demande-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
@@ -535,4 +537,22 @@
   .contact-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .demande-grid { grid-template-columns: 1fr; }
+
+  // background-attachment: fixed est mal supporté (et coûteux) sur les
+  // navigateurs mobiles (iOS Safari en particulier) : le fond devient
+  // saccadé, voire disparaît. On repasse en scroll classique sous 768px.
+  .numbers { background-attachment: scroll; }
+
+  // .numbers-heading h2/.heart utilisent déjà --fs-display-xxl (clamp
+  // fluide, cf. styles.scss) : un palier fixe ici le dépasserait et
+  // recréerait l'effet "XXL disproportionné" qu'il corrige.
+}
+
+@media (max-width: 480px) {
+  .hero-badge { font-size: 0.8rem; padding: 7px 16px; }
+}
+
+@media (max-width: 400px) {
+  .hero h2 { font-size: 1.9rem; }
+  .hero p { font-size: 1rem; }
 }

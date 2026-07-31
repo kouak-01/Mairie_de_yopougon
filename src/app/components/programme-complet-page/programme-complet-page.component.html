@@ -1,0 +1,105 @@
+<!-- PAGE BANNER -->
+<section class="page-banner" id="haut">
+  <div class="page-banner-bg">
+    <img src="assets/images/mairie-centrale.jpg" alt="Programme complet des événements de la Mairie de Yopougon" />
+  </div>
+  <div class="page-banner-overlay"></div>
+  <div class="container page-banner-content">
+    <div class="breadcrumb">
+      <a routerLink="/">Accueil</a>
+      <i class="fas fa-chevron-right"></i>
+      <a routerLink="/agenda">Agenda</a>
+      <i class="fas fa-chevron-right"></i>
+      <span>Programme complet</span>
+    </div>
+    <h1>Le <span>Programme Complet</span> de l'Agenda</h1>
+    <p>Découvrez le détail de chaque événement organisé par la Mairie de Yopougon : horaires précis, lieux, déroulé du programme, photos et vidéos.</p>
+  </div>
+</section>
+
+<!-- TABLE OF CONTENTS -->
+<section class="toc-section">
+  <div class="container">
+    <div class="toc-row">
+      <span class="toc-label"><i class="fas fa-list"></i> Accès rapide :</span>
+      @for (item of tocItems; track item.anchor) {
+        <a [href]="'#' + item.anchor" class="toc-pill"><span class="toc-date">{{ item.date }}</span> {{ item.label }}</a>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="programme-intro">
+  <div class="container">
+    <div class="section-header">
+      <div class="overline"><i class="fas fa-calendar-check"></i> Détail événement par événement</div>
+      <h2>Tout savoir avant d'y participer</h2>
+      <p>Consultez le programme horaire complet, les informations pratiques et les images de chaque rendez-vous inscrit à l'agenda de la commune pour les mois d'août et septembre 2026.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS DETAIL -->
+<section class="events-detail-wrap">
+  <div class="container">
+    @for (event of events; track event.id) {
+      <article class="event-block fade-in" appFadeIn [id]="event.id">
+        <div class="event-media">
+          <img class="event-media-main" [src]="event.media.main" [alt]="event.title" />
+          @if (event.media.gallery) {
+            <div class="event-media-gallery">
+              <img [src]="event.media.gallery[0]" [alt]="event.title" />
+              <img [src]="event.media.gallery[1]" [alt]="event.title" />
+            </div>
+          }
+          @if (event.media.video) {
+            <div class="event-video-frame">
+              <video [poster]="event.media.video.poster" controls></video>
+            </div>
+            <p class="event-video-caption"><i class="fas fa-video"></i> {{ event.media.video.caption }}</p>
+          }
+        </div>
+        <div class="event-content">
+          <div class="event-header-row">
+            <span class="event-tag"><i class="fas {{ event.tagIcon }}"></i> {{ event.tag }}</span>
+            <span class="event-date-pill"><i class="fas fa-calendar-day"></i> {{ event.date }}</span>
+          </div>
+          <h2>{{ event.title }}</h2>
+          <p class="event-desc">{{ event.description }}</p>
+          <div class="event-info-grid">
+            @for (info of event.infoItems; track info.label) {
+              <div class="event-info-item"><i class="fas {{ info.icon }}"></i><span><strong>{{ info.label }}</strong>{{ info.value }}</span></div>
+            }
+          </div>
+          <div class="event-schedule">
+            <h4><i class="fas fa-list-ol"></i> {{ event.scheduleTitle }}</h4>
+            @for (group of event.scheduleGroups; track $index) {
+              @if (group.dayTitle) {
+                <div class="schedule-day-title">{{ group.dayTitle }}</div>
+              }
+              <ul class="schedule-list">
+                @for (entry of group.entries; track entry.time) {
+                  <li><span class="schedule-time">{{ entry.time }}</span> {{ entry.text }}</li>
+                }
+              </ul>
+            }
+          </div>
+          <a routerLink="/agenda" class="event-back-btn"><i class="fas fa-arrow-left"></i> Retour à l'agenda</a>
+        </div>
+      </article>
+    }
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="programme-cta">
+  <div class="container">
+    <h2><i class="fas fa-calendar-alt"></i> Envie de ne rien manquer ?</h2>
+    <p>Consultez l'agenda complet de la commune ou abonnez-vous pour recevoir les rappels de chaque événement directement par e-mail.</p>
+    <div class="programme-cta-buttons">
+      <a routerLink="/agenda" class="btn btn-primary"><i class="fas fa-calendar-alt"></i> Voir l'agenda</a>
+      <a routerLink="/agenda" fragment="videotheque" class="btn btn-outline"><i class="fas fa-video"></i> Vidéothèque</a>
+    </div>
+  </div>
+</section>

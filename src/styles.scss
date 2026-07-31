@@ -4,6 +4,18 @@
 
 @import "primeicons/primeicons.css";
 
+// ===== GRILLE DE BREAKPOINTS (référence projet) =====
+// À utiliser comme repère dans tous les fichiers .component.scss pour garder
+// une progression cohérente : mobile → mobile-lg → tablette → desktop.
+//   $bp-xs   576px  — petits smartphones (portrait)
+//   $bp-sm   768px  — smartphones larges / bascule menu burger
+//   $bp-md   992px  — tablettes
+//   $bp-lg  1200px  — desktop standard
+$bp-xs: 576px;
+$bp-sm: 768px;
+$bp-md: 992px;
+$bp-lg: 1200px;
+
 :root {
   --primary: #1a5f2a;
   --primary-dark: #0e3d1a;
@@ -19,18 +31,13 @@
   --radius: 16px;
   --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
-  /* ===== Typographie fluide (règles d'or UI/UX, réutilisées par toutes les pages) ===== */
-  --fs-hero: clamp(1.8rem, 1rem + 5vw, 3.5rem);       /* grands titres hero */
+  /* ===== Typographie fluide (règles d'or UI/UX, réutilisées par toutes les pages) =====
+     Interpolation entre (360px → min) et (1400px → max), cf. $bp-* ci-dessus :
+     évite qu'un titre "hero" atteigne déjà son maximum dès la tablette. */
+  --fs-hero: clamp(1.8rem, 1.3rem + 2.5vw, 3.5rem);   /* grands titres hero */
   --fs-h2: clamp(1.5rem, 1rem + 2.5vw, 2.5rem);       /* titres de section */
   --fs-h3: clamp(1.05rem, 0.9rem + 1vw, 1.3rem);      /* sous-titres / titres de carte */
   --fs-display-xxl: clamp(1.5rem, 4vw, 2.25rem);      /* typo décorative XXL (ex: "J'❤️ YOP CITY") */
-
-  /* ===== Gouttières / marges tactiles universelles ===== */
-  --section-padding-x: 20px;
-}
-
-@media (min-width: 640px) {
-  :root { --section-padding-x: 30px; }
 }
 
 * {
@@ -41,19 +48,22 @@
 
 /* ===== Reset universel des images ===== */
 img {
-  max-width: 100%;
   height: auto;
   display: block;
 }
 
 html {
   scroll-behavior: smooth;
+  width: 100%;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   font-family: 'Open Sans', sans-serif;
   color: var(--text-dark);
   line-height: 1.7;
+  width: 100%;
   overflow-x: hidden;
   background: var(--accent);
 }
@@ -62,18 +72,41 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif;
 }
 
+/* ===== FILET DE SÉCURITÉ ANTI-DÉBORDEMENT (mobile) ===== */
+// Empêche toute image/média/objet fixe surdimensionné de créer un
+// scroll horizontal parasite, quel que soit le composant qui l'utilise.
+img, svg, video, iframe, picture {
+  max-width: 100%;
+}
+
 .container {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 var(--section-padding-x);
+  padding: 0 30px;
+  width: 100%;
+}
+
+@media (max-width: $bp-sm) {
+  .container {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: $bp-xs) {
+  .container {
+    padding: 0 16px;
+  }
 }
 
 /* ===== BOUTONS PARTAGÉS ===== */
+// min-height 44px : zone de clic tactile minimale recommandée (WCAG 2.5.5).
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   padding: 15px 32px;
+  min-height: 44px;
   border-radius: 12px;
   font-weight: 600;
   font-size: 0.95rem;
@@ -82,6 +115,13 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
   border: none;
   font-family: 'Montserrat', sans-serif;
+}
+
+@media (max-width: $bp-xs) {
+  .btn {
+    padding: 13px 24px;
+    font-size: 0.9rem;
+  }
 }
 
 .btn-primary {
@@ -167,3 +207,21 @@ h1, h2, h3, h4, h5, h6 {
   50% { transform: translateY(-10px); }
 }
 
+// .section-header h2 utilise déjà --fs-h2 (clamp fluide) ci-dessus : pas de
+// palier supplémentaire nécessaire ici, seuls la marge et le corps de texte
+// ont besoin d'un ajustement discret sous $bp-sm.
+@media (max-width: $bp-sm) {
+  .section-header { margin-bottom: 40px; }
+  .section-header p { font-size: 1rem; }
+}
+
+/* ===== ICÔNES / LIENS CLIQUABLES (zone tactile) ===== */
+// Filet de sécurité pour les boutons ronds icon-only (réseaux sociaux, play,
+// scroll-to-top…) qui ne passent pas systématiquement par .btn : garantit au
+// minimum 40px sur mobile, quel que soit le composant qui les déclare.
+@media (max-width: $bp-sm) {
+  a[aria-label], button[aria-label] {
+    min-width: 40px;
+    min-height: 40px;
+  }
+}

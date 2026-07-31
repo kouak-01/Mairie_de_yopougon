@@ -1,0 +1,217 @@
+<!-- PAGE BANNER -->
+<section class="page-banner">
+  <div class="page-banner-bg"></div>
+  <div class="container">
+    <div class="breadcrumb fade-in" appFadeIn>
+      <a routerLink="/"><i class="fas fa-home"></i> Accueil</a>
+      <i class="fas fa-chevron-right"></i>
+      <span>Ma Mairie</span>
+      <i class="fas fa-chevron-right"></i>
+      <span class="current">Nos Projets</span>
+    </div>
+    <h1 class="fade-in" appFadeIn>Nos Projets pour la <span style="color: var(--gold)">Commune</span></h1>
+    <p class="fade-in" appFadeIn>
+      Voirie, mobilité, éducation, santé, marchés, environnement, sport et numérique : découvrez
+      les grands chantiers portés par la Mairie de Yopougon pour améliorer durablement le cadre
+      de vie des Yopougonnais.
+    </p>
+    <div class="page-banner-stats fade-in" appFadeIn>
+      @for (stat of bannerStats; track stat.label) {
+        <div class="page-banner-stat">
+          <div class="number">{{ stat.number }}</div>
+          <div class="label">{{ stat.label }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- VISION INTRO -->
+<section class="vision-intro">
+  <div class="container">
+    <div class="vision-grid">
+      <div class="vision-content fade-in" appFadeIn>
+        <div class="overline">Notre ambition</div>
+        <h2>Bâtir la Yopougon de demain, avec et pour ses habitants</h2>
+        <p>
+          Première commune de Côte d'Ivoire par sa population, Yopougon fait face à des défis
+          majeurs de mobilité, d'accès aux services de base et de cadre de vie. La Municipalité a
+          fait du développement des infrastructures et des services de proximité une priorité
+          absolue de son mandat.
+        </p>
+        <p>
+          Chaque projet présenté sur cette page s'inscrit dans une vision de gouvernance
+          participative : désenclaver nos quartiers, moderniser nos marchés, sécuriser nos
+          écoles, verdir notre commune et rapprocher l'administration des citoyens grâce au
+          numérique.
+        </p>
+        <div class="vision-quote">
+          Yopougon mérite des infrastructures à la hauteur de son poids démographique et
+          économique. Chaque chantier que nous menons est une réponse concrète aux attentes
+          quotidiennes des Yopougonnais.
+          <span>— La Municipalité de Yopougon</span>
+        </div>
+      </div>
+      <div class="vision-media fade-in" appFadeIn>
+        <img src="assets/images/abidjan-panorama.jpg" alt="Vue d'un quartier de Yopougon" />
+        <div class="vision-media-badge">
+          <i class="fas fa-city"></i>
+          <div>
+            <div class="number">1,5M+</div>
+            <div class="text">Habitants desservis</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTRES + GRILLE DE PROJETS -->
+<section class="projets-filter-section" id="projets">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Nos chantiers</div>
+      <h2>Tous les projets de la commune</h2>
+      <p>Filtrez par domaine pour découvrir les projets qui transforment votre quartier au quotidien.</p>
+    </div>
+
+    <div class="filter-tabs fade-in" appFadeIn>
+      @for (tab of filterTabs; track tab.key) {
+        <button type="button" class="filter-tab" [class.active]="activeFilter() === tab.key" (click)="setFilter(tab.key)">
+          <i class="fas {{ tab.icon }}"></i> {{ tab.label }}
+        </button>
+      }
+    </div>
+
+    <div class="projets-grid">
+      @for (projet of filteredProjects(); track projet.title) {
+        <div class="projet-card fade-in" appFadeIn>
+          <div class="projet-img">
+            <img [src]="projet.image" [alt]="projet.title" />
+            <span class="projet-category">{{ projet.category }}</span>
+            <span class="projet-status" [class]="projet.status">{{ projet.statusLabel }}</span>
+          </div>
+          <div class="projet-body">
+            <h3>{{ projet.title }}</h3>
+            <p>{{ projet.description }}</p>
+            <div class="projet-progress-label"><span>Avancement</span><span>{{ projet.progress }}%</span></div>
+            <div class="projet-progress-bar"><div class="projet-progress-fill" [style.width.%]="projet.progress"></div></div>
+            <div class="projet-meta">
+              <span><i class="fas fa-calendar-alt"></i> {{ projet.period }}</span>
+              <span><i class="fas fa-map-marker-alt"></i> {{ projet.location }}</span>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- PROJET PHARE : 4E PONT -->
+<section class="featured-projet">
+  <div class="container">
+    <div class="featured-grid">
+      <div class="featured-media fade-in" appFadeIn>
+        <span class="featured-tag"><i class="fas fa-star"></i> Projet phare</span>
+        <img src="assets/images/abidjan-bridge.jpg" alt="4e pont d'Abidjan reliant Yopougon au Plateau" />
+      </div>
+      <div class="featured-content fade-in" appFadeIn>
+        <div class="overline">Grande infrastructure</div>
+        <h2>Le 4ᵉ Pont : Yopougon enfin connectée au cœur d'Abidjan</h2>
+        <p>
+          Long de près de 1,4 km et déployé sur 8 voies, le 4ᵉ pont relie désormais directement
+          Yopougon au Plateau, à Attécoubé et à Adjamé. Construit entre 2018 et 2024, l'ouvrage
+          est entré en service à péage le 1ᵉʳ juillet 2024, offrant un nouvel accès stratégique
+          qui désengorge la commune et réduit considérablement les temps de trajet vers le centre
+          des affaires.
+        </p>
+        <p>
+          Ce chantier structurant s'inscrit dans une dynamique plus large de désenclavement de
+          Yopougon, aux côtés du projet de BRT Yopougon–Bingerville et des travaux de voirie
+          menés en parallèle dans plusieurs quartiers.
+        </p>
+        <div class="featured-facts">
+          @for (fact of featuredFacts; track fact.label) {
+            <div class="featured-fact">
+              <div class="number">{{ fact.number }}</div>
+              <div class="label">{{ fact.label }}</div>
+            </div>
+          }
+        </div>
+        <a routerLink="/contact" fragment="formulaire" class="btn btn-primary">
+          <i class="fas fa-info-circle"></i> En savoir plus sur ce projet
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDÉOTHÈQUE DES PROJETS -->
+<section class="videos-projets">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">En images</div>
+      <h2>Nos projets vus en vidéo</h2>
+      <p>Suivez l'avancement des grands chantiers de la commune et leur impact sur le quotidien des Yopougonnais.</p>
+    </div>
+
+    <div class="video-main-wrap fade-in" appFadeIn>
+      <iframe src="https://www.youtube.com/embed/jDp8b9kZduw" title="Infrastructures et mobilité à Abidjan" allowfullscreen loading="lazy"></iframe>
+    </div>
+
+    <div class="video-thumbs-grid">
+      @for (video of videoThumbs; track video.title) {
+        <a routerLink="/en-construction" class="video-thumb-card fade-in" appFadeIn>
+          <img [src]="video.image" [alt]="video.title" />
+          <div class="video-thumb-overlay">
+            <h4>{{ video.title }}</h4>
+            <span><i class="far fa-clock"></i> Reportage complet</span>
+          </div>
+          <div class="video-play-icon"><i class="fas fa-play"></i></div>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CHRONOLOGIE / FEUILLE DE ROUTE -->
+<section class="roadmap">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Feuille de route</div>
+      <h2>Notre calendrier 2024 - 2030</h2>
+      <p>Les grandes étapes de la transformation de Yopougon, du désenclavement routier à la ville numérique.</p>
+    </div>
+
+    <div class="timeline">
+      @for (item of timelineItems; track item.title) {
+        <div class="timeline-item fade-in" appFadeIn>
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <span class="timeline-year">{{ item.year }}</span>
+            <h4>{{ item.title }}</h4>
+            <p>{{ item.description }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CTA PARTICIPATION -->
+<section class="cta-projets">
+  <div class="container">
+    <div class="cta-projets-content fade-in" appFadeIn>
+      <h2>Suivez l'avancement de nos projets</h2>
+      <p>Restez informé(e) des chantiers en cours dans votre quartier et faites entendre votre voix sur les priorités de développement de la commune.</p>
+      <div class="cta-projets-buttons">
+        <a routerLink="/en-construction" class="btn btn-primary">
+          <i class="fas fa-newspaper"></i> Voir les actualités
+        </a>
+        <a routerLink="/contact" fragment="formulaire" class="btn btn-outline">
+          <i class="fas fa-comment-dots"></i> Donner mon avis
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

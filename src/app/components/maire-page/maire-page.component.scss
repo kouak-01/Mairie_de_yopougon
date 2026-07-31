@@ -473,11 +473,44 @@
   .bio-content { grid-template-columns: 1fr; }
   .parcours-grid { grid-template-columns: 1fr; }
   .achievements-grid { grid-template-columns: repeat(2, 1fr); }
+
+  // .hero-content h1 utilise déjà var(--fs-hero) (clamp fluide) : pas de
+  // palier fixe nécessaire ici.
+
+  // Sur mobile/tablette le portrait passe en second (après le texte) : il
+  // n'a plus besoin d'occuper toute la hauteur de l'écran comme sur desktop
+  // où il partage la largeur avec le texte. On le recadre en portrait
+  // "buste" plutôt que de l'afficher pleine hauteur intrinsèque.
+  .hero-mayor { min-height: 0; padding: 130px 0 70px; }
+
+  .hero-mayor .hero-image { margin-top: 10px; }
+
+  .hero-mayor .hero-image-frame {
+    max-width: 320px;
+    margin: 0 auto;
+
+    img {
+      height: 380px;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    &::before { inset: -14px; }
+    &::after { top: -24px; right: -24px; width: 130px; height: 130px; }
+  }
 }
 
 @media (max-width: 768px) {
+  .hero-mayor { padding: 110px 0 60px; }
   .hero-mayor .hero-content .title { font-size: 1.2rem; }
+  .hero-mayor .hero-image-frame { max-width: 260px; img { height: 320px; } }
   .achievements-grid { grid-template-columns: 1fr; }
   .contact-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 400px) {
+  .hero-mayor .hero-content h1 { font-size: 1.7rem; }
+  .hero-mayor .hero-content p { font-size: 1rem; }
+  .hero-mayor .stat-number { font-size: 1.8rem; }
 }

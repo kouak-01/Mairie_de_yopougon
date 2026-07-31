@@ -1,0 +1,21 @@
+# Cache Angular et builds
+.angular/
+dist/
+tmp/
+
+# Dépendances Node.js
+node_modules/
+
+# IDE & Outils IA
+.vscode/
+.claude/
+
+# Fichiers de logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Fichiers système
+.DS_Store
+Thumbs.db
