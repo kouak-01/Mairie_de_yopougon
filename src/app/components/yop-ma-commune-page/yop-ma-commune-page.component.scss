@@ -43,7 +43,7 @@
   .hero-content { color: white; }
 
   .hero-content h1 {
-    font-size: 3.4rem;
+    font-size: var(--fs-hero);
     font-weight: 900;
     line-height: 1.12;
     margin-bottom: 18px;
@@ -486,14 +486,12 @@
   .hero-commune .hero-buttons { justify-content: center; }
   .hero-commune .hero-stats { justify-content: center; }
   .hero-commune .hub-visual { margin-top: 30px; }
-  .hero-commune .hero-content h1 { font-size: 2.6rem; }
 }
 
 @media (max-width: 768px) {
   .bento-grid { grid-template-columns: 1fr; }
   .bento-card.span-2 { grid-column: span 1; }
   .bento-banner { grid-column: span 1; padding: 35px 25px; }
-  .hero-commune .hero-content h1 { font-size: 2.1rem; }
   .commune-hub { width: 300px; height: 300px; }
   .hub-core { width: 130px; height: 130px; }
   .hub-icon { --icon-radius: 130px; width: 48px; height: 48px; margin: -24px 0 0 -24px; font-size: 1rem; }

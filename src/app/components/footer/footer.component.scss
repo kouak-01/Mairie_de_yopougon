@@ -80,8 +80,9 @@
 
 .footer-links {
   list-style: none;
-
-  li { margin-bottom: 12px; }
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 
   a {
     color: rgba(255, 255, 255, 0.7);
@@ -139,6 +140,10 @@
     gap: 10px;
     text-align: center;
   }
+
+  /* ===== Équilibre logo / titre de la carte de marque du footer ===== */
+  .footer-about .logo-icon { width: 44px; height: 44px; max-height: 48px; }
+  .footer-about .logo-text h1 { font-size: 1.25rem; line-height: 1.2; }
 }
 
 /* ===== FOOTER SIMPLE (variant='simple', utilisé par la page Le Maire) ===== */

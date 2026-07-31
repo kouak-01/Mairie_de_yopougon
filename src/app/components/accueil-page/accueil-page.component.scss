@@ -47,7 +47,7 @@
 }
 
 .hero h2 {
-  font-size: 3.5rem;
+  font-size: var(--fs-hero);
   color: white;
   font-weight: 800;
   line-height: 1.15;
@@ -171,7 +171,7 @@
     &::before { content: ''; width: 40px; height: 2px; background: var(--gold); }
   }
 
-  h2 { font-size: 2.2rem; color: rgba(237, 125, 49); font-weight: 700; margin-bottom: 10px; }
+  h2 { font-size: var(--fs-h2); color: rgba(237, 125, 49); font-weight: 700; margin-bottom: 10px; }
   .title { color: var(--primary); font-weight: 600; font-size: 1.05rem; margin-bottom: 25px; }
   p { font-size: 1rem; color: var(--text-light); line-height: 1.9; margin-bottom: 15px; }
 }
@@ -299,7 +299,7 @@
   z-index: 2;
 
   h2 {
-    font-size: 6.5rem;
+    font-size: var(--fs-display-xxl);
     color: white;
     font-weight: 800;
     margin-bottom: 10px;
@@ -309,7 +309,7 @@
 
   .heart {
     color: #ff4458;
-    font-size: 6rem;
+    font-size: 0.9em;
     margin: 0 10px;
     display: inline-block;
     animation: heartbeat 1.5s ease-in-out infinite;
@@ -328,7 +328,14 @@
   padding: 30px 20px;
 
   i { font-size: 2.2rem; color: var(--gold); margin-bottom: 15px; }
-  .count { font-size: 2.8rem; font-weight: 800; color: white; font-family: 'Montserrat', sans-serif; margin-bottom: 5px; }
+  .count {
+    font-size: clamp(1.6rem, 5vw, 2.8rem);
+    white-space: nowrap;
+    font-weight: 800;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 5px;
+  }
   .count-label { font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); text-transform: uppercase; letter-spacing: 1px; }
 }
 
@@ -353,7 +360,7 @@
     &::before, &::after { content: ''; width: 40px; height: 2px; background: var(--gold); }
   }
 
-  h2 { font-size: 2.5rem; color: var(--primary-dark); font-weight: 700; margin-bottom: 15px; }
+  h2 { font-size: var(--fs-h2); color: var(--primary-dark); font-weight: 700; margin-bottom: 15px; }
   p { font-size: 1rem; color: var(--text-light); max-width: 600px; margin: 0 auto; }
 }
 
@@ -431,7 +438,7 @@
     &::before { content: ''; width: 40px; height: 2px; background: var(--gold); }
   }
 
-  h2 { font-size: 2.3rem; color: rgba(237, 125, 49); font-weight: 700; margin-bottom: 20px; }
+  h2 { font-size: var(--fs-h2); color: rgba(237, 125, 49); font-weight: 700; margin-bottom: 20px; }
   > p { color: var(--text-light); margin-bottom: 30px; line-height: 1.8; }
 }
 
@@ -520,12 +527,11 @@
 }
 
 @media (max-width: 768px) {
-  .hero h2 { font-size: 2.3rem; }
   .hero { height: 80vh; }
   .actualites-grid { grid-template-columns: 1fr; }
-  .maire-content h2 { font-size: 1.8rem; }
   .hero-buttons { flex-direction: column; }
-  .numbers-grid { grid-template-columns: 1fr 1fr; }
+  .numbers-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .number-card { padding: 20px 10px; }
   .contact-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .demande-grid { grid-template-columns: 1fr; }

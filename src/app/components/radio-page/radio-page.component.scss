@@ -84,7 +84,7 @@
 }
 
 .hero-radio .hero-content h1 {
-  font-size: 3.6rem;
+  font-size: var(--fs-hero);
   font-weight: 900;
   line-height: 1.1;
   margin-bottom: 8px;
@@ -886,11 +886,9 @@
   .radio-info-grid { grid-template-columns: 1fr; }
   .vacances-grid { grid-template-columns: 1fr 1fr; }
   .fb-stats-row { grid-template-columns: 1fr 1fr; }
-  .hero-radio .hero-content h1 { font-size: 2.6rem; }
 }
 
 @media (max-width: 768px) {
-  .hero-radio .hero-content h1 { font-size: 2.1rem; }
   .info-cards-grid { grid-template-columns: 1fr; }
   .vacances-grid { grid-template-columns: 1fr; }
   .vacances-banner { flex-direction: column; text-align: center; }

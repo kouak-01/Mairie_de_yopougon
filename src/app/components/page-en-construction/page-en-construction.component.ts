@@ -26,19 +26,9 @@ const PARTICLE_ICONS = ['fa-gear', 'fa-helmet-safety', 'fa-screwdriver-wrench', 
 export class PageEnConstructionComponent {
   private readonly destroyRef = inject(DestroyRef);
 
-  readonly progressTarget = 65;
-  readonly progressValue = signal(0);
-  readonly notifySent = signal(false);
-  readonly emailControl = new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.email] });
 
   readonly particles = signal<Particle[]>(this.generateParticles());
 
-  readonly progressWidth = computed(() => `${this.progressValue()}%`);
-
-  constructor() {
-    const startTimeout = setTimeout(() => this.animateProgress(), 400);
-    this.destroyRef.onDestroy(() => clearTimeout(startTimeout));
-  }
 
   private generateParticles(): Particle[] {
     const count = typeof window !== 'undefined' && window.innerWidth < 768 ? 8 : 16;
@@ -52,35 +42,5 @@ export class PageEnConstructionComponent {
     }));
   }
 
-  private animateProgress(): void {
-    const duration = 1600;
-    const steps = 40;
-    const stepTime = duration / steps;
-    const increment = this.progressTarget / steps;
-    let current = 0;
-
-    const interval = setInterval(() => {
-      current += increment;
-      if (current >= this.progressTarget) {
-        current = this.progressTarget;
-        clearInterval(interval);
-      }
-      this.progressValue.set(Math.round(current));
-    }, stepTime);
-
-    this.destroyRef.onDestroy(() => clearInterval(interval));
-  }
-
-  onNotifySubmit(): void {
-    if (this.emailControl.invalid) {
-      this.emailControl.markAsTouched();
-      return;
-    }
-    this.notifySent.set(true);
-    const resetTimeout = setTimeout(() => {
-      this.notifySent.set(false);
-      this.emailControl.reset('');
-    }, 4000);
-    this.destroyRef.onDestroy(() => clearTimeout(resetTimeout));
-  }
+  
 }

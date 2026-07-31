@@ -53,7 +53,7 @@
 }
 
 .page-hero h1 {
-  font-size: 3rem;
+  font-size: var(--fs-hero);
   font-weight: 900;
   color: white;
   line-height: 1.15;
@@ -510,7 +510,6 @@
 }
 
 @media (max-width: 768px) {
-  .page-hero h1 { font-size: 2.1rem; }
   .page-hero { min-height: 380px; padding: 60px 0; }
   .social-grid { grid-template-columns: 1fr; }
   .faq-question { padding: 18px 20px; font-size: 0.92rem; }

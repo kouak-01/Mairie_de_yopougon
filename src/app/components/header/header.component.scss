@@ -47,7 +47,11 @@
   padding: 15px 0;
   position: sticky;
   top: 0;
-  z-index: 1000;
+  /* Doit rester au-dessus de .nav-overlay (1250) : .navbar crée son propre
+     contexte d'empilement, donc le hamburger/drawer qu'il contient (z-index
+     jusqu'à 1300) restaient plafonnés sous l'overlay et étaient inaccessibles
+     au clic sur mobile. */
+  z-index: 1400;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
   transition: var(--transition);
 
@@ -253,11 +257,15 @@
 .hamburger {
   display: none;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   gap: 5px;
   background: none;
   border: none;
   padding: 5px;
+  min-width: 44px;
+  min-height: 44px;
   z-index: 1300;
 
   span {
@@ -407,4 +415,16 @@
 
 @media (max-width: 768px) {
   .top-bar .container { flex-direction: column; gap: 8px; }
+
+  /* ===== Équilibre logo / texte du header mobile ===== */
+  .logo-icon {
+    width: 42px;
+    height: 42px;
+    max-height: 44px;
+  }
+
+  .logo-text {
+    h1 { font-size: 1.05rem; font-weight: 700; line-height: 1.2; }
+    span { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.8; }
+  }
 }
