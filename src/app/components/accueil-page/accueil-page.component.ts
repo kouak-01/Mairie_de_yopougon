@@ -21,6 +21,7 @@ interface TickerItem {
 }
 
 interface NewsArticle {
+  id: string;
   image: string;
   alt: string;
   category: string;
@@ -81,6 +82,7 @@ export class AccueilPageComponent {
 
   readonly newsArticles: NewsArticle[] = [
     {
+      id: 'chantiers-independance-2026',
       image: 'assets/images/actualites/1.jpg',
       alt: 'Nouvelle mairie centrale',
       category: 'Développement',
@@ -90,6 +92,7 @@ export class AccueilPageComponent {
         "À vingt jours de la Fête de l'Indépendance, le Ministre des Infrastructures et de l'Entretien Routier, M. Hien Yacouba Sié, a effectué une visite d'inspection des chantiers.",
     },
     {
+      id: 'fete-independance-mobilisation-presse',
       image: 'assets/images/actualites/2.jpg',
       alt: 'Marché rénové',
       category: 'Mobilisation',
@@ -99,6 +102,7 @@ export class AccueilPageComponent {
         "À quelques semaines de la célébration de la 66ᵉ Fête de l'Indépendance qui se tiendra cette année à Yopougon, le Député-Maire Adama Bictogo a rencontré la presse.",
     },
     {
+      id: 'visite-terrain-premier-adjoint',
       image: 'assets/images/actualites/3.jpg',
       alt: 'Événement culturel',
       category: 'Inspection',

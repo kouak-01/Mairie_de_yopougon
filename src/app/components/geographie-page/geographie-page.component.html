@@ -1,0 +1,208 @@
+<!-- PAGE BANNER -->
+<section class="page-banner">
+  <div class="page-banner-bg"></div>
+  <div class="container page-banner-content">
+    <div class="breadcrumb fade-in" appFadeIn>
+      <a routerLink="/yop-ma-commune"><i class="fas fa-home"></i> Accueil</a>
+      <i class="fas fa-chevron-right"></i>
+      <span>Yop, Ma Commune</span>
+      <i class="fas fa-chevron-right"></i>
+      <span class="current">Géographie</span>
+    </div>
+    <h1 class="fade-in" appFadeIn>Géographie de la commune de <span style="color: var(--gold)">Yopougon</span></h1>
+    <p class="lead fade-in" appFadeIn>
+      Située à l'ouest du District d'Abidjan et traversée par la lagune Ébrié, Yopougon — la « Yop
+      City » — est la plus vaste et la plus peuplée des communes de la capitale économique
+      ivoirienne.
+    </p>
+  </div>
+</section>
+
+<!-- CHIFFRES CLÉS -->
+<section class="numbers">
+  <div class="container">
+    <div class="numbers-heading fade-in" appFadeIn>
+      <h2>Yopougon en <span class="heart">chiffres</span></h2>
+    </div>
+    <div class="numbers-grid">
+      @for (stat of numberStats; track stat.label) {
+        <div class="number-card fade-in" appFadeIn>
+          <i class="fas {{ stat.icon }}"></i>
+          <div class="count">{{ stat.count }}</div>
+          <div class="count-label">{{ stat.label }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- SITUATION GÉOGRAPHIQUE -->
+<section class="geo-section" id="situation">
+  <div class="container">
+    <div class="geo-grid">
+      <div class="geo-text fade-in" appFadeIn>
+        <div class="overline">Localisation</div>
+        <h2>Une position stratégique dans le District d'Abidjan</h2>
+        <p>
+          Yopougon occupe la partie occidentale du District autonome d'Abidjan, entre la forêt
+          classée du Banco au nord-est et la lagune Ébrié au sud. C'est la seule commune d'Abidjan
+          à s'étendre sur les deux rives de la lagune, ce qui lui confère une façade lagunaire
+          exceptionnelle et une position charnière entre le nord et le sud de la ville.
+        </p>
+        <p>
+          Le territoire communal s'étend approximativement entre les latitudes 5,28° et 5,40° nord
+          et les longitudes -4,15° et -3,98° ouest, à une altitude moyenne proche du niveau de la
+          lagune, sur un plateau légèrement vallonné typique du littoral ivoirien.
+        </p>
+        <ul class="geo-list">
+          <li><i class="fas fa-check-circle"></i> Commune la plus étendue et la plus peuplée d'Abidjan</li>
+          <li><i class="fas fa-check-circle"></i> Traversée par l'autoroute du Nord et la route de Dabou</li>
+          <li><i class="fas fa-check-circle"></i> Accès direct à la lagune Ébrié et à l'île Boulay</li>
+        </ul>
+      </div>
+      <figure class="geo-media fade-in" appFadeIn>
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Quartier_Yopougon_BAE.jpg" alt="Vue aérienne d'un quartier de Yopougon" />
+        <figcaption>Vue aérienne d'un quartier de Yopougon — © Wikimedia Commons</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- LIMITES ADMINISTRATIVES -->
+<section class="geo-section alt" id="limites">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Découpage territorial</div>
+      <h2>Les limites de la commune</h2>
+      <p>Yopougon partage ses frontières avec quatre communes et zones voisines, dessinant un territoire qui relie le nord industriel au sud lagunaire.</p>
+    </div>
+    <div class="limites-grid">
+      @for (card of limiteCards; track card.title) {
+        <div class="limite-card fade-in" appFadeIn>
+          <div class="compass">{{ card.compass }}</div>
+          <h4>{{ card.title }}</h4>
+          <p>{{ card.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- RELIEF, CLIMAT, HYDROGRAPHIE -->
+<section class="geo-section" id="relief">
+  <div class="container">
+    <div class="geo-grid reverse">
+      <figure class="geo-media fade-in" appFadeIn>
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Lagune_Abidjan_3492.jpg" alt="Pirogue sur la lagune Ébrié près d'Abidjan" />
+        <figcaption>La lagune Ébrié, bordure sud de la commune — © Wikimedia Commons</figcaption>
+      </figure>
+      <div class="geo-text fade-in" appFadeIn>
+        <div class="overline">Relief, climat &amp; hydrographie</div>
+        <h2>Un territoire lagunaire au climat équatorial</h2>
+        <p>
+          Le relief de Yopougon est globalement plat à légèrement ondulé, composé de plateaux
+          sableux qui descendent en pente douce vers la lagune Ébrié. Cette dernière constitue
+          l'élément hydrographique majeur de la commune et abrite en son sein l'île Boulay, un
+          espace naturel apprécié pour la détente en fin de semaine.
+        </p>
+        <p>
+          Le climat est de type équatorial de transition (climat attiéen), marqué par deux saisons
+          des pluies (avril à juillet, puis octobre à novembre) et deux saisons sèches, avec des
+          températures moyennes comprises entre 24°C et 32°C et un taux d'humidité élevé toute
+          l'année en raison de la proximité de l'océan Atlantique et de la lagune.
+        </p>
+        <ul class="geo-list">
+          <li><i class="fas fa-cloud-rain"></i> Pluviométrie annuelle abondante, favorable à une végétation dense</li>
+          <li><i class="fas fa-tree"></i> Proximité immédiate de la forêt classée du Banco</li>
+          <li><i class="fas fa-water"></i> Réseau de bas-fonds et de zones marécageuses en périphérie</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DÉCOUPAGE EN QUARTIERS -->
+<section class="geo-section alt" id="quartiers">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Organisation spatiale</div>
+      <h2>Les grands quartiers de Yopougon</h2>
+      <p>La commune est structurée en huit grands quartiers, eux-mêmes subdivisés en une trentaine de sous-quartiers, mêlant villages traditionnels Ébrié et Attié, zones résidentielles modernes et zones industrielles.</p>
+    </div>
+    <div class="quartiers-grid">
+      @for (quartier of quartiers; track quartier) {
+        <div class="quartier-card fade-in" appFadeIn><i class="fas fa-map-pin"></i><span>{{ quartier }}</span></div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CARTE INTERACTIVE -->
+<section class="geo-section" id="carte">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Cartographie</div>
+      <h2>Localiser la commune sur la carte</h2>
+      <p>Explorez la position de Yopougon au sein du District autonome d'Abidjan et sa façade sur la lagune Ébrié.</p>
+    </div>
+    <iframe class="map-frame fade-in" appFadeIn src="https://www.openstreetmap.org/export/embed.html?bbox=-4.15%2C5.28%2C-3.98%2C5.40&amp;layer=mapnik&amp;marker=5.345%2C-4.07" title="Carte de la commune de Yopougon" loading="lazy"></iframe>
+  </div>
+</section>
+
+<!-- VIDÉO -->
+<section class="video-section">
+  <div class="container">
+    <div class="video-grid">
+      <div class="video-content fade-in" appFadeIn>
+        <div class="overline">En images</div>
+        <h2>Yopougon vue du ciel</h2>
+        <p>Survolez la commune et découvrez l'étendue de son territoire : ses quartiers denses, ses zones industrielles, ses axes routiers structurants et sa longue façade sur la lagune Ébrié.</p>
+        <div class="video-highlights">
+          @for (item of videoHighlights; track item.text) {
+            <div class="highlight-item"><i class="fas {{ item.icon }}"></i> {{ item.text }}</div>
+          }
+        </div>
+      </div>
+      <div class="video-embed-wrap fade-in" appFadeIn>
+        <iframe src="https://www.youtube.com/embed/sK_YRPW3W5Y" title="Abidjan vue du ciel - images aériennes de la lagune" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE PHOTOS -->
+<section class="galerie" id="galerie">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Illustrations</div>
+      <h2>La commune en images</h2>
+      <p>Un aperçu visuel du territoire, des paysages et de l'environnement de Yopougon.</p>
+    </div>
+    <div class="galerie-grid">
+      @for (item of galerieItems; track item.label) {
+        <div class="galerie-item fade-in" appFadeIn>
+          <img [src]="item.image" [alt]="item.alt" />
+          <div class="overlay"><span>{{ item.label }}</span></div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-projets">
+  <div class="container">
+    <div class="cta-projets-content fade-in" appFadeIn>
+      <h2>Envie de découvrir une autre facette de la commune ?</h2>
+      <p>Économie, gouvernance, emploi, sport et culture : explorez toutes les dimensions de Yopougon.</p>
+      <div class="cta-projets-buttons">
+        <a routerLink="/yop-ma-commune" class="btn btn-primary">
+          <i class="fas fa-compass"></i> Retour à Yop, Ma Commune
+        </a>
+        <a routerLink="/contact" class="btn btn-outline">
+          <i class="fas fa-envelope-open-text"></i> Nous contacter
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

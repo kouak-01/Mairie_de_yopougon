@@ -1,0 +1,220 @@
+<!-- PAGE BANNER -->
+<section class="page-banner">
+  <div class="container">
+    <div class="breadcrumb fade-in" appFadeIn>
+      <a routerLink="/yop-ma-commune"><i class="fas fa-home"></i> Accueil</a>
+      <i class="fas fa-chevron-right"></i>
+      <span>Yop, Ma Commune</span>
+      <i class="fas fa-chevron-right"></i>
+      <span class="current">Gouvernance participative</span>
+    </div>
+    <div class="page-banner-badge fade-in" appFadeIn>
+      <i class="fas fa-people-roof"></i> Démocratie locale &amp; citoyenneté active
+    </div>
+    <h1 class="fade-in" appFadeIn>Gouvernance <span style="color: var(--gold)">Participative</span></h1>
+    <p class="fade-in" appFadeIn>
+      À Yopougon, la décision publique se construit avec les habitants. Comités de quartier,
+      budget participatif, consultations citoyennes et plateforme de doléances : découvrez les
+      outils qui permettent à chaque Yopougonnais de peser sur l'avenir de sa commune.
+    </p>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="gouv-intro">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-images fade-in" appFadeIn>
+        <div class="about-badge">
+          <span class="number">32</span>
+          <span class="text">Quartiers associés</span>
+        </div>
+        <img src="assets/images/gouvernance/assemblee-quartier.jpg" alt="Assemblée de quartier à Yopougon" class="about-img-main" />
+        <img src="assets/images/gouvernance/syndic.jpg" alt="Vote du budget participatif" class="about-img-secondary" />
+      </div>
+      <div class="about-content fade-in" appFadeIn>
+        <div class="overline">Notre engagement</div>
+        <h2>Une gouvernance construite avec vous</h2>
+        <p>
+          Forte de ses 32 quartiers et de plus de 1,5 million d'habitants, la Mairie de Yopougon a
+          fait le choix d'une gestion communale ouverte, transparente et co-construite avec la
+          population. La gouvernance participative n'est pas un slogan : c'est une méthode de
+          travail qui associe les habitants, la société civile, les jeunes et les femmes à chaque
+          étape de la décision publique, de l'identification des besoins jusqu'au suivi des
+          réalisations.
+        </p>
+        <p>
+          Ce dispositif s'appuie sur des instances de dialogue permanentes, des mécanismes de vote
+          citoyen pour une partie des investissements communaux, et des canaux numériques et
+          physiques pour recueillir les doléances et suggestions de chacun.
+        </p>
+        <div class="about-features">
+          @for (feature of aboutFeatures; track feature.label) {
+            <div class="about-feature">
+              <i class="fas {{ feature.icon }}"></i>
+              <span>{{ feature.label }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILIERS DE LA GOUVERNANCE PARTICIPATIVE -->
+<section class="gouv-piliers">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Nos dispositifs</div>
+      <h2>Les piliers de la participation citoyenne</h2>
+      <p>Huit instruments complémentaires pour donner la parole aux habitants et associer chaque Yopougonnais à la vie de sa commune.</p>
+    </div>
+    <div class="gouv-grid">
+      @for (card of pilierCards; track card.title) {
+        <div class="service-card fade-in" appFadeIn>
+          <div class="service-icon"><i class="fas {{ card.icon }}"></i></div>
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CHIFFRES CLÉS -->
+<section class="numbers">
+  <div class="container">
+    <div class="numbers-heading fade-in" appFadeIn>
+      <h2>La participation en chiffres</h2>
+    </div>
+    <div class="numbers-grid">
+      @for (stat of numberStats; track stat.label) {
+        <div class="number-card fade-in" appFadeIn>
+          <i class="fas {{ stat.icon }}"></i>
+          <div class="count">{{ stat.count }}</div>
+          <div class="count-label">{{ stat.label }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- VIDÉO / BUDGET PARTICIPATIF -->
+<section class="video-section">
+  <div class="container">
+    <div class="video-grid">
+      <div class="video-container fade-in" appFadeIn>
+        <iframe
+          src="https://www.youtube.com/embed/ZPx7vROkCg4"
+          title="Comprendre le budget participatif"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
+      <div class="video-content fade-in" appFadeIn>
+        <div class="overline">Comprendre</div>
+        <h2>Le budget participatif, un vrai pouvoir citoyen</h2>
+        <p>
+          Chaque année, les habitants de Yopougon sont invités à proposer et à voter des projets
+          d'aménagement pour leur quartier : espaces publics, éclairage, assainissement,
+          équipements sportifs ou culturels. Cette vidéo explique le principe du budget
+          participatif et la manière dont les communes l'utilisent pour renforcer la démocratie
+          locale.
+        </p>
+        <div class="video-highlights">
+          @for (item of videoHighlights; track item.text) {
+            <div class="highlight-item"><i class="fas fa-check-circle"></i> {{ item.text }}</div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTANCES CITOYENNES -->
+<section class="instances">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Zoom</div>
+      <h2>Nos instances de dialogue citoyen</h2>
+      <p>Des espaces permanents où les Yopougonnais rencontrent leurs élus et contribuent directement aux décisions communales.</p>
+    </div>
+    <div class="instances-grid">
+      @for (card of instanceCards; track card.title) {
+        <div class="instance-card fade-in" appFadeIn>
+          <div class="instance-img">
+            <img [src]="card.image" [alt]="card.alt" />
+          </div>
+          <div class="instance-body">
+            <span class="tag">{{ card.tag }}</span>
+            <h3>{{ card.title }}</h3>
+            <p>{{ card.description }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- COMMENT PARTICIPER -->
+<section class="parcours">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Passez à l'action</div>
+      <h2>Comment participer ?</h2>
+      <p>Quatre étapes simples pour faire entendre votre voix et rejoindre la dynamique citoyenne de Yopougon.</p>
+    </div>
+    <div class="timeline">
+      @for (step of timelineSteps; track step.title; let i = $index) {
+        <div class="timeline-step fade-in" appFadeIn>
+          <div class="timeline-num">{{ i + 1 }}</div>
+          <div class="timeline-content">
+            <h3>{{ step.title }}</h3>
+            <p>{{ step.description }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section class="galerie">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">En images</div>
+      <h2>La participation citoyenne à Yopougon</h2>
+      <p>Assemblées de quartier, votes citoyens et rencontres avec les habitants : quelques moments forts de notre gouvernance participative.</p>
+    </div>
+    <div class="galerie-grid">
+      @for (item of galerieItems; track item.label) {
+        <div class="galerie-item fade-in" appFadeIn>
+          <img [src]="item.image" [alt]="item.alt" />
+          <div class="overlay"><span>{{ item.label }}</span></div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="demande-en-ligne">
+  <div class="container">
+    <div class="demande-header fade-in" appFadeIn>
+      <div class="overline">Rejoignez le mouvement</div>
+      <h2>Votre commune a besoin de votre voix</h2>
+      <p>Trois façons simples de vous engager dès aujourd'hui dans la gouvernance participative de Yopougon.</p>
+    </div>
+    <div class="demande-grid">
+      @for (card of engagementCards; track card.title) {
+        <div class="demande-card fade-in" appFadeIn>
+          <div class="demande-card-icon"><i class="fas {{ card.icon }}"></i></div>
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.description }}</p>
+          <a [routerLink]="card.routerLink" class="demande-card-btn"><i class="fas {{ card.linkIcon }}"></i> {{ card.linkLabel }}</a>
+        </div>
+      }
+    </div>
+  </div>
+</section>

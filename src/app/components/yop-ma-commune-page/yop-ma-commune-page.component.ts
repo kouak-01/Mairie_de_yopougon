@@ -28,6 +28,7 @@ interface BentoCard {
   overline: string;
   title: string;
   description: string;
+  link: string;
   featured?: boolean;
   spanTwo?: boolean;
 }
@@ -77,6 +78,7 @@ export class YopMaCommunePageComponent implements AfterViewInit, OnDestroy {
       title: 'Histoire',
       description:
         "Des premiers villages Ébrié aux grandes vagues de peuplement du XXᵉ siècle, découvrez comment Yopougon est devenue la plus grande commune de Côte d'Ivoire, forte de son identité plurielle et de sa mémoire collective transmise de génération en génération.",
+      link: '/histoire',
       featured: true,
       spanTwo: true,
     },
@@ -87,6 +89,7 @@ export class YopMaCommunePageComponent implements AfterViewInit, OnDestroy {
       title: 'Histoire politique',
       description:
         "Retracez l'évolution administrative de la commune, les grandes municipalités qui se sont succédé et les réformes qui ont façonné la gouvernance locale de Yopougon.",
+      link: '/histoire',
     },
     {
       id: 'geographie',
@@ -95,6 +98,7 @@ export class YopMaCommunePageComponent implements AfterViewInit, OnDestroy {
       title: 'Géographie',
       description:
         'Relief, lagune, climat et découpage en 32 quartiers répartis sur 8 arrondissements : explorez la configuration géographique unique de Yop City.',
+      link: '/geographie',
     },
     {
       id: 'gouvernance-participative',
@@ -103,6 +107,7 @@ export class YopMaCommunePageComponent implements AfterViewInit, OnDestroy {
       title: 'Gouvernance participative',
       description:
         'Comités de quartiers, budgets participatifs et concertations publiques : découvrez comment les Yopougonnais prennent part aux décisions de leur commune.',
+      link: '/gouvernance-participative',
     },
     {
       id: 'economie',
@@ -111,6 +116,7 @@ export class YopMaCommunePageComponent implements AfterViewInit, OnDestroy {
       title: 'Économie',
       description:
         "Commerce, industrie, marchés et artisanat : Yopougon est un pôle économique majeur du District d'Abidjan. Panorama des filières qui font vivre la commune.",
+      link: '/economie',
     },
     {
       id: 'emplois',
@@ -119,6 +125,7 @@ export class YopMaCommunePageComponent implements AfterViewInit, OnDestroy {
       title: 'Emplois',
       description:
         "Offres d'emploi, dispositifs d'insertion et accompagnement à l'entrepreneuriat : la mairie soutient l'emploi local, en particulier pour les jeunes et les femmes.",
+      link: '/emploi-recrutement',
     },
     {
       id: 'sport-culture',
@@ -127,6 +134,7 @@ export class YopMaCommunePageComponent implements AfterViewInit, OnDestroy {
       title: 'Sport et culture',
       description:
         'Clubs sportifs, festivals, troupes artistiques et infrastructures culturelles : Yopougon vibre au rythme de ses talents et de ses événements populaires.',
+      link: '/sport-et-culture',
     },
   ];
 

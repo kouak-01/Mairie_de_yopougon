@@ -1,0 +1,219 @@
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-icons" aria-hidden="true">
+    <i class="fas fa-futbol"></i>
+    <i class="fas fa-drum"></i>
+    <i class="fas fa-basketball-ball"></i>
+    <i class="fas fa-theater-masks"></i>
+  </div>
+  <div class="container">
+    <div class="breadcrumb fade-in" appFadeIn>
+      <a routerLink="/yop-ma-commune">Accueil</a>
+      <i class="fas fa-chevron-right"></i>
+      <span>Yop, Ma Commune</span>
+      <i class="fas fa-chevron-right"></i>
+      <span class="current">Sport et Culture</span>
+    </div>
+    <div class="page-hero-badge fade-in" appFadeIn>
+      <i class="fas fa-star"></i> Yop, Ma Commune
+    </div>
+    <h1 class="fade-in" appFadeIn>Sport et <span>Culture</span> à Yopougon</h1>
+    <p class="fade-in" appFadeIn>
+      Terre de champions et de créativité, Yopougon cultive le vivre-ensemble à travers ses
+      infrastructures sportives, ses espaces culturels et ses grands événements populaires.
+      Découvrez comment la commune accompagne le sport pour tous et rayonne par sa richesse
+      artistique et traditionnelle.
+    </p>
+  </div>
+</section>
+
+<!-- CHIFFRES CLÉS -->
+<section class="numbers">
+  <div class="container">
+    <div class="numbers-heading fade-in" appFadeIn>
+      <h2>Le Sport et la Culture en Chiffres</h2>
+    </div>
+    <div class="numbers-grid">
+      @for (stat of numberStats; track stat.label) {
+        <div class="number-card fade-in" appFadeIn>
+          <i class="fas {{ stat.icon }}"></i>
+          <div class="count">{{ stat.count }}</div>
+          <div class="count-label">{{ stat.label }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-images fade-in" appFadeIn>
+        <div class="about-badge">
+          <span class="number">1er</span>
+          <span class="text">Pôle sportif d'Abidjan</span>
+        </div>
+        <img src="assets/images/sport-culture/agora.jpg" alt="Agora sportive et culturelle de Yopougon" class="about-img-main" />
+      </div>
+      <div class="about-content fade-in" appFadeIn>
+        <div class="overline">Notre engagement</div>
+        <h2>Une politique municipale au service du sport et de la culture</h2>
+        <p>
+          La Mairie de Yopougon place le sport et la culture au cœur de sa stratégie de
+          développement social. Aménagement et entretien des infrastructures, soutien aux clubs et
+          associations, organisation de festivals populaires : la municipalité agit chaque jour
+          pour offrir aux Yopougonnais des espaces d'épanouissement, de cohésion sociale et de
+          rayonnement.
+        </p>
+        <p>
+          Des city-stades de quartier aux grands tournois inter-communaux, en passant par la
+          Maison de la Culture et les troupes traditionnelles, Yopougon affirme son identité de
+          « Yop City », commune vibrante, jeune et créative.
+        </p>
+        <div class="about-features">
+          @for (feature of aboutFeatures; track feature.label) {
+            <div class="about-feature">
+              <i class="fas {{ feature.icon }}"></i>
+              <span>{{ feature.label }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFRASTRUCTURES SPORTIVES -->
+<section class="services alt">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="sc-tag"><i class="fas fa-futbol"></i> Sport</div>
+      <h2>Infrastructures et Activités Sportives</h2>
+      <p>Football, basketball, natation, athlétisme… la commune multiplie les équipements pour permettre à chaque Yopougonnais de pratiquer une activité physique près de chez lui.</p>
+    </div>
+    <div class="infra-grid">
+      @for (card of sportCards; track card.title) {
+        <div class="infra-card fade-in" appFadeIn>
+          <div class="infra-card-body">
+            <img [src]="card.image" [alt]="card.title" />
+            <h3>{{ card.title }}</h3>
+            <p>{{ card.description }}</p>
+            <div class="infra-meta"><i class="fas {{ card.metaIcon }}"></i> {{ card.meta }}</div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- VIE CULTURELLE -->
+<section class="services">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="sc-tag culture"><i class="fas fa-theater-masks"></i> Culture</div>
+      <h2>Vie Culturelle et Patrimoine</h2>
+      <p>Danse, musique, artisanat, lecture : Yopougon entretient une vie culturelle foisonnante qui valorise ses traditions tout en s'ouvrant à la création contemporaine.</p>
+    </div>
+    <div class="infra-grid">
+      @for (card of cultureCards; track card.title) {
+        <div class="infra-card fade-in" appFadeIn>
+          <div class="infra-card-body">
+            <img [src]="card.image" [alt]="card.title" />
+            <h3>{{ card.title }}</h3>
+            <p>{{ card.description }}</p>
+            <div class="infra-meta"><i class="fas {{ card.metaIcon }}"></i> {{ card.meta }}</div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- AGENDA / ÉVÉNEMENTS -->
+<section class="demande-en-ligne">
+  <div class="container">
+    <div class="demande-header fade-in" appFadeIn>
+      <div class="overline">À ne pas manquer</div>
+      <h2>Agenda Sport &amp; Culture</h2>
+      <p>Retrouvez les prochains rendez-vous sportifs et culturels organisés par la commune de Yopougon.</p>
+    </div>
+    <div class="events-grid">
+      @for (event of eventCards; track event.title) {
+        <div class="event-card fade-in" appFadeIn>
+          <div class="event-date"><span class="day">{{ event.day }}</span><span class="month">{{ event.month }}</span></div>
+          <div class="event-info">
+            <h4>{{ event.title }}</h4>
+            <p>{{ event.description }}</p>
+            <div class="event-loc"><i class="fas fa-map-marker-alt"></i> {{ event.location }}</div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section class="galerie">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Galerie</div>
+      <h2>Sport et Culture en Images</h2>
+      <p>Un aperçu de la vie sportive et culturelle qui anime la commune de Yopougon.</p>
+    </div>
+    <div class="galerie-grid">
+      @for (item of galerieItems; track item.label) {
+        <div class="galerie-item fade-in" appFadeIn>
+          <img [src]="item.image" [alt]="item.alt" />
+          <div class="overlay"><span>{{ item.label }}</span></div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- VIDÉO -->
+<section class="video-section">
+  <div class="container">
+    <div class="video-grid">
+      <div class="video-container fade-in" appFadeIn>
+        <video controls poster="assets/images/sport-culture/festival-city-fete.jpg">
+          <source src="assets/videos/fatchue.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="video-content fade-in" appFadeIn>
+        <div class="overline">Vidéo</div>
+        <h2>Le Sport et la Culture à Yopougon</h2>
+        <p>Suivez en images les temps forts culturels de la commune : Festival Fatchè à Yopougon-Kouté - Danses et musique traditionnelle.</p>
+        <p>La Mairie de Yopougon accompagne chaque année de nombreuses initiatives portées par les jeunes, les associations et les artistes de la commune.</p>
+        <div class="video-highlights">
+          <div class="highlight-item"><i class="fas fa-check-circle"></i> Tournois sportifs</div>
+          <div class="highlight-item"><i class="fas fa-check-circle"></i> Festivals populaires</div>
+          <div class="highlight-item"><i class="fas fa-check-circle"></i> Troupes traditionnelles</div>
+          <div class="highlight-item"><i class="fas fa-check-circle"></i> Vie associative</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTICIPER -->
+<section class="demande-en-ligne alt">
+  <div class="container">
+    <div class="demande-header fade-in" appFadeIn>
+      <div class="overline">Participer</div>
+      <h2>Rejoignez la Dynamique Sportive et Culturelle</h2>
+      <p>Envie de pratiquer un sport, de rejoindre une troupe ou de réserver une infrastructure ? Faites votre demande en ligne.</p>
+    </div>
+    <div class="demande-grid">
+      @for (card of engagementCards; track card.title) {
+        <div class="demande-card fade-in" appFadeIn>
+          <div class="demande-card-icon"><i class="fas {{ card.icon }}"></i></div>
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.description }}</p>
+          <a routerLink="/contact" class="demande-card-btn"><span>Faire une demande</span> <i class="fas fa-arrow-right"></i></a>
+        </div>
+      }
+    </div>
+  </div>
+</section>

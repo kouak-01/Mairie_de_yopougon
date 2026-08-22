@@ -61,7 +61,7 @@
           <div class="actu-date"><i class="fas fa-calendar-alt"></i> {{ featuredArticle.date }}</div>
           <h2>{{ featuredArticle.title }}</h2>
           <p>{{ featuredArticle.description }}</p>
-          <a routerLink="/en-construction" class="btn btn-primary"><i class="fas fa-arrow-right"></i> Lire l'article complet</a>
+          <a [routerLink]="['/actualites', featuredArticle.id]" class="btn btn-primary"><i class="fas fa-arrow-right"></i> Lire l'article complet</a>
         </div>
       </div>
     }
@@ -80,7 +80,7 @@
                 <div class="actu-date"><i class="fas fa-calendar-alt"></i> {{ article.date }}</div>
                 <h3>{{ article.title }}</h3>
                 <p>{{ article.description }}</p>
-                <a routerLink="/en-construction" class="actu-link">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                <a [routerLink]="['/actualites', article.id]" class="actu-link">Lire la suite <i class="fas fa-arrow-right"></i></a>
               </div>
             </div>
           }

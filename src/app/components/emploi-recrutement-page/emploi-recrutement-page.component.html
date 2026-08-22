@@ -1,0 +1,245 @@
+<!-- PAGE BANNER -->
+<section class="page-banner">
+  <div class="container">
+    <div class="breadcrumb fade-in" appFadeIn>
+      <a routerLink="/yop-ma-commune"><i class="fas fa-home"></i> Accueil</a>
+      <i class="fas fa-chevron-right"></i>
+      <span>Yop, Ma Commune</span>
+      <i class="fas fa-chevron-right"></i>
+      <span class="current">Emploi et Recrutement</span>
+    </div>
+    <div class="page-banner-badge fade-in" appFadeIn>
+      <i class="fas fa-briefcase"></i> Insertion professionnelle &amp; recrutement
+    </div>
+    <h1 class="fade-in" appFadeIn>Emploi &amp; <span style="color: var(--gold)">Recrutement</span></h1>
+    <p class="fade-in" appFadeIn>
+      La Mairie de Yopougon accompagne les habitants vers l'emploi : offres municipales, guichet
+      emploi jeunes, formations qualifiantes, appui à l'entrepreneuriat et partenariats avec les
+      entreprises. Découvrez toutes les opportunités pour bâtir votre avenir professionnel à
+      Yopougon.
+    </p>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-images fade-in" appFadeIn>
+        <div class="about-badge">
+          <span class="number">1000+</span>
+          <span class="text">Jeunes accompagnés / an</span>
+        </div>
+        <img src="assets/images/emploi/guichet-emploi.jpg" alt="Guichet emploi jeunes de la mairie" class="about-img-main" />
+        <img src="assets/images/emploi/entretien-recrutement.jpg" alt="Entretien de recrutement" class="about-img-secondary" />
+      </div>
+      <div class="about-content fade-in" appFadeIn>
+        <div class="overline">Notre ambition</div>
+        <h2>L'emploi, priorité de l'action municipale</h2>
+        <p>
+          Avec plus de 1,5 million d'habitants dont une majorité de jeunes, Yopougon fait de
+          l'emploi et de l'insertion professionnelle une priorité absolue de son programme
+          communal. La mairie met en place des dispositifs concrets pour informer, former et
+          connecter les demandeurs d'emploi aux opportunités disponibles, en lien avec l'État, les
+          entreprises et les organisations partenaires.
+        </p>
+        <p>
+          Recrutements municipaux, stages, foires de l'emploi, appui à l'entrepreneuriat des jeunes
+          et des femmes : la commune déploie une offre complète de services pour favoriser l'accès
+          durable à l'emploi de tous les Yopougonnais.
+        </p>
+        <div class="about-features">
+          @for (feature of aboutFeatures; track feature.label) {
+            <div class="about-feature">
+              <i class="fas {{ feature.icon }}"></i>
+              <span>{{ feature.label }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOS DISPOSITIFS -->
+<section class="gouv-piliers">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Nos dispositifs</div>
+      <h2>Un accompagnement complet vers l'emploi</h2>
+      <p>Huit leviers mobilisés par la mairie pour faciliter l'accès à l'emploi et à la formation pour tous les Yopougonnais.</p>
+    </div>
+    <div class="gouv-grid">
+      @for (card of dispositifCards; track card.title) {
+        <div class="service-card fade-in" appFadeIn>
+          <div class="service-icon"><i class="fas {{ card.icon }}"></i></div>
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- OFFRES D'EMPLOI ACTUELLES -->
+<section class="offres">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">À pourvoir</div>
+      <h2>Offres d'emploi et de stage actuelles</h2>
+      <p>Consultez les opportunités publiées par la mairie et ses partenaires. Les dossiers se déposent en ligne ou directement au guichet emploi jeunes.</p>
+    </div>
+    <div class="offres-grid">
+      @for (offre of offres; track offre.title) {
+        <div class="offre-card fade-in" appFadeIn>
+          <div class="offre-top">
+            <h3>{{ offre.title }}</h3>
+            <span class="offre-type">{{ offre.type }}</span>
+          </div>
+          <div class="offre-meta">
+            <span><i class="fas fa-map-marker-alt"></i> {{ offre.location }}</span>
+            <span><i class="fas fa-clock"></i> {{ offre.deadline }}</span>
+          </div>
+          <a href="#postuler" class="offre-btn"><i class="fas fa-paper-plane"></i> Postuler</a>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CHIFFRES CLÉS -->
+<section class="numbers">
+  <div class="container">
+    <div class="numbers-heading fade-in" appFadeIn>
+      <h2>L'emploi à Yopougon en chiffres</h2>
+    </div>
+    <div class="numbers-grid">
+      @for (stat of numberStats; track stat.label) {
+        <div class="number-card fade-in" appFadeIn>
+          <i class="fas {{ stat.icon }}"></i>
+          <div class="count">{{ stat.count }}</div>
+          <div class="count-label">{{ stat.label }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- VIDÉO -->
+<section class="video-section">
+  <div class="container">
+    <div class="video-grid">
+      <div class="video-container fade-in" appFadeIn>
+        <iframe
+          src="https://www.youtube.com/embed/kqjHrw_gp6E"
+          title="Accompagner les jeunes vers l'insertion professionnelle"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
+      <div class="video-content fade-in" appFadeIn>
+        <div class="overline">Comprendre</div>
+        <h2>Accompagner les jeunes vers l'insertion professionnelle</h2>
+        <p>
+          Orientation, formation, financement de projets : de nombreux leviers permettent
+          d'accélérer l'insertion professionnelle des jeunes. Cette vidéo présente les grands
+          principes de l'accompagnement vers l'emploi, une démarche que la mairie de Yopougon
+          décline localement à travers son guichet emploi jeunes et ses partenaires.
+        </p>
+        <div class="video-highlights">
+          @for (item of videoHighlights; track item.text) {
+            <div class="highlight-item"><i class="fas fa-check-circle"></i> {{ item.text }}</div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMMES / ZOOM -->
+<section class="instances">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Zoom</div>
+      <h2>Nos programmes phares</h2>
+      <p>Des dispositifs concrets pour transformer la recherche d'emploi en opportunité réelle d'insertion durable.</p>
+    </div>
+    <div class="instances-grid">
+      @for (card of programmeCards; track card.title) {
+        <div class="instance-card fade-in" appFadeIn>
+          <div class="instance-img">
+            <img [src]="card.image" [alt]="card.alt" />
+          </div>
+          <div class="instance-body">
+            <span class="tag">{{ card.tag }}</span>
+            <h3>{{ card.title }}</h3>
+            <p>{{ card.description }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- COMMENT POSTULER -->
+<section class="parcours" id="postuler">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Passez à l'action</div>
+      <h2>Comment postuler ?</h2>
+      <p>Quatre étapes simples pour déposer votre candidature auprès de la mairie ou de ses partenaires.</p>
+    </div>
+    <div class="timeline">
+      @for (step of timelineSteps; track step.title; let i = $index) {
+        <div class="timeline-step fade-in" appFadeIn>
+          <div class="timeline-num">{{ i + 1 }}</div>
+          <div class="timeline-content">
+            <h3>{{ step.title }}</h3>
+            <p>{{ step.description }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section class="galerie">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">En images</div>
+      <h2>L'emploi et la formation à Yopougon</h2>
+      <p>Foires de l'emploi, formations professionnelles et jeunes entrepreneurs accompagnés par la commune.</p>
+    </div>
+    <div class="galerie-grid">
+      @for (item of galerieItems; track item.label) {
+        <div class="galerie-item fade-in" appFadeIn>
+          <img [src]="item.image" [alt]="item.alt" />
+          <div class="overlay"><span>{{ item.label }}</span></div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="demande-en-ligne">
+  <div class="container">
+    <div class="demande-header fade-in" appFadeIn>
+      <div class="overline">Passez à l'action</div>
+      <h2>Prêt à démarrer votre parcours vers l'emploi ?</h2>
+      <p>Trois façons simples d'entrer en contact avec les services emploi de la mairie de Yopougon.</p>
+    </div>
+    <div class="demande-grid">
+      @for (card of engagementCards; track card.title) {
+        <div class="demande-card fade-in" appFadeIn>
+          <div class="demande-card-icon"><i class="fas {{ card.icon }}"></i></div>
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.description }}</p>
+          <a [routerLink]="card.routerLink" class="demande-card-btn"><i class="fas {{ card.linkIcon }}"></i> {{ card.linkLabel }}</a>
+        </div>
+      }
+    </div>
+  </div>
+</section>

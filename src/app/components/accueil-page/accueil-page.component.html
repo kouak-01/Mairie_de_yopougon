@@ -111,7 +111,7 @@
             <div class="actu-date"><i class="fas fa-calendar-alt"></i> {{ article.date }}</div>
             <h3>{{ article.title }}</h3>
             <p>{{ article.excerpt }}</p>
-            <a routerLink="/en-construction" class="actu-link">Lire la suite <i class="fas fa-arrow-right"></i></a>
+            <a [routerLink]="['/actualites', article.id]" class="actu-link">Lire la suite <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
       }

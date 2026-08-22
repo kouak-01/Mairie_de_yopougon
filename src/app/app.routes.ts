@@ -16,6 +16,13 @@ import { ActualitesPageComponent } from './components/actualites-page/actualites
 import { HistoirePageComponent } from './components/histoire-page/histoire-page.component';
 import { ProgrammeCompletPageComponent } from './components/programme-complet-page/programme-complet-page.component';
 import { PageEnConstructionComponent } from './components/page-en-construction/page-en-construction.component';
+import { GeographiePageComponent } from './components/geographie-page/geographie-page.component';
+import { EconomiePageComponent } from './components/economie-page/economie-page.component';
+import { GouvernanceParticipativePageComponent } from './components/gouvernance-participative-page/gouvernance-participative-page.component';
+import { EmploiRecrutementPageComponent } from './components/emploi-recrutement-page/emploi-recrutement-page.component';
+import { SportEtCulturePageComponent } from './components/sport-et-culture-page/sport-et-culture-page.component';
+import { TourismeEtLoisirsPageComponent } from './components/tourisme-et-loisirs-page/tourisme-et-loisirs-page.component';
+import { ActualiteDetailPageComponent } from './components/actualite-detail-page/actualite-detail-page.component';
 
 export const routes: Routes = [
   { path: '', component: AccueilPageComponent, title: 'Mairie de Yopougon - Site Officiel', data: { footerVariant: 'full' } },
@@ -52,6 +59,20 @@ export const routes: Routes = [
   { path: 'histoire', component: HistoirePageComponent, title: 'Histoire de la Commune - Mairie de Yopougon', data: { footerVariant: 'full' } },
 
   { path: 'programme-complet', component: ProgrammeCompletPageComponent, title: 'Programme Complet - Mairie de Yopougon', data: { footerVariant: 'full' } },
+
+  { path: 'geographie', component: GeographiePageComponent, title: 'Géographie de la commune - Mairie de Yopougon', data: { footerVariant: 'full' } },
+
+  { path: 'economie', component: EconomiePageComponent, title: 'Économie de la commune - Mairie de Yopougon', data: { footerVariant: 'full' } },
+
+  { path: 'gouvernance-participative', component: GouvernanceParticipativePageComponent, title: 'Gouvernance Participative - Mairie de Yopougon', data: { footerVariant: 'full' } },
+
+  { path: 'emploi-recrutement', component: EmploiRecrutementPageComponent, title: 'Emploi et Recrutement - Mairie de Yopougon', data: { footerVariant: 'full' } },
+
+  { path: 'sport-et-culture', component: SportEtCulturePageComponent, title: 'Sport et Culture - Mairie de Yopougon', data: { footerVariant: 'full' } },
+
+  { path: 'tourisme-et-loisirs', component: TourismeEtLoisirsPageComponent, title: 'Tourisme et Loisirs - Mairie de Yopougon', data: { footerVariant: 'full' } },
+
+  { path: 'actualites/:id', component: ActualiteDetailPageComponent, title: 'Actualité - Mairie de Yopougon', data: { footerVariant: 'full' } },
 
   // Toute route de l'arborescence dont le HTML source n'a pas encore été converti
   // pointe vers ce composant générique, conformément à la stratégie de migration.

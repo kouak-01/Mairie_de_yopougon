@@ -85,7 +85,7 @@
           <div class="overline">{{ card.overline }}</div>
           <h3>{{ card.title }}</h3>
           <p>{{ card.description }}</p>
-          <a routerLink="/en-construction" class="bento-link">Lire la suite <i class="fas fa-arrow-right"></i></a>
+          <a [routerLink]="card.link" class="bento-link">Lire la suite <i class="fas fa-arrow-right"></i></a>
         </article>
       }
 
@@ -99,7 +99,7 @@
             découverte des adresses incontournables de Yopougon pour se détendre en famille ou entre
             amis.
           </p>
-          <a routerLink="/en-construction" class="btn btn-primary">
+          <a routerLink="/tourisme-et-loisirs" class="btn btn-primary">
             <i class="fas fa-arrow-right"></i> Lire la suite
           </a>
         </div>

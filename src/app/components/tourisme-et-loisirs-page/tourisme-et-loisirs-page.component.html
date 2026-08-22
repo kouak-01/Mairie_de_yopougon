@@ -1,0 +1,223 @@
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-icons" aria-hidden="true">
+    <i class="fas fa-tree"></i>
+    <i class="fas fa-water"></i>
+    <i class="fas fa-utensils"></i>
+    <i class="fas fa-shopping-basket"></i>
+  </div>
+  <div class="container">
+    <div class="breadcrumb fade-in" appFadeIn>
+      <a routerLink="/yop-ma-commune">Accueil</a>
+      <i class="fas fa-chevron-right"></i>
+      <span>Yop, Ma Commune</span>
+      <i class="fas fa-chevron-right"></i>
+      <span class="current">Tourisme et Loisirs</span>
+    </div>
+    <div class="page-hero-badge fade-in" appFadeIn>
+      <i class="fas fa-star"></i> Yop, Ma Commune
+    </div>
+    <h1 class="fade-in" appFadeIn>Tourisme et <span>Loisirs</span> à Yopougon</h1>
+    <p class="fade-in" appFadeIn>
+      Entre nature, lagune, marchés animés et vie nocturne légendaire, « Yop City » regorge de
+      lieux à découvrir. Partez à la rencontre d'une commune vivante, chaleureuse et pleine de
+      surprises, aux portes du cœur d'Abidjan.
+    </p>
+  </div>
+</section>
+
+<!-- CHIFFRES CLÉS -->
+<section class="numbers">
+  <div class="container">
+    <div class="numbers-heading fade-in" appFadeIn>
+      <h2>Yopougon, Destination Loisirs</h2>
+    </div>
+    <div class="numbers-grid">
+      @for (stat of numberStats; track stat.label) {
+        <div class="number-card fade-in" appFadeIn>
+          <i class="fas {{ stat.icon }}"></i>
+          <div class="count">{{ stat.count }}</div>
+          <div class="count-label">{{ stat.label }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-images fade-in" appFadeIn>
+        <div class="about-badge">
+          <span class="number">Yop</span>
+          <span class="text">City, une ambiance unique</span>
+        </div>
+        <img src="assets/images/tourisme-loisir/maquis.jpg" alt="Ambiance d'un maquis à Yopougon" class="about-img-main" />
+        <img src="assets/images/tourisme-loisir/gastronomie.jpg" alt="Gastronomie locale de Yopougon" class="about-img-secondary" />
+      </div>
+      <div class="about-content fade-in" appFadeIn>
+        <div class="overline">À découvrir</div>
+        <h2>Une commune entre nature, culture populaire et art de vivre</h2>
+        <p>
+          Surnommée « Yop City », Yopougon est réputée pour son ambiance conviviale, ses marchés
+          colorés et sa vie nocturne parmi les plus animées d'Abidjan. La commune offre aussi de
+          véritables espaces de respiration : berges de la lagune Ébrié, abords de la Forêt du
+          Banco et espaces verts aménagés.
+        </p>
+        <p>
+          La Mairie accompagne la valorisation de ces atouts touristiques et de loisirs afin de
+          faire de Yopougon une destination incontournable, aussi bien pour les visiteurs que pour
+          les habitants en quête de détente.
+        </p>
+        <div class="about-features">
+          @for (feature of aboutFeatures; track feature.label) {
+            <div class="about-feature">
+              <i class="fas {{ feature.icon }}"></i>
+              <span>{{ feature.label }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SITES TOURISTIQUES -->
+<section class="services alt">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="sc-tag">À visiter</div>
+      <h2>Sites et Lieux Touristiques</h2>
+      <p>Des espaces naturels aux lieux emblématiques de la vie locale, voici les incontournables de la commune.</p>
+    </div>
+    <div class="infra-grid">
+      @for (card of siteCards; track card.title) {
+        <div class="infra-card fade-in" appFadeIn>
+          <div class="infra-card-body">
+            <img [src]="card.image" [alt]="card.title" />
+            <h3>{{ card.title }}</h3>
+            <p>{{ card.description }}</p>
+            <div class="infra-meta"><i class="fas fa-map-marker-alt"></i> {{ card.meta }}</div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- LOISIRS ET DÉTENTE -->
+<section class="services">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="sc-tag culture"><i class="fas fa-umbrella-beach"></i> Détente</div>
+      <h2>Loisirs et Détente au Quotidien</h2>
+      <p>Gastronomie, espaces verts, activités nautiques et sorties en famille : autant de façons de profiter de la vie à Yopougon.</p>
+    </div>
+    <div class="infra-grid">
+      @for (card of loisirCards; track card.title) {
+        <div class="infra-card fade-in" appFadeIn>
+          <div class="infra-card-body">
+            <img [src]="card.image" [alt]="card.title" />
+            <h3>{{ card.title }}</h3>
+            <p>{{ card.description }}</p>
+            <div class="infra-meta secondary"><i class="fas fa-map-marker-alt"></i> {{ card.meta }}</div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- AGENDA / ÉVÉNEMENTS -->
+<section class="demande-en-ligne">
+  <div class="container">
+    <div class="demande-header fade-in" appFadeIn>
+      <div class="overline">À ne pas manquer</div>
+      <h2>Agenda Tourisme &amp; Loisirs</h2>
+      <p>Les prochains rendez-vous à ne pas manquer pour découvrir et profiter de la commune.</p>
+    </div>
+    <div class="events-grid">
+      @for (event of eventCards; track event.title) {
+        <div class="event-card fade-in" appFadeIn>
+          <div class="event-date"><span class="day">{{ event.day }}</span><span class="month">{{ event.month }}</span></div>
+          <div class="event-info">
+            <h4>{{ event.title }}</h4>
+            <p>{{ event.description }}</p>
+            <div class="event-loc"><i class="fas fa-map-marker-alt"></i> {{ event.location }}</div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section class="galerie">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Galerie</div>
+      <h2>Yopougon en Balade</h2>
+      <p>Un aperçu des lieux et ambiances qui font le charme touristique et festif de la commune.</p>
+    </div>
+    <div class="galerie-grid">
+      @for (item of galerieItems; track item.label) {
+        <div class="galerie-item fade-in" appFadeIn>
+          <img [src]="item.image" [alt]="item.alt" />
+          <div class="overlay"><span>{{ item.label }}</span></div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- VIDÉO -->
+<section class="video-section">
+  <div class="container">
+    <div class="video-grid">
+      <div class="video-container fade-in" appFadeIn>
+        <img src="assets/images/tourisme-loisir/berge.jpg" alt="Yopougon, une commune à vivre" />
+        <a href="https://www.youtube.com/results?search_query=yopougon+abidjan+tourisme+loisirs" target="_blank" rel="noopener" class="play-btn" aria-label="Voir des vidéos sur Yopougon">
+          <i class="fas fa-play"></i>
+        </a>
+      </div>
+      <div class="video-content fade-in" appFadeIn>
+        <div class="overline">Vidéo</div>
+        <h2>Yopougon, une Commune à Vivre</h2>
+        <p>
+          Partez à la découverte de Yopougon en images : les abords verdoyants de la Forêt du
+          Banco, l'animation du marché, les soirées sur la Rue Princesse et la douceur des berges
+          de la lagune Ébrié.
+        </p>
+        <p>Une commune qui allie nature, convivialité et art de vivre, à explorer sans modération.</p>
+        <div class="video-highlights">
+          <div class="highlight-item"><i class="fas fa-check-circle"></i> Nature &amp; lagune</div>
+          <div class="highlight-item"><i class="fas fa-check-circle"></i> Marchés animés</div>
+          <div class="highlight-item"><i class="fas fa-check-circle"></i> Gastronomie locale</div>
+          <div class="highlight-item"><i class="fas fa-check-circle"></i> Vie nocturne</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFOS PRATIQUES -->
+<section class="demande-en-ligne alt">
+  <div class="container">
+    <div class="demande-header fade-in" appFadeIn>
+      <div class="overline">Bon à savoir</div>
+      <h2>Préparer votre Visite</h2>
+      <p>Quelques informations utiles pour profiter au mieux de votre séjour ou de votre sortie à Yopougon.</p>
+    </div>
+    <div class="demande-grid">
+      @for (card of practicalCards; track card.title) {
+        <div class="demande-card fade-in" appFadeIn>
+          <div class="demande-card-icon"><i class="fas {{ card.icon }}"></i></div>
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.description }}</p>
+          <span class="practical-badge"><i class="fas {{ card.badgeIcon }}"></i> {{ card.badgeLabel }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>

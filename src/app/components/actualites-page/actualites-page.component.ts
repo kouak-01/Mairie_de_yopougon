@@ -10,6 +10,7 @@ interface FilterOption {
 }
 
 interface Article {
+  id: string;
   image: string;
   category: string;
   filterKey: string;
@@ -61,6 +62,7 @@ export class ActualitesPageComponent {
   ];
 
   readonly featuredArticle: Article = {
+    id: 'chantiers-independance-2026',
     image: 'assets/images/actualites/1.jpg',
     category: 'developpement',
     filterKey: 'developpement',
@@ -71,6 +73,7 @@ export class ActualitesPageComponent {
 
   readonly articles: Article[] = [
     {
+      id: 'fete-independance-mobilisation-presse',
       image: 'assets/images/actualites/2.jpg',
       category: 'Mobilisation',
       filterKey: 'social',
@@ -79,6 +82,7 @@ export class ActualitesPageComponent {
       date: '08 Juillet 2026',
     },
     {
+      id: 'visite-terrain-premier-adjoint',
       image: 'assets/images/actualites/3.jpg',
       category: 'Inspection',
       filterKey: 'developpement',
@@ -87,6 +91,7 @@ export class ActualitesPageComponent {
       date: '01 Juillet 2026',
     },
     {
+      id: 'rentree-scolaire-2026-2027',
       image: 'assets/images/actualites/1.jpg',
       category: 'Éducation',
       filterKey: 'education',
@@ -95,6 +100,7 @@ export class ActualitesPageComponent {
       date: '22 Juin 2026',
     },
     {
+      id: 'vaccination-gratuite-niangon',
       image: 'assets/images/actualites/2.jpg',
       category: 'Santé',
       filterKey: 'sante',
@@ -103,6 +109,7 @@ export class ActualitesPageComponent {
       date: '15 Juin 2026',
     },
     {
+      id: 'centre-culturel-inaugure',
       image: 'assets/images/actualites/3.jpg',
       category: 'Culture',
       filterKey: 'culture',
@@ -111,6 +118,7 @@ export class ActualitesPageComponent {
       date: '05 Juin 2026',
     },
     {
+      id: 'securite-proximite-renforcement',
       image: 'assets/images/actualites/1.jpg',
       category: 'Sécurité',
       filterKey: 'securite',
@@ -119,6 +127,7 @@ export class ActualitesPageComponent {
       date: '28 Mai 2026',
     },
     {
+      id: 'rehabilitation-grand-marche',
       image: 'assets/images/actualites/2.jpg',
       category: 'Développement',
       filterKey: 'developpement',
@@ -127,6 +136,7 @@ export class ActualitesPageComponent {
       date: '20 Mai 2026',
     },
     {
+      id: 'journee-salubrite',
       image: 'assets/images/actualites/3.jpg',
       category: 'Salubrité',
       filterKey: 'social',
