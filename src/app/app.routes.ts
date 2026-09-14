@@ -2,7 +2,12 @@ import { Routes } from '@angular/router';
 import { AccueilPageComponent } from './components/accueil-page/accueil-page.component';
 import { MairePageComponent } from './components/maire-page/maire-page.component';
 import { RadioPageComponent } from './components/radio-page/radio-page.component';
+import { RadioProgrammePageComponent } from './components/radio-programme-page/radio-programme-page.component';
+import { RadioVacancesPageComponent } from './components/radio-vacances-page/radio-vacances-page.component';
 import { ContactPageComponent } from './components/contact-page/contact-page.component';
+import { ContactFormulairePageComponent } from './components/contact-formulaire-page/contact-formulaire-page.component';
+import { ContactReseauxPageComponent } from './components/contact-reseaux-page/contact-reseaux-page.component';
+import { ContactFaqPageComponent } from './components/contact-faq-page/contact-faq-page.component';
 import { YopMaCommunePageComponent } from './components/yop-ma-commune-page/yop-ma-commune-page.component';
 import { MunicipalitePageComponent } from './components/municipalite-page/municipalite-page.component';
 import { SecretariatGeneralPageComponent } from './components/secretariat-general-page/secretariat-general-page.component';
@@ -32,9 +37,19 @@ export const routes: Routes = [
   // via les route data, lues par AppComponent pour choisir le variant du <app-footer>.
   { path: 'maire', component: MairePageComponent, title: 'Adama Bictogo - Maire de Yopougon', data: { footerVariant: 'simple' } },
 
-  { path: 'radio', component: RadioPageComponent, title: 'Radio Yopougon 94.5 FM - Mairie de Yopougon', data: { footerVariant: 'full' } },
+  { path: 'radio', component: RadioPageComponent, title: 'Radio Yopougon 96.8 FM - Mairie de Yopougon', data: { footerVariant: 'full' } },
 
-  { path: 'contact', component: ContactPageComponent, title: 'Contact - Mairie de Yopougon', data: { footerVariant: 'full' } },
+  { path: 'radio/programme', component: RadioProgrammePageComponent, title: 'Programme de la Radio Yopougon - Mairie de Yopougon', data: { footerVariant: 'full' } },
+
+  { path: 'radio/special-vacances', component: RadioVacancesPageComponent, title: 'Spécial Vacances - Radio Yopougon - Mairie de Yopougon', data: { footerVariant: 'full' } },
+
+  { path: 'contact', component: ContactPageComponent, title: 'Coordonnées et points d\'accès - Mairie de Yopougon', data: { footerVariant: 'full' } },
+
+  { path: 'contact/formulaire', component: ContactFormulairePageComponent, title: 'Formulaire de contact - Mairie de Yopougon', data: { footerVariant: 'full' } },
+
+  { path: 'contact/reseaux-sociaux', component: ContactReseauxPageComponent, title: 'Réseaux sociaux - Mairie de Yopougon', data: { footerVariant: 'full' } },
+
+  { path: 'contact/faq', component: ContactFaqPageComponent, title: 'FAQ - Mairie de Yopougon', data: { footerVariant: 'full' } },
 
   { path: 'yop-ma-commune', component: YopMaCommunePageComponent, title: 'Yop, Ma Commune - Mairie de Yopougon', data: { footerVariant: 'full' } },
 

@@ -1,140 +1,223 @@
-import { Component, signal, DestroyRef, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { ButtonModule } from 'primeng/button';
+import { inject } from '@angular/core';
 import { FadeInDirective } from '../../directives/fade-in.directive';
+
+interface InfoStripItem {
+  icon: string;
+  iconType: 'fas' | 'fab';
+  value: string;
+  label: string;
+}
 
 interface CoordCard {
   icon: string;
+  iconType: 'fas' | 'fab';
   title: string;
   lines: { text: string; href?: string }[];
 }
 
-interface SocialCard {
+interface AccessPoint {
+  image: string;
+  tag: string;
+  principal: boolean;
+  name: string;
+  address: string;
+  phone: string;
+  hours: string;
+  services: string[];
+}
+
+interface TransportOption {
+  image: string;
   icon: string;
-  iconType: 'fab' | 'fas';
-  color: string;
   title: string;
   description: string;
-  followLabel: string;
 }
 
-interface FaqItem {
-  id: string;
-  number: string;
-  question: string;
-  answer: string;
+interface AccessibilityFeature {
+  icon: string;
+  title: string;
+  description: string;
 }
 
+interface GalleryImage {
+  url: string;
+  alt: string;
+}
+
+/**
+ * Page dédiée à coordonnees-points-acces.html (site source).
+ * Les 3 autres pages de la rubrique "Contacts & Accessibilité"
+ * (formulaire, réseaux sociaux, FAQ) vivent désormais dans leurs propres
+ * composants : contact-formulaire-page, contact-reseaux-page, contact-faq-page.
+ */
 @Component({
   selector: 'app-contact-page',
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, ButtonModule, FadeInDirective],
+  imports: [CommonModule, RouterModule, FadeInDirective],
   templateUrl: './contact-page.component.html',
   styleUrl: './contact-page.component.scss',
 })
 export class ContactPageComponent {
-  private readonly destroyRef = inject(DestroyRef);
   private readonly sanitizer = inject(DomSanitizer);
 
   readonly mapUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.123!2d-4.0825!3d5.3489!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNcKwMjAnNTYuMCJOIDTCsDAwJzQyLjAiVw!5e0!3m2!1sfr!2sci!4v1234567890'
+    'https://www.google.com/maps?q=Mairie+de+Yopougon,+Rue+Princesse,+Abidjan&output=embed'
   );
 
+  readonly mediaVideoUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+    'https://www.youtube.com/embed/w-kjH188yB0'
+  );
+
+  // ===== INFO STRIP =====
+  readonly infoStripItems: InfoStripItem[] = [
+    { icon: 'fa-phone-alt', iconType: 'fas', value: '+225 27 23 45 28 20', label: 'Standard général' },
+    { icon: 'fa-envelope', iconType: 'fas', value: 'contact@yopougon.ci', label: 'Courrier électronique' },
+    { icon: 'fa-clock', iconType: 'fas', value: 'Lun - Ven : 7h30 - 16h00', label: "Horaires d'ouverture" },
+    { icon: 'fa-map-marker-alt', iconType: 'fas', value: 'Rue Princesse, Yopougon', label: 'Siège de la mairie' },
+  ];
+
+  // ===== COORDONNÉES =====
   readonly coordCards: CoordCard[] = [
-    { icon: 'fa-map-marker-alt', title: 'Adresse', lines: [{ text: 'Rue Princesse, Yopougon' }, { text: "Abidjan, Côte d'Ivoire" }] },
-    { icon: 'fa-phone-alt', title: 'Téléphone', lines: [{ text: '+225 27 23 45 28 20', href: 'tel:+22527234528' }, { text: '+225 27 23 45 16 75', href: 'tel:+22527234516' }] },
-    { icon: 'fa-envelope', title: 'Email', lines: [{ text: 'contact@yopougon.ci', href: 'mailto:contact@yopougon.ci' }] },
-    { icon: 'fa-clock', title: "Horaires d'ouverture", lines: [{ text: 'Lundi - Vendredi : 7h30 - 16h00' }, { text: 'Samedi : 8h00 - 12h00' }] },
-  ];
-
-  readonly responseHighlights = [
-    { icon: 'fa-bolt', title: 'Réponse rapide', description: 'Sous 48h ouvrées en moyenne' },
-    { icon: 'fa-user-shield', title: 'Message confidentiel', description: 'Vos informations restent protégées' },
-    { icon: 'fa-people-carry', title: 'Équipe dédiée', description: 'Un interlocuteur pour chaque demande' },
-  ];
-
-  readonly socialCards: SocialCard[] = [
-    { icon: 'fa-facebook-f', iconType: 'fab', color: '#1877F2', title: 'Facebook', description: 'Actualités et événements de la commune', followLabel: 'Suivre' },
-    { icon: 'fa-twitter', iconType: 'fab', color: '#1DA1F2', title: 'Twitter / X', description: 'Communiqués et alertes en direct', followLabel: 'Suivre' },
-    { icon: 'fa-instagram', iconType: 'fab', color: '#E1306C', title: 'Instagram', description: 'Yopougon en images et en coulisses', followLabel: 'Suivre' },
-    { icon: 'fa-youtube', iconType: 'fab', color: '#FF0000', title: 'YouTube', description: 'Reportages et vidéos officielles', followLabel: "S'abonner" },
-  ];
-
-  readonly faqItems: FaqItem[] = [
     {
-      id: 'etat-civil',
-      number: '01',
-      question: 'Comment obtenir un acte de naissance ou de mariage ?',
-      answer:
-        "Vous pouvez déposer votre demande directement en ligne via la rubrique « Demande en Ligne » ou vous présenter au guichet État Civil de la mairie muni d'une pièce d'identité. Le délai moyen de délivrance est de 48 à 72 heures.",
+      icon: 'fa-map-marker-alt',
+      iconType: 'fas',
+      title: 'Adresse',
+      lines: [{ text: 'Rue Princesse, Yopougon' }, { text: "06 BP 2159 Abidjan 06, Côte d'Ivoire" }],
     },
     {
-      id: 'horaires',
-      number: '02',
-      question: "Quels sont les horaires d'ouverture de la mairie ?",
-      answer:
-        'La mairie est ouverte du lundi au vendredi de 7h30 à 16h00, et le samedi de 8h00 à 12h00 pour certains services d\'état civil.',
+      icon: 'fa-phone-alt',
+      iconType: 'fas',
+      title: 'Téléphone',
+      lines: [
+        { text: '+225 27 23 45 28 20', href: 'tel:+22527234528' },
+        { text: '+225 27 23 45 16 75', href: 'tel:+22527234516' },
+      ],
     },
     {
-      id: 'permis',
-      number: '03',
-      question: 'Comment déposer un permis de construire ?',
-      answer:
-        'Le dossier de permis de construire se dépose au service Urbanisme de la mairie, accompagné du plan de situation, du plan de masse et des pièces justificatives de propriété. Un accusé de dépôt vous sera remis immédiatement.',
+      icon: 'fa-envelope',
+      iconType: 'fas',
+      title: 'Email',
+      lines: [{ text: 'contact@yopougon.ci', href: 'mailto:contact@yopougon.ci' }],
     },
     {
-      id: 'suivi',
-      number: '04',
-      question: "Puis-je suivre l'avancement de ma demande en ligne ?",
-      answer:
-        'Oui. Chaque demande effectuée via nos services en ligne génère un numéro de suivi qui vous permet de consulter l\'état d\'avancement de votre dossier à tout moment.',
+      icon: 'fa-whatsapp',
+      iconType: 'fab',
+      title: 'WhatsApp / Ligne verte',
+      lines: [{ text: '+225 07 07 45 28 20', href: 'https://wa.me/2250707452820' }],
     },
     {
-      id: 'signalement',
-      number: '05',
-      question: 'Comment signaler un problème dans mon quartier ?',
-      answer:
-        "Utilisez le formulaire de contact ci-dessus en sélectionnant l'objet « Réclamation », ou contactez-nous directement par téléphone. Votre signalement sera transmis à la direction technique concernée.",
+      icon: 'fa-clock',
+      iconType: 'fas',
+      title: "Horaires d'ouverture",
+      lines: [{ text: 'Lundi - Vendredi : 7h30 - 16h00' }, { text: 'Samedi, dimanche et jours fériés : fermé' }],
     },
   ];
 
-  readonly openFaqId = signal<string | null>(null);
-
-  toggleFaq(id: string): void {
-    this.openFaqId.update((current) => (current === id ? null : id));
-  }
-
-  readonly contactSubjects = [
-    "Demande d'information",
-    'État civil',
-    'Urbanisme',
-    'Réclamation',
-    'Suggestion',
-    'Autre',
+  // ===== POINTS D'ACCÈS =====
+  readonly accessPoints: AccessPoint[] = [
+    {
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Carrefour%20Saint%20Andr%C3%A9%20Yopougon.jpg',
+      tag: 'Siège',
+      principal: true,
+      name: 'Mairie centrale – Yopougon Centre',
+      address: 'Rue Princesse, en face de la Place Figayo',
+      phone: '+225 27 23 45 28 20',
+      hours: 'Lun - Ven : 7h30 - 16h00',
+      services: ['État civil', 'Urbanisme', 'Cabinet du Maire'],
+    },
+    {
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Super%20March%C3%A9%20CASH%20IVOIRE%20SICOGI%20Yopougon.jpg',
+      tag: 'Antenne',
+      principal: false,
+      name: 'Antenne – Yopougon Sicogi',
+      address: 'Non loin du supermarché Cash Ivoire, Sicogi',
+      phone: '+225 27 23 46 12 08',
+      hours: 'Lun - Ven : 8h00 - 15h30',
+      services: ['Guichet état civil', 'Légalisations'],
+    },
+    {
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Le%20March%C3%A9%20Dominique%20OUATTARA%20de%20Yopougon%20Selmer.jpg',
+      tag: 'Antenne',
+      principal: false,
+      name: 'Antenne – Yopougon Selmer',
+      address: 'À proximité du marché Dominique Ouattara, Selmer',
+      phone: '+225 27 23 47 20 15',
+      hours: 'Lun - Ven : 8h00 - 15h30',
+      services: ['Guichet unique', 'Recensement'],
+    },
+    {
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/20240521%20-%20Station-service%20Yopougon%20Banco%20nord.jpg',
+      tag: 'Point relais',
+      principal: false,
+      name: 'Point relais – Yopougon Banco Nord',
+      address: 'Axe principal, près de la station-service, Banco Nord',
+      phone: '+225 27 23 48 33 02',
+      hours: 'Lun - Ven : 8h00 - 15h00',
+      services: ['Information', 'Orientation usagers'],
+    },
+    {
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Centre%20hospitalier%20universitaire%20de%20Yopougon.jpg',
+      tag: 'Guichet',
+      principal: false,
+      name: 'Guichet – Zone CHU / Attié',
+      address: 'Aux abords du CHU de Yopougon',
+      phone: '+225 27 23 49 10 44',
+      hours: 'Lun - Ven : 8h00 - 15h30',
+      services: ['Actes de naissance', 'Certificats'],
+    },
+    {
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Les%20immeubles%20de%20mon%20quartier%20yopougon.jpg',
+      tag: 'Antenne',
+      principal: false,
+      name: 'Antenne – Yopougon Niangon',
+      address: 'Cité résidentielle de Niangon-Nord',
+      phone: '+225 27 23 50 27 19',
+      hours: 'Lun - Ven : 8h00 - 15h30',
+      services: ['Urbanisme', 'Permis de construire'],
+    },
   ];
 
-  readonly contactForm = new FormGroup({
-    fullName: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
-    email: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.email] }),
-    subject: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
-    message: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
-  });
+  // ===== TRANSPORT =====
+  readonly transportOptions: TransportOption[] = [
+    {
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Gbaka%20%C3%A0%20Abidjan%20en%20C%C3%B4te%20d%27Ivoire.jpg',
+      icon: 'fa-bus',
+      title: 'En Gbaka ou taxi communal',
+      description:
+        'Les lignes Adjamé - Yopougon et Bingerville - Yopougon desservent régulièrement la commune. Descendez à l\'arrêt « Mairie » ou « Place Figayo ».',
+    },
+    {
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Taxi-Abidjan.JPG',
+      icon: 'fa-taxi',
+      title: 'En taxi compteur',
+      description:
+        'Les taxis orange relient les dix communes d\'Abidjan. Indiquez « Mairie de Yopougon, Rue Princesse » comme destination et négociez le prix de la course.',
+    },
+    {
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Les%20immeubles%20de%20mon%20quartier%20yopougon.jpg',
+      icon: 'fa-car',
+      title: 'En véhicule personnel',
+      description:
+        "Depuis l'échangeur de Yopougon, suivez le boulevard principal jusqu'à la Place Figayo puis la Rue Princesse. Un parking visiteurs est disponible sur place.",
+    },
+  ];
 
-  readonly formSubmitted = signal(false);
+  // ===== MÉDIA / VIDÉO =====
+  readonly galleryImages: GalleryImage[] = [
+    { url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Carrefour%20Saint%20Andr%C3%A9%20Yopougon.jpg', alt: 'Carrefour Saint André' },
+    { url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Super%20March%C3%A9%20CASH%20IVOIRE%20SICOGI%20Yopougon.jpg', alt: 'Quartier Sicogi' },
+    { url: 'https://commons.wikimedia.org/wiki/Special:FilePath/Gbaka%20%C3%A0%20Abidjan%20en%20C%C3%B4te%20d%27Ivoire.jpg', alt: 'Transport en commun' },
+  ];
 
-  onContactSubmit(): void {
-    if (this.contactForm.invalid) {
-      this.contactForm.markAllAsTouched();
-      return;
-    }
-    this.formSubmitted.set(true);
-    const resetTimeout = setTimeout(() => {
-      this.formSubmitted.set(false);
-      this.contactForm.reset({ fullName: '', email: '', subject: '', message: '' });
-    }, 3000);
-    this.destroyRef.onDestroy(() => clearTimeout(resetTimeout));
-  }
+  // ===== ACCESSIBILITÉ =====
+  readonly accessibilityFeatures: AccessibilityFeature[] = [
+    { icon: 'fa-wheelchair', title: 'Accès PMR', description: "Rampes d'accès et guichets adaptés au rez-de-chaussée du siège." },
+    { icon: 'fa-parking', title: 'Stationnement réservé', description: "Places de parking dédiées à proximité immédiate de l'entrée principale." },
+    { icon: 'fa-hands-helping', title: 'Accompagnement', description: "Agents d'accueil disponibles pour orienter et accompagner les usagers." },
+    { icon: 'fa-language', title: 'Médiation locale', description: 'Accueil facilité en français et dans les langues locales les plus parlées.' },
+  ];
 }

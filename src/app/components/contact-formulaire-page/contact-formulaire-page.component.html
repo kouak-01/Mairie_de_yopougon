@@ -1,0 +1,237 @@
+<!-- PAGE BANNER -->
+<section class="page-banner">
+  <div class="container">
+    <div class="breadcrumb">
+      <a routerLink="/"><i class="fas fa-home"></i> Accueil</a>
+      <i class="fas fa-chevron-right" style="font-size:0.7rem;"></i>
+      <span class="current">Formulaire de contact</span>
+    </div>
+    <h1>Formulaire de Contact</h1>
+    <p>Une question, une suggestion, une réclamation ou une demande d'information ? L'équipe de la Mairie de Yopougon vous répond du lundi au vendredi, de 7h30 à 16h00.</p>
+    <div class="banner-stats">
+      <div class="banner-stat">
+        <i class="fas fa-phone-alt"></i>
+        <div><span class="num">+225 27 23 45 28 20</span><span class="lbl">Standard</span></div>
+      </div>
+      <div class="banner-stat">
+        <i class="fas fa-envelope"></i>
+        <div><span class="num">contact&#64;yopougon.ci</span><span class="lbl">Email officiel</span></div>
+      </div>
+      <div class="banner-stat">
+        <i class="fas fa-map-marker-alt"></i>
+        <div><span class="num">Rue Princesse</span><span class="lbl">Yopougon, Abidjan</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK CONTACT CARDS -->
+<section class="quick-contact">
+  <div class="container">
+    <div class="quick-grid">
+      @for (card of quickCards; track card.title) {
+        <div class="quick-card fade-in" appFadeIn>
+          <div class="icon"><i class="fas {{ card.icon }}"></i></div>
+          <h4>{{ card.title }}</h4>
+          <p>
+            @for (line of card.lines; track line.text; let last = $last) {
+              @if (line.href) {
+                <a [href]="line.href">{{ line.text }}</a>
+              } @else {
+                {{ line.text }}
+              }
+              @if (!last) { <br /> }
+            }
+          </p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FORM + INFO -->
+<section class="contact-main" id="formulaire">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info fade-in" appFadeIn>
+        <div class="overline">Contactez-nous</div>
+        <h2>Écrivez-nous directement</h2>
+        <p>Remplissez le formulaire ci-contre : votre message est transmis directement au service concerné de la mairie. Pour une demande urgente, privilégiez un appel téléphonique.</p>
+
+        <div class="contact-illustration">
+          <img src="assets/images/formulaire-contact/accueil.jpg" alt="Accueil des usagers à la mairie de Yopougon" loading="lazy" />
+        </div>
+
+        @for (item of contactItems; track item.title) {
+          <div class="contact-item">
+            <div class="contact-item-icon"><i class="fas {{ item.icon }}"></i></div>
+            <div class="contact-item-text">
+              <h4>{{ item.title }}</h4>
+              @for (line of item.lines; track line.text) {
+                <p>
+                  @if (line.href) {
+                    <a [href]="line.href">{{ line.text }}</a>
+                  } @else {
+                    {{ line.text }}
+                  }
+                </p>
+              }
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="contact-form fade-in" appFadeIn>
+        <h3>Envoyez-nous un message</h3>
+        <form [formGroup]="contactForm" (ngSubmit)="onContactSubmit()">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contact-fullName">Nom complet</label>
+              <input id="contact-fullName" type="text" placeholder="Votre nom" formControlName="fullName" required />
+            </div>
+            <div class="form-group">
+              <label for="contact-phone">Téléphone</label>
+              <input id="contact-phone" type="tel" placeholder="+225 XX XX XX XX XX" formControlName="phone" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="contact-email">Email</label>
+            <input id="contact-email" type="email" placeholder="votre&#64;email.com" formControlName="email" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contact-service">Service concerné</label>
+              <select id="contact-service" formControlName="service" required>
+                <option value="">Sélectionnez un service</option>
+                @for (service of contactServices; track service) {
+                  <option [value]="service">{{ service }}</option>
+                }
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="contact-subject">Objet</label>
+              <select id="contact-subject" formControlName="subject" required>
+                <option value="">Sélectionnez un objet</option>
+                @for (subject of contactSubjects; track subject) {
+                  <option [value]="subject">{{ subject }}</option>
+                }
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" placeholder="Votre message..." formControlName="message" required></textarea>
+          </div>
+          <div class="form-consent">
+            <input id="contact-consent" type="checkbox" formControlName="consent" required />
+            <label for="contact-consent">J'accepte que mes informations soient utilisées par la Mairie de Yopougon pour traiter ma demande.</label>
+          </div>
+          <button type="submit" class="btn-submit" [class.sent]="formSubmitted()">
+            @if (formSubmitted()) {
+              <i class="fas fa-check"></i> Message envoyé avec succès !
+            } @else {
+              <i class="fas fa-paper-plane"></i> Envoyer le message
+            }
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REPERTOIRE DES SERVICES -->
+<section class="directory-section">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Annuaire</div>
+      <h2>Répertoire des Services</h2>
+      <p>Vous savez déjà à qui vous adresser ? Contactez directement le service concerné.</p>
+    </div>
+    <div class="directory-grid">
+      @for (entry of directoryEntries; track entry.title) {
+        <div class="directory-card fade-in" appFadeIn>
+          <div class="d-icon"><i class="fas {{ entry.icon }}"></i></div>
+          <div>
+            <h4>{{ entry.title }}</h4>
+            @for (link of entry.links; track link.label) {
+              @if (link.routerLink) {
+                <a [routerLink]="link.routerLink" [fragment]="link.fragment">{{ link.label }}</a>
+              } @else {
+                <a [href]="link.href">{{ link.label }}</a>
+              }
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- MAP + ACCESS -->
+<section class="access-section">
+  <div class="container">
+    <div class="access-grid">
+      <div class="map-embed fade-in" appFadeIn>
+        <iframe [src]="mapUrl" allowfullscreen loading="lazy" title="Localisation de la Mairie de Yopougon"></iframe>
+      </div>
+      <div class="fade-in" appFadeIn>
+        <div class="overline"><span class="bar"></span> Plan d'accès</div>
+        <h2 class="access-title">Comment nous trouver</h2>
+        <p class="access-lead">L'Hôtel de Ville de Yopougon se trouve Rue Princesse, un axe central facilement accessible depuis les principaux quartiers de la commune.</p>
+        <div class="access-points">
+          @for (point of accessPoints; track point.title) {
+            <div class="access-point">
+              <i class="fas {{ point.icon }}"></i>
+              <div><h4>{{ point.title }}</h4><p>{{ point.description }}</p></div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO SECTION -->
+<section class="video-section">
+  <div class="container">
+    <div class="video-grid">
+      <div class="video-text fade-in" appFadeIn>
+        <div class="overline">Découvrir Yopougon</div>
+        <h2>Avant votre visite</h2>
+        <p>Yopougon est la plus grande commune de Côte d'Ivoire, entre quartiers résidentiels animés et zones calmes en bordure de lagune. Cette vidéo vous propose un aperçu du cadre de vie de la commune avant de vous rendre à la mairie.</p>
+        <div class="video-points">
+          <div class="video-point">
+            <i class="fas fa-check-circle"></i>
+            <span>Un aperçu des quartiers de la commune de Yopougon.</span>
+          </div>
+          <div class="video-point">
+            <i class="fas fa-check-circle"></i>
+            <span>De quoi mieux préparer votre itinéraire vers la mairie.</span>
+          </div>
+          <div class="video-point">
+            <i class="fas fa-check-circle"></i>
+            <span>Retrouvez d'autres vidéos dans notre <a routerLink="/actualites" fragment="videotheque">Vidéothèque</a>.</span>
+          </div>
+        </div>
+        <p class="video-credit">Vidéo tierce à visée illustrative, non produite par la Mairie de Yopougon.</p>
+      </div>
+      <div class="video-wrapper fade-in" appFadeIn>
+        <iframe [src]="videoUrl" title="Découverte d'un quartier de Yopougon, Abidjan" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL STRIP -->
+<section class="social-strip" id="reseaux">
+  <div class="container">
+    <h3>Suivez-nous sur les réseaux sociaux</h3>
+    <div class="social-strip-icons">
+      <a href="https://www.facebook.com/Mairieyop/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://twitter.com/mairieyop" target="_blank" rel="noopener" aria-label="X / Twitter"><i class="fab fa-twitter"></i></a>
+      <a routerLink="/contact/reseaux-sociaux" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a routerLink="/contact/reseaux-sociaux" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a routerLink="/contact/reseaux-sociaux" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+  </div>
+</section>

@@ -153,7 +153,10 @@
       @for (video of videos; track video.title) {
         <div class="video-card fade-in" appFadeIn>
           <div class="video-wrapper">
-            <video controls preload="none" [poster]="video.poster"></video>
+            <video controls preload="none" [poster]="video.poster">
+              <source [src]="video.src" type="video/mp4" />
+              Votre navigateur ne prend pas en charge la lecture vidéo.
+            </video>
             <span class="video-duration">{{ video.duration }}</span>
           </div>
           <div class="video-body">

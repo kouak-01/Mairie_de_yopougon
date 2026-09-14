@@ -28,6 +28,7 @@ interface AgendaItem {
 
 interface VideoItem {
   poster: string;
+  src: string;
   category: string;
   title: string;
   date: string;
@@ -165,10 +166,10 @@ export class ActualitesPageComponent {
   ];
 
   readonly videos: VideoItem[] = [
-    { poster: 'assets/images/actualites/1.jpg', category: 'Journal municipal', title: 'Journal Municipal — Édition de Juillet 2026', date: '20 Juillet 2026', duration: '3:42' },
-    { poster: 'assets/images/actualites/3.jpg', category: 'Reportage', title: 'Visite des chantiers du quartier Sicobois', date: '13 Juillet 2026', duration: '2:15' },
-    { poster: 'assets/images/actualites/2.jpg', category: 'Événement', title: 'Inauguration du nouveau centre culturel', date: '05 Juin 2026', duration: '4:08' },
-    { poster: 'assets/images/actualites/1.jpg', category: 'Mobilisation', title: 'Grande journée de salubrité communale', date: '12 Mai 2026', duration: '2:50' },
+    { poster: 'assets/images/actualites/1.jpg', src: 'assets/videos/preparation-independance.mp4', category: 'Reportage', title: "Fête de l'indépendance — Édition de 2026", date: '20 Juillet 2026', duration: '3:42' },
+    { poster: 'assets/images/actualites/videotheque/yop-bingerville.png', src: 'assets/videos/yopougon-bingerville.mp4', category: 'Infrastructure', title: 'Yopougon - Bingerville en 45 minutes - avec le BRT', date: '13 Juillet 2026', duration: '2:15' },
+    { poster: 'assets/images/actualites/videotheque/cosmos.jpg', src: 'assets/videos/presentation-cosmos.mp4', category: 'Événement', title: 'Visite du nouveau centre commercial - Cosmos', date: '05 Juin 2026', duration: '4:08' },
+    { poster: 'assets/images/actualites/videotheque/porc.jpg', src: 'assets/videos/myth-reality.mp4', category: 'Reportage', title: 'Yop, capitale du porc - Mythe ou réalité ?', date: '12 Mai 2026', duration: '2:50' },
   ];
 
   readonly activeFilter = signal('all');

@@ -1,0 +1,167 @@
+<!-- PAGE BANNER -->
+<section class="page-banner">
+  <div class="container">
+    <div class="breadcrumb">
+      <a routerLink="/"><i class="fas fa-home"></i> Accueil</a>
+      <i class="fas fa-chevron-right" style="font-size:0.7rem;"></i>
+      <span class="current">FAQ</span>
+    </div>
+    <h1>Foire Aux Questions</h1>
+    <p>Retrouvez toutes les réponses aux questions les plus fréquentes sur l'état civil, l'urbanisme, les démarches en ligne, les taxes, les marchés publics et les services de la Mairie de Yopougon.</p>
+    <div class="faq-search">
+      <input
+        type="text"
+        [value]="searchQuery()"
+        (input)="onSearchInput($any($event.target).value)"
+        placeholder="Rechercher une question... (ex : acte de naissance, permis de construire)"
+      />
+      <i class="fas fa-search"></i>
+    </div>
+    <div class="banner-stats">
+      <div class="banner-stat">
+        <i class="fas fa-question-circle"></i>
+        <div><span class="num"><span [appCountUp]="25" countUpSuffix="+">0</span></span><span class="lbl">Questions traitées</span></div>
+      </div>
+      <div class="banner-stat">
+        <i class="fas fa-layer-group"></i>
+        <div><span class="num"><span [appCountUp]="7">0</span></span><span class="lbl">Catégories</span></div>
+      </div>
+      <div class="banner-stat">
+        <i class="fas fa-headset"></i>
+        <div><span class="num">7h30-16h</span><span class="lbl">Assistance sur place</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ SECTION -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Besoin d'aide</div>
+      <h2>Comment pouvons-nous vous aider ?</h2>
+      <p>Choisissez une catégorie ci-dessous ou utilisez la barre de recherche pour trouver rapidement votre réponse.</p>
+    </div>
+
+    @if (!isSearching()) {
+      <!-- TABS -->
+      <div class="faq-tabs fade-in" appFadeIn>
+        @for (category of faqCategories; track category.id) {
+          <button
+            type="button"
+            class="faq-tab"
+            [class.active]="activeFaqCategoryId() === category.id"
+            (click)="selectFaqCategory(category.id)"
+          >
+            <i class="fas {{ category.icon }}"></i> {{ category.label }}
+          </button>
+        }
+      </div>
+
+      <div class="faq-layout fade-in" appFadeIn>
+        <div class="accordion-list">
+          @for (item of activeFaqCategory().items; track item.question; let i = $index) {
+            <div class="accordion-item" [class.open]="openFaqIndex() === i">
+              <button
+                class="accordion-header"
+                type="button"
+                [attr.aria-expanded]="openFaqIndex() === i"
+                (click)="toggleFaqItem(i)"
+              >
+                <div class="q-icon"><i class="fas {{ item.icon }}"></i></div>
+                <div class="q-text">{{ item.question }}</div>
+                <i class="fas fa-chevron-down chevron"></i>
+              </button>
+              <div class="accordion-body" [style.max-height]="openFaqIndex() === i ? '400px' : '0'">
+                <div class="accordion-body-inner">{{ item.answer }}</div>
+              </div>
+            </div>
+          }
+        </div>
+        <div class="faq-illustration">
+          <img [src]="activeFaqCategory().illustration" [alt]="activeFaqCategory().illustrationAlt" loading="lazy" />
+          <div class="faq-illustration-caption">
+            <h4><i class="fas fa-info-circle"></i> {{ activeFaqCategory().illustrationTitle }}</h4>
+            <p>{{ activeFaqCategory().illustrationCaption }}</p>
+          </div>
+        </div>
+      </div>
+    } @else {
+      <!-- RESULTATS DE RECHERCHE -->
+      <div class="search-results fade-in" appFadeIn>
+        @for (result of searchResults(); track result.item.question; let i = $index) {
+          <div class="accordion-item" [class.open]="openSearchResultIndex() === i">
+            <button
+              class="accordion-header"
+              type="button"
+              [attr.aria-expanded]="openSearchResultIndex() === i"
+              (click)="toggleSearchResult(i)"
+            >
+              <div class="q-icon"><i class="fas {{ result.item.icon }}"></i></div>
+              <div class="q-text">
+                {{ result.item.question }}
+                <span class="q-category"><i class="fas {{ result.category.icon }}"></i> {{ result.category.label }}</span>
+              </div>
+              <i class="fas fa-chevron-down chevron"></i>
+            </button>
+            <div class="accordion-body" [style.max-height]="openSearchResultIndex() === i ? '400px' : '0'">
+              <div class="accordion-body-inner">{{ result.item.answer }}</div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+
+    <!-- NO RESULT (recherche) -->
+    @if (hasNoResults()) {
+      <div class="no-result">
+        <i class="fas fa-face-frown-open"></i>
+        <p>Aucune question ne correspond à votre recherche. Essayez un autre mot-clé ou <a routerLink="/contact/formulaire">contactez-nous directement</a>.</p>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- VIDEO SECTION -->
+<section class="video-section">
+  <div class="container">
+    <div class="video-grid">
+      <div class="video-wrapper fade-in" appFadeIn>
+        <iframe [src]="videoUrl" title="État civil et identification en Côte d'Ivoire" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-text fade-in" appFadeIn>
+        <div class="overline">Vidéothèque</div>
+        <h2>Comprendre vos démarches en vidéo</h2>
+        <p>Retrouvez des explications simples sur la modernisation de l'état civil et de l'identification en Côte d'Ivoire, une réforme qui bénéficie directement aux usagers de la mairie de Yopougon.</p>
+        <div class="video-points">
+          <div class="video-point">
+            <i class="fas fa-check-circle"></i>
+            <span>Des actes d'état civil délivrés plus rapidement grâce à la digitalisation.</span>
+          </div>
+          <div class="video-point">
+            <i class="fas fa-check-circle"></i>
+            <span>Un suivi sécurisé de vos démarches d'identification.</span>
+          </div>
+          <div class="video-point">
+            <i class="fas fa-check-circle"></i>
+            <span>Plus de vidéos disponibles dans notre <a routerLink="/actualites" fragment="videotheque">Vidéothèque</a>.</span>
+          </div>
+        </div>
+        <p class="video-credit">Source : chaîne officielle YouTube d'information en continu (Côte d'Ivoire).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA HELP -->
+<section class="faq-cta">
+  <div class="container">
+    <i class="fas fa-headset big-icon"></i>
+    <h2>Vous n'avez pas trouvé votre réponse ?</h2>
+    <p>Notre équipe est à votre écoute pour vous accompagner dans toutes vos démarches administratives.</p>
+    <div class="faq-cta-buttons">
+      <a routerLink="/contact/formulaire" class="btn btn-primary"><i class="fas fa-envelope"></i> Contacter la mairie</a>
+      <a href="tel:+22527234528" class="btn btn-outline"><i class="fas fa-phone-alt"></i> +225 27 23 45 28 20</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,310 @@
+<!-- BANNIÈRE DE PAGE -->
+<section class="page-banner">
+  <div class="page-banner-bg">
+    <img src="assets/images/vacances/banniere-vacances.avif" alt="Enfants participant aux activités de vacances à Yopougon" />
+  </div>
+  <div class="container">
+    <div class="breadcrumb fade-in" appFadeIn>
+      <a routerLink="/">Accueil</a>
+      <i class="fas fa-chevron-right"></i>
+      <a routerLink="/radio">Radio Yopougon</a>
+      <i class="fas fa-chevron-right"></i>
+      <span>Spécial Vacances</span>
+    </div>
+    <div class="page-banner-badge fade-in" appFadeIn>
+      <i class="fas fa-sun"></i> Édition 2026
+    </div>
+    <h1 class="fade-in" appFadeIn>Vive les <span>Vacances</span> à Yopougon !</h1>
+    <p class="fade-in" appFadeIn>Sport, loisirs créatifs, sorties, cours de vacances et émissions spéciales : la Mairie et Radio Yopougon vous préparent un été inoubliable pour petits et grands, du 15 juillet au 15 septembre 2026.</p>
+  </div>
+</section>
+
+<!-- NEWS TICKER -->
+<div class="news-ticker">
+  <div class="ticker-content">
+    @for (item of tickerItems; track item.text) {
+      <div class="ticker-item"><span class="ticker-dot"></span> {{ item.text }}</div>
+    }
+    @for (item of tickerItems; track item.text + '-dup') {
+      <div class="ticker-item"><span class="ticker-dot"></span> {{ item.text }}</div>
+    }
+  </div>
+</div>
+
+<!-- INTRODUCTION -->
+<section class="about vac-intro">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-images fade-in" appFadeIn>
+        <div class="about-badge">
+          <span class="number">+3000</span>
+          <span class="text">Enfants attendus</span>
+        </div>
+        <img src="assets/images/vacances/enfants.jpg" alt="Enfants en atelier créatif pendant les vacances" class="about-img-main" />
+        <img src="assets/images/vacances/piscine-municipale.jpg" alt="Piscine municipale de Yopougon" class="about-img-secondary" />
+      </div>
+      <div class="about-content fade-in" appFadeIn>
+        <div class="overline">Programme municipal</div>
+        <h2>Des vacances utiles, actives et sécurisées pour tous</h2>
+        <p>
+          Chaque année, la Mairie de Yopougon met en place, en partenariat avec Radio Yopougon, un
+          vaste programme d'activités estivales à destination des enfants, des jeunes et des familles
+          de la commune. Sport, culture, soutien scolaire et loisirs se conjuguent pour des vacances
+          riches en découvertes.
+        </p>
+        <p>
+          Réparties dans les différents quartiers de la commune — Sicobois, Niangon, Selmer Tanti
+          Mago, Wassakara — les activités sont accessibles gratuitement ou à coût réduit, avec un
+          encadrement assuré par des animateurs qualifiés et le soutien des services municipaux.
+        </p>
+        <div class="about-features">
+          @for (feature of aboutFeatures; track feature.text) {
+            <div class="about-feature">
+              <i class="fas {{ feature.icon }}"></i>
+              <span>{{ feature.text }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITÉS -->
+<section class="activites">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Programme d'activités</div>
+      <h2 style="color:var(--primary-dark);">Nos activités du Spécial Vacances</h2>
+      <p>Un large choix d'activités gratuites ou à petit prix, réparties dans toute la commune pour occuper intelligemment les vacances de vos enfants.</p>
+    </div>
+    <div class="activites-grid">
+      @for (activite of vacActivites; track activite.title) {
+        <div class="activite-card fade-in" appFadeIn>
+          <div class="activite-img">
+            <img [src]="activite.image" [alt]="activite.alt" />
+            <span class="activite-age">{{ activite.ageRange }}</span>
+          </div>
+          <div class="activite-body">
+            <div class="icon"><i class="fas {{ activite.icon }}"></i></div>
+            <h3>{{ activite.title }}</h3>
+            <p>{{ activite.description }}</p>
+            <div class="activite-meta"><i class="fas fa-map-marker-alt"></i> {{ activite.location }}</div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CHIFFRES CLÉS -->
+<section class="numbers vac-numbers">
+  <div class="container">
+    <div class="numbers-heading fade-in" appFadeIn>
+      <h2>L'été en <span class="heart">&#10084;</span> à Yopougon</h2>
+    </div>
+    <div class="numbers-grid">
+      @for (stat of vacNumberStats; track stat.label) {
+        <div class="number-card fade-in" appFadeIn>
+          <i class="fas {{ stat.icon }}"></i>
+          <div class="count">
+            @if (stat.target !== undefined) {
+              <span [appCountUp]="stat.target" [countUpSuffix]="stat.suffix ?? ''">0</span>
+            } @else {
+              {{ stat.value }}
+            }
+          </div>
+          <div class="count-label">{{ stat.label }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- VIDÉOTHÈQUE SPÉCIALE VACANCES -->
+<section class="videotheque">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">En images et en mouvement</div>
+      <h2>Vidéothèque du Spécial Vacances</h2>
+      <p>Revivez les meilleurs moments des activités de vacances organisées par la Mairie et Radio Yopougon.</p>
+    </div>
+    <div class="video-grid">
+      @for (video of vacVideos; track video.title) {
+        <div class="video-card fade-in" appFadeIn>
+          <div class="video-wrapper">
+            <img [src]="video.poster" [alt]="video.title" />
+            <span class="video-duration">{{ video.duration }}</span>
+          </div>
+          <div class="video-body">
+            <span class="actu-category">{{ video.category }}</span>
+            <h3>{{ video.title }}</h3>
+            <div class="actu-date"><i class="fas fa-calendar-alt"></i> {{ video.date }}</div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE PHOTOS -->
+<section class="vac-gallery">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Souvenirs de vacances</div>
+      <h2 style="color:var(--primary-dark);">Galerie photos</h2>
+      <p>Un aperçu en images de la joie et de l'énergie des activités estivales à Yopougon.</p>
+    </div>
+    <div class="photo-grid fade-in" appFadeIn>
+      @for (photo of vacPhotos; track photo.alt) {
+        <div class="photo-item {{ photo.modifierClass ?? '' }}">
+          <img [src]="photo.image" [alt]="photo.alt" />
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMME RADIO SPÉCIAL VACANCES -->
+<section class="vac-radio-programme">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Sur vos ondes</div>
+      <h2 style="color:var(--primary-dark);">Le programme Spécial Vacances de Radio Yopougon</h2>
+      <p>Chaque jour, Radio Yopougon vous accompagne en direct des sites d'activités et vous informe sur le programme du jour.</p>
+    </div>
+
+    <div class="vac-radio-intro fade-in" appFadeIn>
+      <img src="assets/images/vacances/radio-yop.jpg" alt="Studio de Radio Yopougon en édition spéciale vacances" />
+      <div>
+        <div class="vac-radio-live-badge"><span class="dot"></span> En direct chaque après-midi</div>
+        <h3>« Yop en Vacances », l'émission de l'été</h3>
+        <p>
+          Du lundi au samedi, l'animatrice vedette de Radio Yopougon se déplace sur les différents
+          sites d'activités pour recueillir les impressions des enfants, des animateurs et des
+          parents, en plus de jeux-concours et de conseils pratiques pour bien vivre l'été.
+        </p>
+        <a routerLink="/radio/programme" class="btn btn-primary">
+          <i class="fas fa-headphones"></i> Voir la grille complète
+        </a>
+      </div>
+    </div>
+
+    <div class="vac-schedule-grid">
+      @for (card of vacScheduleCards; track card.title) {
+        <div class="vac-schedule-card fade-in" appFadeIn>
+          <h4><i class="fas {{ card.icon }}"></i> {{ card.title }}</h4>
+          @for (item of card.items; track item.title) {
+            <div class="vac-schedule-item">
+              <div class="vac-schedule-time">{{ item.time }}</div>
+              <div class="vac-schedule-info">
+                <h5>{{ item.title }}</h5>
+                <span>{{ item.description }}</span>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CONSEILS SÉCURITÉ VACANCES -->
+<section class="securite-vacances">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline" style="color: var(--gold);">Bien vivre l'été</div>
+      <h2 style="color: white;">Nos conseils sécurité vacances</h2>
+      <p style="color: rgba(255,255,255,0.85);">La Mairie et Radio Yopougon rappellent quelques gestes simples pour des vacances sereines pour toute la famille.</p>
+    </div>
+    <div class="securite-grid">
+      @for (tip of securiteTips; track tip.title) {
+        <div class="securite-card fade-in" appFadeIn>
+          <i class="fas {{ tip.icon }}"></i>
+          <h4>{{ tip.title }}</h4>
+          <p>{{ tip.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- INSCRIPTION AUX ACTIVITÉS -->
+<section class="inscription-vacances">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info fade-in" appFadeIn>
+        <div class="overline">Rejoignez le programme</div>
+        <h2 style="color:var(--primary-dark); font-size:2.2rem; font-weight:700; margin-bottom:20px;">Inscrivez votre enfant aux activités de vacances</h2>
+        <p style="color:var(--text-light); margin-bottom:25px;">Les inscriptions se font gratuitement dans les mairies annexes et centres municipaux, ou directement via le formulaire ci-contre. Places limitées pour la colonie de vacances.</p>
+        <div class="contact-item">
+          <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="contact-item-text">
+            <h4>Adresse</h4>
+            <p>Direction de la Jeunesse et des Sports<br>Hôtel de ville de Yopougon</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><i class="fas fa-phone-alt"></i></div>
+          <div class="contact-item-text">
+            <h4>Téléphone</h4>
+            <p><a href="tel:+22527234528">+225 27 23 45 28 20</a></p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
+          <div class="contact-item-text">
+            <h4>Email</h4>
+            <p><a href="mailto:vacances@yopougon.ci">vacances&#64;yopougon.ci</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form fade-in" appFadeIn>
+        <h3>Formulaire d'inscription</h3>
+        <form [formGroup]="inscriptionForm" (ngSubmit)="onInscriptionSubmit()">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="vac-childName">Nom de l'enfant</label>
+              <input id="vac-childName" type="text" placeholder="Nom et prénoms" formControlName="childName" required />
+            </div>
+            <div class="form-group">
+              <label for="vac-childAge">Âge</label>
+              <input id="vac-childAge" type="number" placeholder="Âge de l'enfant" min="3" max="18" formControlName="childAge" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="vac-parentName">Nom du parent / tuteur</label>
+              <input id="vac-parentName" type="text" placeholder="Votre nom complet" formControlName="parentName" required />
+            </div>
+            <div class="form-group">
+              <label for="vac-parentPhone">Téléphone</label>
+              <input id="vac-parentPhone" type="tel" placeholder="+225 XX XX XX XX XX" formControlName="parentPhone" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="vac-activite">Activité souhaitée</label>
+            <select id="vac-activite" formControlName="activite" required>
+              <option value="">Sélectionnez une activité</option>
+              @for (activite of inscriptionActivites; track activite) {
+                <option [value]="activite">{{ activite }}</option>
+              }
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="vac-message">Message (optionnel)</label>
+            <textarea id="vac-message" placeholder="Précisions utiles (allergies, besoins particuliers...)" formControlName="message"></textarea>
+          </div>
+          <button type="submit" class="btn-submit" [class.sent]="inscriptionSubmitted()">
+            @if (inscriptionSubmitted()) {
+              <i class="fas fa-check"></i> Inscription envoyée avec succès !
+            } @else {
+              <i class="fas fa-paper-plane"></i> Envoyer l'inscription
+            }
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

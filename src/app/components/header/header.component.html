@@ -77,6 +77,13 @@
                           </li>
                         }
                       </ul>
+                    } @else if (child.externalLink) {
+                      <a [href]="child.externalLink" target="_blank" rel="noopener" (click)="onLeafLinkClick()">
+                        @if (child.icon) {
+                          <i class="{{ child.iconType ?? 'fas' }} {{ child.icon }} item-icon"></i>
+                        }
+                        {{ child.label }}
+                      </a>
                     } @else {
                       <a [routerLink]="child.link" [fragment]="child.fragment" (click)="onLeafLinkClick()">
                         @if (child.icon) {

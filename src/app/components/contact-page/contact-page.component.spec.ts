@@ -21,20 +21,11 @@ describe('ContactPageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have no FAQ item open by default', () => {
-    expect(component.openFaqId()).toBeNull();
+  it('should expose the access points of the commune', () => {
+    expect(component.accessPoints.length).toBeGreaterThan(0);
   });
 
-  it('should toggle a FAQ item open and closed', () => {
-    component.toggleFaq('etat-civil');
-    expect(component.openFaqId()).toBe('etat-civil');
-    component.toggleFaq('etat-civil');
-    expect(component.openFaqId()).toBeNull();
-  });
-
-  it('should reject an invalid contact form submission', () => {
-    component.onContactSubmit();
-    expect(component.formSubmitted()).toBeFalse();
-    expect(component.contactForm.invalid).toBeTrue();
+  it('should expose the info strip items', () => {
+    expect(component.infoStripItems.length).toBe(4);
   });
 });

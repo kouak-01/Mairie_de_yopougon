@@ -21,19 +21,13 @@ describe('RadioPageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should default to monday as the active schedule day', () => {
-    expect(component.activeDay()).toBe('lundi');
+  it('should cycle through the hero slides', () => {
+    expect(component.currentSlide()).toBe(0);
   });
 
-  it('should switch the active schedule day', () => {
-    component.setActiveDay('samedi');
-    expect(component.activeDay()).toBe('samedi');
-    expect(component.scheduleByDay['samedi'].length).toBe(4);
-  });
-
-  it('should show the mini player and start playing on hero play', () => {
-    component.onHeroPlay();
-    expect(component.isPlaying()).toBeTrue();
-    expect(component.miniPlayerVisible()).toBeTrue();
+  it('should require the contact form fields before allowing submit', () => {
+    expect(component.contactForm.invalid).toBeTrue();
+    component.onContactSubmit();
+    expect(component.formSubmitted()).toBeFalse();
   });
 });

@@ -1,0 +1,112 @@
+<!-- PAGE BANNER -->
+<section class="page-banner">
+  <div class="container">
+    <div class="breadcrumb">
+      <a routerLink="/">Accueil</a>
+      <i class="fas fa-chevron-right"></i>
+      <a routerLink="/radio">Radio Yopougon</a>
+      <i class="fas fa-chevron-right"></i>
+      <span class="current">Programme de la radio</span>
+    </div>
+    <div class="page-banner-badge">
+      <i class="fas fa-broadcast-tower"></i> 96.8 FM &bull; La Chaîne des Générations
+    </div>
+    <h1>Programme de la <span>Radio Yopougon</span></h1>
+    <p>Retrouvez chaque semaine la grille complète des émissions de votre radio de proximité : informations municipales, culture, traditions, divertissement et spiritualité, 24h/24.</p>
+  </div>
+</section>
+
+<!-- RADIO INTRO -->
+<section class="radio-intro">
+  <div class="container">
+    <div class="radio-intro-grid">
+      <div class="radio-intro-text fade-in" appFadeIn>
+        <h2>Une radio au cœur de Yopougon</h2>
+        <p>Première radio privée non commerciale créée officiellement en Côte d'Ivoire, Radio Yopougon émet depuis le 18 février 1998 sur la fréquence 96.8 FM. En plus de 25 ans, elle s'est imposée comme une radio de référence dans le District d'Abidjan.</p>
+        <p>Véritable relais entre la Mairie et la population, elle couvre l'actualité municipale, valorise les langues et traditions locales, et anime le quotidien des Yopougonnais avec des émissions culturelles, sportives, religieuses et de divertissement, diffusées 24 heures sur 24.</p>
+      </div>
+      <div class="radio-freq-card fade-in" appFadeIn>
+        <div class="freq">96.8 <span>FM</span></div>
+        <div class="tagline">&laquo; La Chaîne des générations &raquo;</div>
+        <div class="freq-item"><i class="fas fa-map-marker-alt"></i> Mairie centrale de Yopougon</div>
+        <div class="freq-item"><i class="fas fa-clock"></i> Émissions 24h/24, 7j/7</div>
+        <div class="freq-item"><i class="fab fa-facebook"></i> Radio Yopougon Officielle</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMME / GRILLE -->
+<section class="programme-section">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline"><i class="fas fa-radio"></i> Grille des programmes</div>
+      <h2>Le programme de la semaine</h2>
+      <p>Toutes nos émissions, jour par jour, du lundi au dimanche.</p>
+    </div>
+
+    <div class="schedule-legend fade-in" appFadeIn>
+      <div class="legend-chip"><span class="legend-dot weekday"></span> Programmes en semaine</div>
+      <div class="legend-chip"><span class="legend-dot weekend"></span> Programmes week-end</div>
+      <div class="legend-chip"><i class="fas fa-redo" style="color:var(--text-light)"></i> Rediffusion possible</div>
+    </div>
+
+    <div class="schedule-wrapper fade-in" appFadeIn>
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th>Horaire</th>
+            @for (day of scheduleColumns; track day) {
+              <th>{{ day }}</th>
+            }
+            <th class="weekend-head">Samedi</th>
+            <th class="weekend-head">Dimanche</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of scheduleRows; track row.time) {
+            <tr>
+              <td class="time-cell">{{ row.time }}</td>
+              @for (cell of row.cells; track $index) {
+                <td
+                  [attr.colspan]="cell.colspan > 1 ? cell.colspan : null"
+                  [class.weekend-col]="cell.weekend"
+                  [class.colspan-cell]="!cell.weekend && !cell.empty && cell.colspan > 1"
+                >
+                  @if (cell.empty) {
+                    <span class="slot-empty">&mdash;</span>
+                  } @else {
+                    <span class="prog-name">{{ cell.name }}</span>
+                    @if (cell.host) {
+                      <span class="prog-host">{{ cell.host }}</span>
+                    }
+                  }
+                </td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="schedule-notes fade-in" appFadeIn>
+      @for (note of scheduleNotes; track note.title) {
+        <div class="note-card">
+          <h4><i class="fas {{ note.icon }}"></i> {{ note.title }}</h4>
+          <p>{{ note.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- RADIO CTA -->
+<section class="radio-cta">
+  <div class="container">
+    <h2>Une Mairie dynamique à votre service</h2>
+    <p>Yopougon, la commune où il fait bon vivre. Pour plus d'informations, n'hésitez pas à nous contacter.</p>
+    <a routerLink="/contact/formulaire" class="btn btn-outline" style="border-color:white; color:white;">
+      <i class="fas fa-envelope"></i> Contactez-nous
+    </a>
+  </div>
+</section>

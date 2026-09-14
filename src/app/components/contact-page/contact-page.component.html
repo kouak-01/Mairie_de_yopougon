@@ -1,41 +1,51 @@
-<!-- PAGE HERO -->
+<!-- PAGE BANNER -->
 <section class="page-hero">
   <div class="container">
     <div class="breadcrumb">
-      <a routerLink="/">Accueil</a> <span>/</span> <span>Contacts et Accessibilité</span>
+      <a routerLink="/">Accueil</a> <span>/</span> <a routerLink="/">Contacts et Accessibilité</a> <span>/</span> <span>Coordonnées et points d'accès</span>
     </div>
     <div class="page-hero-badge">
-      <i class="fas fa-headset"></i> Nous sommes à votre écoute
+      <i class="fas fa-map-marker-alt"></i> Coordonnées et points d'accès
     </div>
-    <h1>Contactez la Mairie de Yopougon</h1>
+    <h1>Coordonnées et points d'accès</h1>
     <p>
-      Une question, une démarche, une suggestion ? Retrouvez ici toutes les façons de joindre nos
-      équipes : adresse et plan d'accès, formulaire en ligne, réseaux sociaux et réponses aux
-      questions fréquentes.
+      Toutes les adresses, lignes téléphoniques et antennes de la Mairie de Yopougon pour joindre
+      nos services où que vous soyez dans la commune.
     </p>
     <div class="quick-links fade-in" appFadeIn>
-      <a routerLink="/contact" fragment="coordonnees" class="quick-link"><i class="fas fa-map-marker-alt"></i> Coordonnées & plan</a>
-      <a routerLink="/contact" fragment="formulaire" class="quick-link"><i class="fas fa-envelope-open-text"></i> Formulaire de contact</a>
-      <a routerLink="/contact" fragment="reseaux" class="quick-link"><i class="fas fa-share-nodes"></i> Réseaux sociaux</a>
-      <a routerLink="/contact" fragment="faq" class="quick-link"><i class="fas fa-circle-question"></i> FAQ</a>
+      <a routerLink="/contact/formulaire" class="quick-link"><i class="fas fa-envelope-open-text"></i> Formulaire de contact</a>
+      <a routerLink="/contact/reseaux-sociaux" class="quick-link"><i class="fas fa-share-nodes"></i> Réseaux sociaux</a>
+      <a routerLink="/contact/faq" class="quick-link"><i class="fas fa-circle-question"></i> FAQ</a>
     </div>
   </div>
 </section>
 
-<!-- COORDONNÉES & PLAN D'ACCÈS -->
+<!-- INFO STRIP -->
+<div class="info-strip">
+  <div class="container">
+    @for (item of infoStripItems; track item.label) {
+      <div class="info-strip-item">
+        <i class="{{ item.iconType }} {{ item.icon }}"></i>
+        <div><strong>{{ item.value }}</strong><span>{{ item.label }}</span></div>
+      </div>
+    }
+  </div>
+</div>
+
+<!-- COORDONNEES / MAP -->
 <section class="coordonnees" id="coordonnees">
   <div class="container">
     <div class="section-header fade-in" appFadeIn>
-      <div class="overline">Nous trouver</div>
-      <h2>Coordonnées et Plan d'Accès</h2>
-      <p>Toutes nos coordonnées utiles pour nous joindre ou vous rendre directement à la mairie.</p>
+      <div class="overline">Nous joindre</div>
+      <h2>Nos coordonnées</h2>
+      <p>Le siège de la Mairie de Yopougon vous accueille du lundi au vendredi. Retrouvez ci-dessous nos différents moyens de contact ainsi que sa localisation.</p>
     </div>
 
     <div class="coord-grid">
       <div class="coord-cards fade-in" appFadeIn>
         @for (card of coordCards; track card.title) {
           <div class="coord-card">
-            <div class="coord-icon"><i class="fas {{ card.icon }}"></i></div>
+            <div class="coord-icon"><i class="{{ card.iconType }} {{ card.icon }}"></i></div>
             <div>
               <h4>{{ card.title }}</h4>
               @for (line of card.lines; track line.text) {
@@ -65,119 +75,61 @@
   </div>
 </section>
 
-<!-- FORMULAIRE DE CONTACT -->
-<section class="formulaire-section" id="formulaire">
+<!-- POINTS D'ACCÈS DANS LA COMMUNE -->
+<section class="access-section" id="points-acces">
   <div class="container">
     <div class="section-header fade-in" appFadeIn>
-      <div class="overline">Écrivez-nous</div>
-      <h2>Formulaire de Contact</h2>
-      <p>Envoyez-nous directement votre message, notre équipe vous répond dans les meilleurs délais.</p>
+      <div class="overline">Proximité</div>
+      <h2>Nos points d'accès dans la commune</h2>
+      <p>Avec plus d'1,5 million d'habitants répartis sur 32 quartiers, Yopougon met à votre disposition plusieurs guichets et antennes afin de rapprocher l'administration des populations.</p>
     </div>
 
-    <div class="form-grid">
-      <div class="form-side-info fade-in" appFadeIn>
-        <h3>Pourquoi nous écrire ?</h3>
-        <p>
-          Que ce soit pour une demande d'information, un suivi de dossier administratif, une
-          réclamation ou une simple suggestion, ce formulaire est le moyen le plus rapide de joindre
-          le service concerné.
-        </p>
-
-        @for (item of responseHighlights; track item.title) {
-          <div class="response-time">
-            <div class="r-icon"><i class="fas {{ item.icon }}"></i></div>
-            <div>
-              <h4>{{ item.title }}</h4>
-              <span>{{ item.description }}</span>
-            </div>
+    <div class="access-grid">
+      @for (point of accessPoints; track point.name) {
+        <div class="access-card fade-in" appFadeIn>
+          <div class="access-card-img">
+            <img [src]="point.image" [alt]="point.name" loading="lazy" />
+            <span class="access-card-tag" [class.principal]="point.principal">{{ point.tag }}</span>
           </div>
-        }
-      </div>
-
-      <div class="contact-form fade-in" appFadeIn>
-        <h3>Envoyez-nous un message</h3>
-        <form [formGroup]="contactForm" (ngSubmit)="onContactSubmit()">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="contact-fullName">Nom complet</label>
-              <input id="contact-fullName" type="text" placeholder="Votre nom" formControlName="fullName" required />
-            </div>
-            <div class="form-group">
-              <label for="contact-email">Email</label>
-              <input id="contact-email" type="email" placeholder="votre&#64;email.com" formControlName="email" required />
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="contact-subject">Objet</label>
-            <select id="contact-subject" formControlName="subject" required>
-              <option value="">Sélectionnez un objet</option>
-              @for (subject of contactSubjects; track subject) {
-                <option [value]="subject">{{ subject }}</option>
+          <div class="access-card-body">
+            <h4>{{ point.name }}</h4>
+            <div class="access-detail"><i class="fas fa-map-marker-alt"></i><span>{{ point.address }}</span></div>
+            <div class="access-detail"><i class="fas fa-phone-alt"></i><span>{{ point.phone }}</span></div>
+            <div class="access-detail"><i class="fas fa-clock"></i><span>{{ point.hours }}</span></div>
+            <div class="access-services">
+              @for (service of point.services; track service) {
+                <span>{{ service }}</span>
               }
-            </select>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="contact-message">Message</label>
-            <textarea id="contact-message" placeholder="Votre message..." formControlName="message" required></textarea>
-          </div>
-          <button type="submit" class="btn-submit" [class.sent]="formSubmitted()">
-            @if (formSubmitted()) {
-              <i class="fas fa-check"></i> Message envoyé avec succès !
-            } @else {
-              <i class="fas fa-paper-plane"></i> Envoyer le message
-            }
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- RÉSEAUX SOCIAUX -->
-<section class="reseaux-sociaux" id="reseaux">
-  <div class="container">
-    <div class="section-header fade-in" appFadeIn>
-      <div class="overline">Suivez-nous</div>
-      <h2>Réseaux Sociaux</h2>
-      <p>Retrouvez l'actualité de la commune en temps réel et échangez avec nous sur nos réseaux sociaux.</p>
-    </div>
-
-    <div class="social-grid">
-      @for (card of socialCards; track card.title) {
-        <a href="#" class="social-card fade-in" appFadeIn [style.--social-color]="card.color">
-          <div class="social-icon"><i class="{{ card.iconType }} {{ card.icon }}"></i></div>
-          <h3>{{ card.title }}</h3>
-          <p>{{ card.description }}</p>
-          <span class="social-follow">{{ card.followLabel }} <i class="fas fa-arrow-right"></i></span>
-        </a>
+        </div>
       }
     </div>
+    <p class="access-note">
+      <i class="fas fa-info-circle"></i>
+      Adresses et lignes données à titre indicatif. Pour toute démarche, un appel préalable est recommandé.
+    </p>
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="faq" id="faq">
+<!-- COMMENT NOUS REJOINDRE -->
+<section class="transport-section" id="acces">
   <div class="container">
     <div class="section-header fade-in" appFadeIn>
-      <div class="overline">Questions fréquentes</div>
-      <h2 style="color:rgba(237, 125, 49);">FAQ</h2>
-      <p>Les réponses aux questions les plus posées par les Yopougonnais.</p>
+      <div class="overline">S'y rendre</div>
+      <h2>Comment nous rejoindre</h2>
+      <p>Yopougon est desservie par plusieurs moyens de transport. Voici les options les plus pratiques pour rallier la mairie centrale, Rue Princesse.</p>
     </div>
-
-    <div class="faq-list fade-in" appFadeIn>
-      @for (item of faqItems; track item.id) {
-        <div class="faq-item" [class.open]="openFaqId() === item.id">
-          <button
-            class="faq-question"
-            type="button"
-            [attr.aria-expanded]="openFaqId() === item.id"
-            (click)="toggleFaq(item.id)"
-          >
-            <span class="faq-q-left"><span class="faq-num">{{ item.number }}</span> {{ item.question }}</span>
-            <i class="fas fa-chevron-down faq-chevron"></i>
-          </button>
-          <div class="faq-answer" [style.max-height]="openFaqId() === item.id ? '400px' : '0'">
-            <div class="faq-answer-inner">{{ item.answer }}</div>
+    <div class="transport-grid">
+      @for (option of transportOptions; track option.title) {
+        <div class="transport-card fade-in" appFadeIn>
+          <div class="transport-card-img">
+            <img [src]="option.image" [alt]="option.title" loading="lazy" />
+          </div>
+          <div class="transport-card-body">
+            <div class="icon"><i class="fas {{ option.icon }}"></i></div>
+            <h4>{{ option.title }}</h4>
+            <p>{{ option.description }}</p>
           </div>
         </div>
       }
@@ -185,16 +137,60 @@
   </div>
 </section>
 
-<!-- BANDE CTA -->
-<section class="cta-band">
+<!-- MEDIA / VIDEO -->
+<section class="media-section" id="videotheque">
   <div class="container">
-    <div class="cta-band-text fade-in" appFadeIn>
-      <h2>Besoin d'une réponse rapide ?</h2>
-      <p>Nos équipes restent joignables par téléphone ou via nos démarches en ligne disponibles 24h/24 et 7j/7.</p>
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">En images</div>
+      <h2>Visite de la commune</h2>
+      <p>Découvrez en vidéo et en images les alentours de nos différents points d'accès à travers la commune.</p>
     </div>
-    <div class="cta-band-buttons fade-in" appFadeIn>
-      <a href="tel:+22527234528" class="btn btn-primary"><i class="fas fa-phone-alt"></i> Appeler la mairie</a>
-      <a routerLink="/" fragment="demande" class="btn btn-outline"><i class="fas fa-file-alt"></i> Faire une demande en ligne</a>
+    <div class="media-grid">
+      <div class="video-wrapper fade-in" appFadeIn>
+        <iframe [src]="mediaVideoUrl" title="La commune de Yopougon" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="mini-gallery fade-in" appFadeIn>
+        @for (image of galleryImages; track image.url) {
+          <a [href]="image.url" target="_blank" rel="noopener">
+            <img [src]="image.url" [alt]="image.alt" loading="lazy" />
+          </a>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESSIBILITÉ -->
+<section class="accessibilite-section" id="accessibilite">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Pour tous</div>
+      <h2>Accessibilité de nos locaux</h2>
+      <p>La Mairie de Yopougon s'engage à faciliter l'accueil de toutes et de tous, y compris les personnes à mobilité réduite.</p>
+    </div>
+    <div class="accessibilite-grid">
+      @for (feature of accessibilityFeatures; track feature.title) {
+        <div class="accessibilite-card fade-in" appFadeIn>
+          <i class="fas {{ feature.icon }}"></i>
+          <h4>{{ feature.title }}</h4>
+          <p>{{ feature.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- RESEAUX SOCIAUX CTA -->
+<section class="social-cta-section" id="reseaux-sociaux">
+  <div class="container">
+    <h2 class="fade-in" appFadeIn>Suivez-nous aussi en ligne</h2>
+    <p class="fade-in" appFadeIn>Restez informés de l'actualité de votre commune et échangez avec nos équipes sur nos réseaux sociaux.</p>
+    <div class="social-cta-icons fade-in" appFadeIn>
+      <a href="https://www.facebook.com/Mairieyop/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://twitter.com/mairieyop" target="_blank" rel="noopener" aria-label="X / Twitter"><i class="fab fa-twitter"></i></a>
+      <a routerLink="/contact/reseaux-sociaux" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a routerLink="/contact/reseaux-sociaux" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a routerLink="/contact/formulaire" aria-label="Formulaire de contact"><i class="fas fa-paper-plane"></i></a>
     </div>
   </div>
 </section>

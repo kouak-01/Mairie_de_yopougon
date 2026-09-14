@@ -1,0 +1,153 @@
+<!-- PAGE BANNER -->
+<section class="page-banner">
+  <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Carrefour%20Saint%20Andr%C3%A9%20Yopougon.jpg" alt="Yopougon, commune d'Abidjan" />
+  <div class="hero-overlay"></div>
+  <div class="container">
+    <div class="page-banner-content">
+      <div class="breadcrumb">
+        <a routerLink="/"><i class="fas fa-home"></i> Accueil</a>
+        <i class="fas fa-chevron-right"></i>
+        <a routerLink="/contact">Contacts &amp; Accessibilité</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Réseaux sociaux</span>
+      </div>
+      <h1>Réseaux sociaux</h1>
+      <p>Suivez l'actualité de votre commune, échangez avec nos équipes et rejoignez la communauté yopougonnaise en ligne.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<div class="info-strip">
+  <div class="container">
+    @for (item of infoStripItems; track item.label) {
+      <div class="info-strip-item">
+        <i class="{{ item.iconType }} {{ item.icon }}"></i>
+        <div><strong>{{ item.value }}</strong><span>{{ item.label }}</span></div>
+      </div>
+    }
+  </div>
+</div>
+
+<!-- NOS RESEAUX -->
+<section class="reseaux-section" id="nos-reseaux">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Restons connectés</div>
+      <h2>Nos réseaux sociaux officiels</h2>
+      <p>La Mairie de Yopougon est présente sur plusieurs plateformes pour informer, échanger et être au plus proche de la population yopougonnaise.</p>
+    </div>
+    <div class="reseaux-grid">
+      @for (card of reseauCards; track card.title) {
+        <div class="reseau-card fade-in" appFadeIn>
+          <div class="reseau-card-top">
+            <div class="reseau-icon" [class]="card.colorClass"><i class="{{ card.iconType }} {{ card.icon }}"></i></div>
+            <div>
+              <h4>{{ card.title }}</h4>
+              <span>{{ card.handle }}</span>
+            </div>
+          </div>
+          <div class="reseau-card-body">
+            <p>{{ card.description }}</p>
+            <div class="reseau-stats"><i class="fas {{ card.statIcon }}"></i> {{ card.statLabel }}</div>
+            @if (card.action.disabled) {
+              <span class="btn-follow disabled"><i class="{{ card.iconType }} {{ card.icon }}"></i> {{ card.action.label }}</span>
+            } @else if (card.action.anchor) {
+              <a [href]="'#' + card.action.anchor" class="btn-follow"><i class="fas fa-play"></i> {{ card.action.label }}</a>
+            } @else {
+              <a [href]="card.action.href" target="_blank" rel="noopener" class="btn-follow">
+                <i class="{{ card.iconType }} {{ card.icon }}"></i> {{ card.action.label }}
+              </a>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- FEED FACEBOOK + CHARTE -->
+<section class="feed-section" id="fil-actualite">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">En direct</div>
+      <h2>Notre fil d'actualité</h2>
+      <p>Retrouvez ci-dessous les dernières publications de notre page Facebook officielle, ainsi que nos règles de bonne conduite.</p>
+    </div>
+    <div class="feed-grid">
+      <div class="feed-embed fade-in" appFadeIn>
+        <iframe
+          [src]="feedUrl"
+          height="550"
+          style="border:none;overflow:hidden;"
+          scrolling="no"
+          allowfullscreen="true"
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+          loading="lazy"
+          title="Fil Facebook Mairie de Yopougon"
+        ></iframe>
+      </div>
+      <div class="charte-card fade-in" appFadeIn>
+        <h3><i class="fas fa-shield-alt"></i> Charte de la communauté</h3>
+        @for (item of charteItems; track item.title) {
+          <div class="charte-item" [class.avoid]="!item.positive">
+            <i class="fas" [class.fa-check]="item.positive" [class.fa-times]="!item.positive"></i>
+            <p><strong>{{ item.title }}</strong> — {{ item.text }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEOTHEQUE -->
+<section class="video-gallery-section" id="videotheque">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">À voir</div>
+      <h2>Notre vidéothèque</h2>
+      <p>Immersions vidéo dans la vie de la commune, partagées sur nos réseaux sociaux.</p>
+    </div>
+    <div class="video-gallery-grid">
+      @for (item of videoGalleryItems; track item.title) {
+        <div class="video-gallery-item fade-in" appFadeIn>
+          <div class="video-wrapper">
+            @if (item.type === 'youtube') {
+              <iframe [src]="item.url" [title]="item.title" allowfullscreen loading="lazy"></iframe>
+            } @else {
+              <video controls preload="none">
+                <source [src]="item.src" type="video/mp4" />
+                Votre navigateur ne prend pas en charge la lecture vidéo.
+              </video>
+            }
+          </div>
+          <div class="video-gallery-caption">
+            <h4>{{ item.title }}</h4>
+            <span>{{ item.caption }}</span>
+          </div>
+        </div>
+      }
+    </div>
+    <div class="mini-photo-strip">
+      @for (image of miniPhotoStrip; track image.url) {
+        <img [src]="image.url" [alt]="image.alt" loading="lazy" />
+      }
+    </div>
+  </div>
+</section>
+
+<!-- HASHTAG CTA -->
+<section class="hashtag-cta-section" id="rejoindre">
+  <div class="container">
+    <div class="hashtag fade-in" appFadeIn>#Yopougon &nbsp;&middot;&nbsp; #YopCity &nbsp;&middot;&nbsp; #MairieDeYopougon</div>
+    <h2 class="fade-in" appFadeIn>Rejoignez la conversation</h2>
+    <p class="fade-in" appFadeIn>Abonnez-vous, partagez et taguez-nous pour faire connaître les initiatives de votre quartier.</p>
+    <div class="social-cta-icons fade-in" appFadeIn>
+      <a href="https://www.facebook.com/Mairieyop/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://twitter.com/mairieyop" target="_blank" rel="noopener" aria-label="X / Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#videotheque" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://wa.me/2250707452820" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a routerLink="/contact/formulaire" aria-label="Formulaire de contact"><i class="fas fa-paper-plane"></i></a>
+    </div>
+  </div>
+</section>
