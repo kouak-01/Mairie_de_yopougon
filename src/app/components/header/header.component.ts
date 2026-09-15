@@ -86,6 +86,10 @@ export class HeaderComponent {
       id: 'yop-ma-commune',
       label: 'Vivre à Yopougon',
       children: [
+        { id: 'sante', label: 'Santé', icon: 'fa-hospital', link: '/vivre-a-yopougon/sante' },
+        { id: 'education', label: 'Éducation', icon: 'fa-graduation-cap', link: '/vivre-a-yopougon/education' },
+        { id: 'transports', label: 'Transports', icon: 'fa-bus', link: '/vivre-a-yopougon/transports' },
+        { id: 'environnement', label: 'Environnement', icon: 'fa-leaf', link: '/vivre-a-yopougon/environnement' },
         { id: 'histoire', label: 'Histoire', icon: 'fa-scroll', link: '/histoire' },
         { id: 'histoire-politique', label: 'Histoire politique', icon: 'fa-landmark', link: '/histoire', fragment: 'maires' },
         { id: 'geographie', label: 'Géographie', icon: 'fa-map', link: '/geographie' },
@@ -94,10 +98,6 @@ export class HeaderComponent {
         { id: 'emplois', label: 'Emplois', icon: 'fa-briefcase', link: '/emploi-recrutement' },
         { id: 'sport-culture', label: 'Sport et culture', icon: 'fa-futbol', link: '/sport-et-culture' },
         { id: 'tourisme', label: 'Tourisme et loisirs', icon: 'fa-umbrella-beach', link: '/tourisme-et-loisirs' },
-        { id: 'sante', label: 'Santé', icon: 'fa-hospital', link: '/vivre-a-yopougon/sante' },
-        { id: 'education', label: 'Éducation', icon: 'fa-graduation-cap', link: '/vivre-a-yopougon/education' },
-        { id: 'transports', label: 'Transports', icon: 'fa-bus', link: '/vivre-a-yopougon/transports' },
-        { id: 'environnement', label: 'Environnement', icon: 'fa-leaf', link: '/vivre-a-yopougon/environnement' },
       ],
     },
     {
