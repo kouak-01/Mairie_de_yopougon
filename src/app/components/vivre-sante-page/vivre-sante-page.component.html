@@ -1,0 +1,230 @@
+<!-- PAGE BANNER -->
+<section class="page-banner">
+  <div class="container">
+    <div class="breadcrumb">
+      <a routerLink="/"><i class="fas fa-home"></i> Accueil</a>
+      <i class="fas fa-chevron-right" style="font-size:0.7rem;"></i>
+      <span>Vivre à Yopougon</span>
+      <i class="fas fa-chevron-right" style="font-size:0.7rem;"></i>
+      <span class="current">Santé</span>
+    </div>
+    <h1>Santé à Yopougon</h1>
+    <p>
+      Du Centre Hospitalier Universitaire aux centres de santé de quartier, en passant par les
+      cliniques privées et le réseau des pharmacies, découvrez l'offre de soins qui accompagne
+      au quotidien les Yopougonnais, du plus grand quartier de Côte d'Ivoire.
+    </p>
+    <div class="banner-stats">
+      <div class="banner-stat">
+        <i class="fas fa-hospital"></i>
+        <div><span class="num"><span [appCountUp]="1">0</span></span><span class="lbl">CHU de référence</span></div>
+      </div>
+      <div class="banner-stat">
+        <i class="fas fa-house-medical"></i>
+        <div><span class="num"><span [appCountUp]="30" countUpSuffix="+">0</span></span><span class="lbl">Structures de santé recensées</span></div>
+      </div>
+      <div class="banner-stat">
+        <i class="fas fa-users"></i>
+        <div><span class="num"><span [appCountUp]="1" countUpSuffix=",5M+">0</span></span><span class="lbl">Habitants desservis</span></div>
+      </div>
+      <div class="banner-stat">
+        <i class="fas fa-clock"></i>
+        <div><span class="num">24h/24</span><span class="lbl">Garde des urgences et pharmacies</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro-section">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Vivre à Yopougon</div>
+      <h2>Une offre de soins à plusieurs niveaux</h2>
+      <p>
+        Commune la plus peuplée de Côte d'Ivoire, Yopougon s'appuie sur un maillage sanitaire
+        organisé en plusieurs niveaux complémentaires : un hôpital universitaire de référence,
+        des centres de santé communautaires ancrés dans les quartiers, des cliniques privées
+        agréées et un réseau dense de pharmacies. Cette page recense les structures dont
+        l'existence est documentée, pour vous aider à identifier le bon niveau de soins selon
+        votre besoin.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ANNUAIRE FILTRABLE -->
+<section class="directory-section" id="annuaire">
+  <div class="container">
+    <div class="filter-tabs fade-in" appFadeIn>
+      @for (tab of categoryTabs; track tab.id) {
+        <button
+          type="button"
+          class="filter-tab"
+          [class.active]="activeCategory() === tab.id"
+          (click)="selectCategory(tab.id)"
+        >
+          <i class="fas {{ tab.icon }}"></i> {{ tab.label }}
+        </button>
+      }
+    </div>
+
+    <div class="facility-grid">
+      @for (facility of filteredFacilities(); track facility.id) {
+        <div class="facility-card fade-in" appFadeIn>
+          <div class="facility-image">
+            <img [src]="facility.image" [alt]="facility.name" loading="lazy" />
+            <span class="facility-quartier"><i class="fas fa-map-marker-alt"></i> {{ facility.quartier }}</span>
+          </div>
+          <div class="facility-body">
+            <h3>{{ facility.name }}</h3>
+            <p>{{ facility.description }}</p>
+            <div class="facility-tags">
+              @for (tag of facility.tags; track tag) {
+                <span class="tag">{{ tag }}</span>
+              }
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- SPOTLIGHT CHU -->
+<section class="spotlight-section">
+  <div class="container">
+    <div class="spotlight-grid">
+      <div class="spotlight-image fade-in" appFadeIn>
+        <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Couloir d'un hôpital universitaire" loading="lazy" />
+      </div>
+      <div class="spotlight-content fade-in" appFadeIn>
+        <div class="overline">Établissement de référence</div>
+        <h2>Le CHU de Yopougon, pilier hospitalier de la commune</h2>
+        <p>
+          Ouvert en 1990, le Centre Hospitalier Universitaire de Yopougon est l'un des plus
+          importants hôpitaux publics de Côte d'Ivoire. Organisé en trois blocs, il réunit des
+          services de médecine interne, de chirurgie générale, d'imagerie et de neurologie, ainsi
+          qu'un pôle mère-enfant dédié à la gynécologie-obstétrique, la pédiatrie, la néonatologie
+          et la chirurgie pédiatrique.
+        </p>
+        <p>
+          Fermé fin 2019 pour une vaste réhabilitation, l'établissement rouvre progressivement
+          depuis 2024 avec des capacités renforcées : services d'urgences, de réanimation, de
+          neurochirurgie, de radiologie et de laboratoire remis en service, pour un effectif
+          d'environ un millier de collaborateurs. Le CHU conserve par ailleurs sa vocation
+          première de centre de formation pour les futurs médecins, pharmaciens,
+          chirurgiens-dentistes et personnels paramédicaux de Côte d'Ivoire.
+        </p>
+        <a routerLink="/contact/formulaire" class="btn btn-primary">
+          <i class="fas fa-comments"></i> Une question sur un service de santé ?
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COUVERTURE PAR QUARTIER -->
+<section class="coverage-section">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">Vue d'ensemble</div>
+      <h2>Une offre de proximité répartie dans les quartiers</h2>
+      <p>
+        En complément du CHU, les grands secteurs de la commune bénéficient d'une offre de santé
+        de proximité. Le tableau ci-dessous donne une vue d'ensemble générale et indicative de
+        cette répartition, sans prétendre à l'exhaustivité de chaque officine ou cabinet.
+      </p>
+    </div>
+    <div class="coverage-table fade-in" appFadeIn>
+      <p-table [value]="quartierCoverage" styleClass="yop-table">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Secteur / Quartiers</th>
+            <th>Offre de santé de proximité (indicatif)</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-row>
+          <tr>
+            <td data-label="Secteur"><i class="fas fa-location-dot"></i> {{ row.quartier }}</td>
+            <td data-label="Offre">{{ row.offre }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</section>
+
+<!-- PHARMACIES DE GARDE -->
+<section class="garde-section">
+  <div class="container">
+    <div class="garde-grid">
+      <div class="garde-content fade-in" appFadeIn>
+        <div class="overline">Le saviez-vous ?</div>
+        <h2>Comment fonctionne la pharmacie de garde</h2>
+        <p>
+          En Côte d'Ivoire, le service de garde est obligatoire pour chaque officine de
+          pharmacie. En dehors des heures normales d'ouverture, les week-ends et jours fériés, un
+          roulement organisé par l'Union Nationale des Pharmaciens Privés de Côte d'Ivoire
+          (UNPPCI) désigne chaque semaine les pharmacies assurant la continuité du service pour
+          le grand public.
+        </p>
+        <p>
+          Chaque officine a l'obligation d'afficher de façon visible ses horaires d'ouverture
+          ainsi que le tour de garde en vigueur. À Yopougon, plusieurs dizaines de pharmacies
+          réparties dans les différents quartiers participent à ce roulement, garantissant un
+          accès aux médicaments essentiels même en dehors des horaires classiques.
+        </p>
+        <div class="garde-tip">
+          <i class="fas fa-circle-info"></i>
+          <span>Pour connaître la pharmacie de garde la plus proche cette semaine, consultez l'affichage de votre officine habituelle ou la plateforme nationale dédiée aux pharmacies de garde.</span>
+        </div>
+      </div>
+      <div class="garde-image fade-in" appFadeIn>
+        <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?fm=jpg&q=80&w=1000&auto=format&fit=crop" alt="Étagère de pharmacie avec médicaments" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMEROS UTILES -->
+<section class="numbers-section">
+  <div class="container">
+    <div class="section-header fade-in" appFadeIn>
+      <div class="overline">À garder à portée de main</div>
+      <h2>Numéros d'urgence utiles</h2>
+      <p>Ces numéros nationaux, gratuits et accessibles 24h/24, s'appliquent également aux habitants de Yopougon.</p>
+    </div>
+    <div class="numbers-table fade-in" appFadeIn>
+      <p-table [value]="usefulNumbers" styleClass="yop-table">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Service</th>
+            <th>Numéro</th>
+            <th>Usage</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-row>
+          <tr>
+            <td data-label="Service">{{ row.service }}</td>
+            <td data-label="Numéro" class="numero-cell">{{ row.numero }}</td>
+            <td data-label="Usage">{{ row.usage }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <i class="fas fa-heart-pulse big-icon"></i>
+    <h2>Une démarche liée à la santé publique de la commune ?</h2>
+    <p>La Mairie de Yopougon reste à l'écoute des habitants pour toute question relative aux services de santé de la commune.</p>
+    <div class="cta-buttons">
+      <a routerLink="/contact/formulaire" class="btn btn-primary"><i class="fas fa-envelope"></i> Contacter la mairie</a>
+      <a routerLink="/contact/faq" class="btn btn-outline"><i class="fas fa-circle-question"></i> Consulter la FAQ</a>
+    </div>
+  </div>
+</section>

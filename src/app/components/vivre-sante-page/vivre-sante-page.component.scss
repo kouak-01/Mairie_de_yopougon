@@ -1,0 +1,408 @@
+/* ===== PAGE BANNER ===== */
+.page-banner {
+  position: relative;
+  padding: 160px 0 90px;
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 55%, rgba(247, 127, 0, 0.55) 100%);
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><circle cx="2" cy="2" r="2" fill="rgba(255,255,255,0.10)"/></svg>');
+    opacity: 0.6;
+  }
+
+  .container { position: relative; z-index: 2; }
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+
+  a { color: rgba(255, 255, 255, 0.85); text-decoration: none; transition: var(--transition); }
+  a:hover { color: var(--gold); }
+  span.current { color: var(--gold); font-weight: 600; }
+}
+
+.page-banner h1 {
+  font-size: 2.9rem;
+  color: white;
+  font-weight: 800;
+  margin-bottom: 15px;
+  max-width: 750px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.page-banner p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  max-width: 650px;
+  margin-bottom: 30px;
+}
+
+.banner-stats {
+  display: flex;
+  gap: 25px;
+  margin-top: 35px;
+  flex-wrap: wrap;
+}
+
+.banner-stat {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+
+  i {
+    width: 46px;
+    height: 46px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: var(--gold);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .num { font-weight: 800; font-family: 'Montserrat', sans-serif; display: block; font-size: 1.05rem; }
+  .lbl { font-size: 0.78rem; color: rgba(255, 255, 255, 0.75); }
+}
+
+/* ===== INTRO ===== */
+.intro-section {
+  padding: 80px 0 20px;
+  background: var(--bg-cream);
+}
+
+/* ===== ANNUAIRE FILTRABLE ===== */
+.directory-section {
+  padding: 50px 0 90px;
+  background: var(--bg-cream);
+}
+
+.filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.filter-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 13px 24px;
+  background: white;
+  border-radius: 50px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+
+  i { color: var(--secondary); transition: var(--transition); }
+
+  &:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+
+  &.active {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    box-shadow: 0 10px 25px rgba(26, 95, 42, 0.3);
+
+    i { color: white; }
+  }
+}
+
+.facility-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.facility-card {
+  background: white;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+
+  &:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+}
+
+.facility-image {
+  position: relative;
+  height: 190px;
+
+  img { width: 100%; height: 100%; object-fit: cover; }
+
+  .facility-quartier {
+    position: absolute;
+    left: 14px;
+    bottom: 14px;
+    background: rgba(14, 61, 26, 0.85);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    i { color: var(--gold); }
+  }
+}
+
+.facility-body {
+  padding: 22px 24px 26px;
+
+  h3 { font-size: 1.1rem; color: var(--primary-dark); font-weight: 700; margin-bottom: 10px; }
+  p { color: var(--text-light); font-size: 0.9rem; line-height: 1.7; margin-bottom: 14px; }
+}
+
+.facility-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  background: var(--bg-cream);
+  color: var(--primary);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 50px;
+  border: 1px solid rgba(26, 95, 42, 0.12);
+}
+
+/* ===== SPOTLIGHT CHU ===== */
+.spotlight-section { padding: 90px 0; background: white; }
+
+.spotlight-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.spotlight-image {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+
+  img { width: 100%; height: 420px; object-fit: cover; display: block; }
+}
+
+.spotlight-content {
+  .overline {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+
+    &::before { content: ''; width: 40px; height: 2px; background: var(--gold); }
+  }
+
+  h2 { font-size: 2.1rem; color: var(--primary-dark); margin-bottom: 18px; font-weight: 700; }
+  p { color: var(--text-light); margin-bottom: 18px; }
+}
+
+/* ===== COUVERTURE PAR QUARTIER ===== */
+.coverage-section { padding: 90px 0; background: var(--bg-cream); }
+
+.coverage-table, .numbers-table {
+  max-width: 950px;
+  margin: 0 auto;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+/* ===== TABLEAU PRIMENG PERSONNALISE ===== */
+:host ::ng-deep .yop-table {
+  .p-datatable-table { width: 100%; border-collapse: collapse; }
+
+  .p-datatable-thead > tr > th {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 16px 20px;
+    border: none;
+  }
+
+  .p-datatable-tbody > tr {
+    background: white;
+    transition: var(--transition);
+
+    &:nth-child(even) { background: var(--bg-cream); }
+    &:hover { background: rgba(26, 95, 42, 0.06); }
+  }
+
+  .p-datatable-tbody > tr > td {
+    padding: 16px 20px;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+    i { color: var(--secondary); margin-right: 6px; }
+  }
+
+  .numero-cell {
+    font-weight: 800;
+    color: var(--primary-dark);
+    font-family: 'Montserrat', sans-serif;
+  }
+}
+
+/* ===== PHARMACIES DE GARDE ===== */
+.garde-section { padding: 90px 0; background: white; }
+
+.garde-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.garde-content {
+  .overline {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+
+    &::before { content: ''; width: 40px; height: 2px; background: var(--gold); }
+  }
+
+  h2 { font-size: 2rem; color: var(--primary-dark); margin-bottom: 18px; font-weight: 700; }
+  p { color: var(--text-light); margin-bottom: 18px; }
+}
+
+.garde-tip {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 18px 20px;
+  background: var(--bg-cream);
+  border-radius: 14px;
+  border-left: 4px solid var(--gold);
+
+  i { color: var(--secondary); margin-top: 3px; }
+  span { font-size: 0.9rem; color: var(--text-dark); }
+}
+
+.garde-image {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+
+  img { width: 100%; height: 320px; object-fit: cover; display: block; }
+}
+
+/* ===== NUMEROS UTILES ===== */
+.numbers-section { padding: 90px 0; background: var(--bg-cream); }
+
+/* ===== CTA ===== */
+.cta-section {
+  padding: 80px 0;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: rgba(247, 127, 0, 0.2);
+    border-radius: 50%;
+  }
+
+  .container { position: relative; z-index: 2; }
+}
+
+.cta-section i.big-icon { font-size: 2.6rem; color: var(--gold); margin-bottom: 20px; }
+
+.cta-section h2 { font-size: 2.1rem; color: white; font-weight: 700; margin-bottom: 15px; }
+
+.cta-section p { color: rgba(255, 255, 255, 0.85); max-width: 550px; margin: 0 auto 30px; }
+
+.cta-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .facility-grid { grid-template-columns: repeat(2, 1fr); }
+  .spotlight-grid { grid-template-columns: 1fr; }
+  .spotlight-image img { height: 300px; }
+  .garde-grid { grid-template-columns: 1fr; }
+  .garde-image { order: -1; }
+}
+
+@media (max-width: 768px) {
+  .page-banner { padding: 140px 0 70px; }
+  .page-banner h1 { font-size: 2.1rem; }
+  .banner-stats { gap: 15px; }
+  .facility-grid { grid-template-columns: 1fr; }
+  .filter-tabs { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 8px; }
+
+  :host ::ng-deep .yop-table {
+    .p-datatable-thead { display: none; }
+
+    .p-datatable-tbody > tr {
+      display: block;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .p-datatable-tbody > tr > td {
+      display: flex;
+      gap: 10px;
+      border: none;
+      padding: 6px 20px;
+
+      &::before {
+        content: attr(data-label);
+        font-weight: 700;
+        color: var(--primary-dark);
+        min-width: 130px;
+        flex-shrink: 0;
+      }
+    }
+  }
+}

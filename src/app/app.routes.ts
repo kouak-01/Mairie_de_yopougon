@@ -28,6 +28,10 @@ import { EmploiRecrutementPageComponent } from './components/emploi-recrutement-
 import { SportEtCulturePageComponent } from './components/sport-et-culture-page/sport-et-culture-page.component';
 import { TourismeEtLoisirsPageComponent } from './components/tourisme-et-loisirs-page/tourisme-et-loisirs-page.component';
 import { ActualiteDetailPageComponent } from './components/actualite-detail-page/actualite-detail-page.component';
+import { SanteVivrePageComponent } from './components/vivre-sante-page/vivre-sante-page.component';
+import { EducationVivrePageComponent } from './components/vivre-education-page/vivre-education-page.component';
+import { TransportsVivrePageComponent } from './components/vivre-transports-page/vivre-transports-page.component';
+import { EnvironnementVivrePageComponent } from './components/vivre-environnement-page/vivre-environnement-page.component';
 
 export const routes: Routes = [
   { path: '', component: AccueilPageComponent, title: 'Mairie de Yopougon - Site Officiel', data: { footerVariant: 'full' } },
@@ -86,6 +90,14 @@ export const routes: Routes = [
   { path: 'sport-et-culture', component: SportEtCulturePageComponent, title: 'Sport et Culture - Mairie de Yopougon', data: { footerVariant: 'full' } },
 
   { path: 'tourisme-et-loisirs', component: TourismeEtLoisirsPageComponent, title: 'Tourisme et Loisirs - Mairie de Yopougon', data: { footerVariant: 'full' } },
+
+  { path: 'vivre-a-yopougon/sante', component: SanteVivrePageComponent, title: 'Santé à Yopougon - Mairie de Yopougon', data: { footerVariant: 'full' } },
+
+  { path: 'vivre-a-yopougon/education', component: EducationVivrePageComponent, title: 'Éducation à Yopougon - Mairie de Yopougon', data: { footerVariant: 'full' } },
+
+  { path: 'vivre-a-yopougon/transports', component: TransportsVivrePageComponent, title: 'Transports à Yopougon - Mairie de Yopougon', data: { footerVariant: 'full' } },
+
+  { path: 'vivre-a-yopougon/environnement', component: EnvironnementVivrePageComponent, title: 'Environnement à Yopougon - Mairie de Yopougon', data: { footerVariant: 'full' } },
 
   { path: 'actualites/:id', component: ActualiteDetailPageComponent, title: 'Actualité - Mairie de Yopougon', data: { footerVariant: 'full' } },
 
